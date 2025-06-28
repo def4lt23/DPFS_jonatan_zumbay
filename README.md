@@ -1,10 +1,9 @@
 Luzify - Iluminando tus Espacios
-
-============================================================================================================================================
+============================================================================================
 ## ✨ Introducción / Acerca de Luzify
 Luzify nace de la pasión por transformar ambientes a través de la luz. Somos una empresa dedicada a la venta de lámparas y soluciones de iluminación innovadoras y de diseño que buscan realzar la belleza y funcionalidad de cada espacio. Creemos que la luz no es solo una necesidad, sino un elemento clave para crear atmósferas únicas y acogedoras en hogares y oficinas. Nuestra plataforma web será el punto de encuentro donde la estética se une con la tecnología para ofrecer una experiencia de compra excepcional.
 
-============================================================================================================================================
+============================================================================================
 🌍 Público Destinado
 Nuestros productos y servicios están dirigidos principalmente a:
 
@@ -14,7 +13,7 @@ Nuestros productos y servicios están dirigidos principalmente a:
 
 >**Pequeñas Oficinas y Locales Comerciales**: Empresas que desean crear ambientes luminosos y atractivos para sus empleados y clientes.
 
-============================================================================================================================================
+============================================================================================
 🛠️ Productos y Servicios
 En Luzify, ofreceremos una amplia gama de productos y servicios para satisfacer todas las necesidades de iluminación:
 
@@ -26,7 +25,7 @@ En Luzify, ofreceremos una amplia gama de productos y servicios para satisfacer 
 
 >**Asesoramiento Personalizado**: Servicio de consultoría para ayudar a nuestros clientes a elegir la iluminación ideal según sus espacios y necesidades.
 
-============================================================================================================================================
+============================================================================================
 🔝 Referentes del Sector
 Nos inspiramos en la trayectoria y el impacto de empresas líderes en el diseño y la venta de iluminación:
 
@@ -36,7 +35,7 @@ Nos inspiramos en la trayectoria y el impacto de empresas líderes en el diseño
 
 [CafeTortini] - [Enlace](https://www.cafetortoni.com.ar/).
 
-============================================================================================================================================
+============================================================================================
 🎯 Visión y Objetivos
 Nuestra visión es convertirnos en el referente online para la adquisición de iluminación de diseño y calidad en Argentina (o tu país objetivo), ofreciendo una experiencia de compra intuitiva y un servicio al cliente excepcional.
 
@@ -50,7 +49,7 @@ Nuestros objetivos a corto y mediano plazo incluyen:
 
 ** Lograr un índice de satisfacción del cliente del 90% en el primer año.
 
-============================================================================================================================================
+============================================================================================
 🚀 Plan de Desarrollo (del Emprendimiento)
 El desarrollo de Luzify se planificará y ejecutará en fases clave, permitiendo una aproximación iterativa y adaptable a medida que el proyecto avance.
 
@@ -92,7 +91,7 @@ El desarrollo de Luzify se planificará y ejecutará en fases clave, permitiendo
 
 ** Continuar con las estrategias de marketing para fomentar el crecimiento y la sostenibilidad.
 
-============================================================================================================================================
+============================================================================================
 🌐 Arquitectura del Proyecto Web
 La plataforma web de Luzify se construirá con una estructura moderna, dividida en dos partes principales: la que los usuarios ven y con la que interactúan (Frontend), y la que maneja la lógica y los datos detrás de escena (Backend).
 
@@ -112,7 +111,7 @@ La plataforma web de Luzify se construirá con una estructura moderna, dividida 
 
 -- Propósito: Gestionar usuarios, productos, pedidos, pagos y la lógica de negocio general.
 
-============================================================================================================================================
+============================================================================================
 # 🎨 Paleta de Colores
 
 Esta paleta transmite una estética moderna y tecnológica, perfecta para el concepto del proyecto.
@@ -141,7 +140,7 @@ Acente secundario #E0E0E0
 Color alternativo #00A388
 Color alternativo #FF7F50
 ```
-============================================================================================================================================
+============================================================================================
 # 🎨 Fuentes
 >**Fonts sugeridas para la pagina**:
 ** Para Títulos y Destacados
