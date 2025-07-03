@@ -18,5 +18,6 @@
 
 > JULIO
 >>> SEMANA 1 (07 al 11)
+	* Se creo los modelos de WIREFRAMES para la vista movile del proyecto.
 
 === RESUMEN DE ACTIVIDADES COMPLETADAS ===
