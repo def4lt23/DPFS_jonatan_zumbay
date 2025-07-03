@@ -1,0 +1,22 @@
+=== REPORTE DE ACTIVIDADES SEMANALES ===
+
+> JUNIO
+>>> SEMANA 1 (09 al 13)
+	* Se escogio el nombre de la empresa para realizar el proyecto, como asi tambien el rubro y algunos aspectos que conforma la misma.
+	* Se creo un tablero en la web TRELLO para organizar el equipo. // https://trello.com/b/xjRbIhYZ/team-luzify
+>>> SEMANA 2 (16 al 20)
+	* Se creo una libreria en GITHUB donde se almacenara el proyecto. // 
+	* Se creo y comenzo a editar el archivo README.
+
+>>> SEMANA 3 (23 al 27)
+	* Se creo algunas imagenes importantes como el logo y algunas de muestra que se utilizaran en la pagina.
+	* Se escogio para la pagina las fonts, colores y decidieron algunos aspectos tecnicos (agregados al archivo README).
+	* Modificado y actualizado el archivo README
+
+>>> SEMANA 4 (30 al 04 Julio)
+	* Se comenzo con la creacion de WIREFRAMES para el proyecto.
+
+> JULIO
+>>> SEMANA 1 (07 al 11)
+
+=== RESUMEN DE ACTIVIDADES COMPLETADAS ===
