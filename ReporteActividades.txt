@@ -5,7 +5,7 @@
 	* Se escogio el nombre de la empresa para realizar el proyecto, como asi tambien el rubro y algunos aspectos que conforma la misma.
 	* Se creo un tablero en la web TRELLO para organizar el equipo. // https://trello.com/b/xjRbIhYZ/team-luzify
 >>> SEMANA 2 (16 al 20)
-	* Se creo una libreria en GITHUB donde se almacenara el proyecto. // 
+	* Se creo una libreria en GITHUB donde se almacenara el proyecto. // https://github.com/def4lt23/DPFS_jonatan_zumbay.git
 	* Se creo y comenzo a editar el archivo README.
 
 >>> SEMANA 3 (23 al 27)
@@ -18,6 +18,10 @@
 
 > JULIO
 >>> SEMANA 1 (07 al 11)
-	* Se creo los modelos de WIREFRAMES para la vista movile del proyecto.
+	* Se finalizo la creacion los modelos de WIREFRAMES para la vista movile del proyecto. Mediante la pagina de wireframes.cc
+	* Se creo para editar el archivo home (index.html)
 
 === RESUMEN DE ACTIVIDADES COMPLETADAS ===
+	* ARCHIVO README FINALIZADO.
+	* WIREFRAMES FINALIZADOS.
+

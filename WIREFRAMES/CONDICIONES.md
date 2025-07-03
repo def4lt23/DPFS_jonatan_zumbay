@@ -13,6 +13,8 @@ Luzify - Iluminando tus Espacios
 
 >**MODO DE VISUALIZAR LA PAGINA**: Al tocar el logo en la parte superior de la pagina se puede cambiar al modo claro/oscuro. Dependiendo del modo elegido se debe mostrar en prioridad la imagen de cada producto (modo claro muestra primero fotos de los productos durante el dia y el modo oscrudo muestra primero fotos de los productos durante la noche.)
 
+>**BOTON DE SUBIR AL INICIO**: Si la pagina se torna grande para hacer scroll se puede considerar la idea de crear un boton para poder llevar al usuario al inicio de la pagina (top).
+
 ============================================================================================
 
 ## ASPECTOS PARTICULARES DE CADA PAGINAS

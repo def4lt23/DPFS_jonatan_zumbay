@@ -27,7 +27,7 @@ En Luzify, ofreceremos una amplia gama de productos y servicios para satisfacer 
 
 ============================================================================================
 🔝 Referentes del Sector
-Nos inspiramos en la trayectoria y el impacto de empresas líderes en el diseño y la venta de iluminación:
+Nos inspiramos con los siguientes modelos para armar nuestra pagina. Fueron escogidos por su estetica simple pero agradable a la vista, su combinacion de elementos que pueden ser de utilidad y formas de combinar las fonts con los colores.:
 
 [kolorBSAS] - [Enlace](https://iluminacionkolor.com.ar/productos-iluminacion/linea-decorativa/lamparas-de-mesa/).
 
@@ -161,3 +161,8 @@ Color alternativo #FF7F50
 
     * Merriweather: Si buscas un toque de elegancia tradicional y buena legibilidad para párrafos largos.
     [Enlace.]-(https://fonts.google.com/specimen/Merriweather)
+
+============================================================================================
+>**IDEA ORIGINAL DE**: JONATAN EZEQUIEL ZUMBAY.
+contacto: jonezmby@gmail.com
+github: def4lt23 
