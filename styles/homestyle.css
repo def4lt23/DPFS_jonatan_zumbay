@@ -1,0 +1,143 @@
+main {
+    background-color: #F8F8F8;
+
+}
+
+#carouselExampleCaptions {
+  width: 95%; /* Ocupa el 90% del ancho de la pantalla */
+  margin-left: 2.5%; /* Margen del 5% a la izquierda */
+  margin-right: 2.5%; /* Margen del 5% a la derecha */
+}
+
+#carouselExampleCaptions .carousel-item img {
+  width: 100%; /* Las imágenes siempre ocuparán el 100% del contenedor del carrusel */
+  height: 720px; /* Define una altura fija si lo deseas, o usa 'auto' */
+  object-fit: cover; /* Ajusta la imagen sin deformarla */
+}
+
+/* Estilos generales para la sección de tarjetas */
+.cards-section {
+  padding: 40px 20px; /* Espacio alrededor de toda la sección */
+  background-color: #f8f9fa; /* Un color de fondo suave para la sección */
+  text-align: center; /* Centra el texto de la sección si es que hay un título aquí*/
+}
+
+/* Contenedor para alinear las tarjetas */
+.card-container {
+  display: flex; /* Usa Flexbox para organizar las tarjetas */
+  flex-wrap: wrap; /* Permite que las tarjetas salten a la siguiente línea en pantallas pequeñas */
+  justify-content: center; /* Centra las tarjetas horizontalmente */
+  gap: 20px; /* Espacio entre las tarjetas */
+  max-width: 1200px; /* Ancho máximo para el contenedor, ajústalo según tu diseño */
+  margin: 0 auto; /* Centra el contenedor de tarjetas en la página */
+}
+
+/* Estilos para cada tarjeta individual */
+.card {
+  border: 1px solid #dee2e6; /* Borde de un pixel gris claro */
+  border-radius: 8px; /* Esquinas ligeramente redondeadas */
+  padding: 20px; /* Espacio interno dentro de cada tarjeta */
+  background-color: #ffffff; /* Fondo blanco para las tarjetas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Una pequeña sombra para dar profundidad */
+  flex: 1 1 300px; /* Flex-grow, flex-shrink, flex-basis: Permite que las tarjetas crezcan, se encojan y tengan una base de 300px */
+  max-width: 350px; /* Ancho máximo para cada tarjeta, evita que se estiren demasiado */
+  text-align: center; /* Centra el contenido de la tarjeta */
+  box-sizing: border-box; /* Asegura que el padding y el border no aumenten el tamaño total */
+}
+
+/* Estilos para las imágenes dentro de las tarjetas */
+.card img {
+  max-width: 100%; /* Asegura que la imagen no se salga de la tarjeta */
+  height: 200px; /* Altura fija para todas las imágenes */
+  object-fit: cover; /* Recorta la imagen para que cubra el espacio sin deformarse */
+  border-radius: 4px; /* Un poco de redondeo en las esquinas de la imagen */
+  margin-bottom: 15px; /* Espacio debajo de la imagen */
+}
+
+/* Estilos para los títulos de las tarjetas */
+.card h3 {
+  font-size: 1.5rem; /* Tamaño de fuente para el título */
+  color: #343a40; /* Color de texto oscuro */
+  margin-bottom: 10px; /* Espacio debajo del título */
+}
+
+/* Estilos para los párrafos de las tarjetas */
+.card p {
+  font-size: 1rem; /* Tamaño de fuente para el párrafo */
+  color: #6c757d; /* Color de texto gris */
+  line-height: 1.5; /* Espacio entre líneas para mejor lectura */
+}
+
+/* --- Estilos Generales del Header (Desktop First) --- */
+.main-header {
+    display: flex; /* Para organizar el logo, el menú y el botón */
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center; /* Alinear verticalmente al centro */
+    padding: 15px 20px;
+    background-color: #f8f9fa; /* Un fondo claro para el header */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Una sombra sutil */
+}
+
+.header-logo {
+    height: 50px; /* Tamaño del logo */
+    width: auto;
+}
+
+.main-nav .nav-list {
+    list-style: none; /* Quita los puntos de la lista */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Para que los ítems del menú estén en fila */
+}
+
+.main-nav .nav-list li {
+    margin-left: 25px; /* Espacio entre los ítems del menú */
+}
+
+.main-nav .nav-list a {
+    text-decoration: none; /* Quita el subrayado */
+    color: #333; /* Color de texto */
+    font-weight: bold;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.main-nav .nav-list a:hover {
+    color: #007bff; /* Color al pasar el ratón */
+}
+
+.header-button {
+    background-color: #007bff; /* Color del botón */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-left: 20px; /* Espacio entre el menú y el botón */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.header-button a {
+    color: #fff; /* Color del texto del botón */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Media query para hacer las tarjetas responsivas en pantallas más pequeñas */
+@media (max-width: 992px) {
+    .card {
+      flex-basis: calc(50% - 20px); /* Dos tarjetas por fila en tablets (con gap) */
+      max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+    flex-basis: 100%; /* Una tarjeta por fila en móviles */
+    max-width: 100%;
+    }
+}

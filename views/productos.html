@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ENLACES DE CSS -->
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="stylesheet" href="../styles/productos.css">
+    <!-- ENLACES DE ICONOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- ENLACES DE BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <!-- ENLACES DE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+<body>
+<header>
+  <img src="../images/logo_negrov3.png" alt="">
+
+  <nav>
+    <ul>
+      <li><a href="../views/index.html">INICIO</a></li>
+      <li><a href="">PRODUCTO</a></li>
+      <li><a href="../views/quienessomos.html">QUIENES SOMOS</a></li>
+      <li><a href="">CARRITO</a></li>
+    </ul>
+  </nav>
+
+  <button class="botoncuenta">
+    <a href="">MI CUENTA</a>
+  </button>
+  <div class="iconoburger">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+
+  <div class="dropdownmenu">
+    <li><a href="">MI CUENTA</a></li>
+      <li><a href="../views/index.html">INICIO</a></li>
+      <li><a href="">PRODUCTO</a></li>
+      <li><a href="../views/quienessomos.html">QUIENES SOMOS</a></li>
+      <li><a href="">CARRITO</a></li>
+  </div>
+</header>
+
+<h1>TODOS NUESTROS PRODUCTOS</h1>
+<div class="contenedor">
+    <div class="filtro">
+        <p>FILTROS</p>
+            <div class="checkbox-group desktop-only">
+            <label>
+                <input type="checkbox" name="tipo" value="tipo1"> Lamparas Instrumentales
+            </label>
+            <label>
+                <input type="checkbox" name="tipo" value="tipo2"> Lamparas Monumentos
+            </label>
+            <label>
+                <input type="checkbox" name="tipo" value="tipo3"> Nuevos Modelos
+            </label>
+            </div>
+
+            <div class="select-container mobile-only-types">
+            <select id="tipo-lampara-movil" name="tipo_lampara_movil">
+                <option value="">-- Selecciona un tipo --</option>
+                <option value="tipo1">Lamparas Instrumentales</option>
+                <option value="tipo2">Lamparas Monumentos</option>
+                <option value="tipo3">Nuevos Modelos</option>
+            </select>
+            </div>
+
+            <div class="select-container order-by-select">
+                <select id="tipo-lampara" name="tipo_lampara">
+                <option value="">-- Ordenar por --</option>
+                <option value="futurista">Precio Mayor a Menor</option>
+                <option value="abstracta">Precio Menor a Mayor</option>
+                <option value="monumento">Mas Vendidas</option>
+                <option value="marca">A - Z</option>
+                </select>
+            </div>
+
+            <button class="boton-aplicar" type="submit">Aplicar</button>
+        
+    </div>
+
+    <div class="cartas">
+        <div class="card">
+            <div class="product-image-slider">
+                <button class="slider-btn prev-btn">&lt;</button>
+            <div class="image-wrapper">
+                <img src="../images/lamp1a.png" alt="Producto A Vista 1" class="active-image">
+                <img src="../images/lamp1b.png" alt="Producto A Vista 2">
+                <img src="../images/lamp1c.png" alt="Producto A Vista 3">
+            </div>
+                <button class="slider-btn next-btn">&gt;</button>
+            </div>
+            <h3>Título de la Tarjeta 1</h3>
+            <p>Este es un pequeño párrafo descriptivo para la primera tarjeta. Aquí puedes poner información relevante.</p>
+            <button class="btn-ver-detalles">Ver Detalles</button> 
+        </div>
+
+        <div class="card">
+            <div class="product-image-slider">
+                <button class="slider-btn prev-btn">&lt;</button>
+            <div class="image-wrapper">
+                <img src="../images/lamp2a.png" alt="Producto A Vista 1" class="active-image">
+                <img src="../images/lamp2b.png" alt="Producto A Vista 2">
+                <img src="../images/lamp2c.png" alt="Producto A Vista 3">
+            </div>
+                <button class="slider-btn next-btn">&gt;</button>
+            </div>
+            <h3>Título de la Tarjeta 1</h3>
+            <p>Este es un pequeño párrafo descriptivo para la primera tarjeta. Aquí puedes poner información relevante.</p>
+            <button class="btn-ver-detalles">Ver Detalles</button> 
+        </div>
+
+        <div class="card">
+            <div class="product-image-slider">
+                <button class="slider-btn prev-btn">&lt;</button>
+            <div class="image-wrapper">
+                <img src="../images/lamp3a.png" alt="Producto A Vista 1" class="active-image">
+                <img src="../images/lamp3b.png" alt="Producto A Vista 2">
+                <img src="../images/lamp3c.png" alt="Producto A Vista 3">
+            </div>
+                <button class="slider-btn next-btn">&gt;</button>
+            </div>
+            <h3>Título de la Tarjeta 1</h3>
+            <p>Este es un pequeño párrafo descriptivo para la primera tarjeta. Aquí puedes poner información relevante.</p>
+            <button class="btn-ver-detalles">Ver Detalles</button> 
+        </div>
+    </div> 
+
+</div>
+
+<footer>
+    <div>
+        <p>© 2025 LUZIFY || All Rights Reserved</p>
+        <p>Desarrollado por Jonatan Zumbay</p>
+            <div class="github-info">
+                <i class="fa-brands fa-github"></i>
+                <p>def4lt23</p>
+            </div>
+        </div>
+
+        <img src="../images/logocorto_negrov3.png" alt="">
+
+        <div class="redes">
+            <i class="fa-brands fa-square-facebook"></i>
+            <i class="fa-brands fa-square-instagram"></i>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sliders = document.querySelectorAll('.product-image-slider');
+            sliders.forEach(slider => {
+                const imageWrapper = slider.querySelector('.image-wrapper');
+                const images = slider.querySelectorAll('img');
+                const prevBtn = slider.querySelector('.prev-btn');
+                const nextBtn = slider.querySelector('.next-btn');
+
+                let currentIndex = 0;
+
+                function updateSlider() {
+                    imageWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+                }
+
+                prevBtn.addEventListener('click', () => {
+                    currentIndex--;
+                    if (currentIndex < 0) {
+                        currentIndex = images.length - 1;
+                    }
+                    updateSlider();
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    currentIndex++;
+                    if (currentIndex >= images.length) {
+                        currentIndex = 0;
+                    }
+                    updateSlider();
+                });
+
+                updateSlider(); // Inicializa el slider
+            });
+        });
+</script>
+
+
+</body>
+</html>

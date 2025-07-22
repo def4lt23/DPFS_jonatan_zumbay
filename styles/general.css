@@ -1,0 +1,186 @@
+header {
+    background-color: #F8F8F8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* AÑADIDO: Un poco de padding al header */
+    position: relative; /* AÑADIDO: CRUCIAL para el posicionamiento del menú*/
+
+}
+
+* {
+    font-family: "Montserrat", sans-serif;
+    box-sizing: border-box; /* AÑADIDO: Muy importante para layout responsivo */
+
+}
+
+
+nav ul {
+    padding-top: 15px;
+    list-style: none;
+    display: flex;
+
+}
+
+nav li a {
+    color: black;
+    text-decoration: none;
+    margin-left: 1.8vw;
+    margin-right: 1.8vw;
+    white-space: nowrap; /* AÑADIDO: Evita que el texto del enlace se rompa */
+}
+
+header img {
+    width: 200px;
+    height: auto;
+    margin-left: 20px;
+}
+
+header button {
+    background-color: #00BFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    max-width: 200px;
+    height: auto;
+    margin-right: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+header button a {
+    color: #F8F8F8;
+    text-decoration: none;
+    font-weight: bold;
+
+}
+
+.botoncuenta:hover {
+    background-color: #007BFF; /* Cambia el color al pasar el ratón */
+    transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
+
+}
+
+.iconoburger {
+    color: black;
+    font-size: 30px;
+    cursor: pointer;
+    display: none; /* Ocultar menu en pantallas grandes */
+    z-index: 100; /* AÑADIDO: Asegura que esté por encima de todo */
+
+}
+
+.dropdownmenu{
+    display: none;
+    position: absolute;
+    right: 2rem;
+    top: 90px;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 1s ease-out, background 1s ease;
+    z-index: 99;
+
+}
+
+.dropdownmenu.open {
+    display: block;
+    max-height: 300px;
+}
+
+
+.dropdownmenu li {
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+}
+
+.dropdownmenu a {
+    text-decoration: none;
+    color: black;
+    display: block; /* AÑADIDO: Para que el enlace ocupe todo el espacio del li */
+    width: 100%; /* AÑADIDO: Para que el enlace ocupe todo el espacio del li */
+    text-align: center; /* AÑADIDO: Centra el texto */
+}
+
+.dropdownmenu a:hover {
+    color: #007bff;
+}
+
+
+footer {
+    background-color: #F8F8F8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    flex-wrap: wrap; /* AÑADIDO: Para que los elementos se organicen en pantallas pequeñas */
+    gap: 10px;
+}
+
+footer p {
+    margin: 0;
+    color: black;
+}
+
+footer img {
+    width: 100px;
+    height: auto;
+    margin: 0 auto; /* AÑADIDO: Centrar con margen automático si el padre es un flex item */
+    display: block;
+}
+
+.redes i{
+    font-size: 50px;
+    margin-right: 10px;
+}
+
+.github-info {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+/* ###### RESPONSIVE STYLES ###### */
+
+@media (max-width: 992px) {
+    nav, .botoncuenta {
+        display: none; /* Ocultar el menú en pantallas pequeñas */
+    }
+
+    .iconoburger {
+        display: block; /* Mostrar el icono del menú en pantallas pequeñas */
+    }
+
+    footer {
+        flex-direction: column; /* Apila los elementos del footer */
+        text-align: center;
+    }
+
+    footer p, .github-info {
+        margin: 5px 0; /* Espacio vertical para los párrafos y github-info */
+        justify-content: center; /* Centra el contenido en columna */
+        width: 100%; /* Ocupa el ancho completo */
+    }
+
+    .redes {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+}
+
+@media (max-width: 576px) {
+    .dropdownmenu {
+        left: 2rem; /* AÑADIDO: Alinea el menú desplegable a la izquierda */
+        width: unset; /* Ancho completo en pantallas muy pequeñas */
+    }
+}

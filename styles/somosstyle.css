@@ -1,0 +1,131 @@
+/* Contenedor principal para la sección de imagen y texto */
+.contenedor { /* He añadido una clase más semántica al <div> principal */
+    display: flex; /* Habilita Flexbox para los hijos directos */
+    flex-direction: row; /* Asegura que los elementos se coloquen en fila (por defecto) */
+    justify-content: center; /* Centra los elementos horizontalmente si hay espacio extra */
+    align-items: center; /* Centra los elementos verticalmente */
+    padding: 40px 20px; /* Espaciado alrededor de toda la sección */
+    max-width: 1200px; /* Opcional: Limita el ancho máximo para que no se estire demasiado en pantallas muy grandes */
+    margin: 0 auto; /* Centra el contenedor en la página */
+    gap: 40px; /* Espacio entre la imagen y el texto */
+    margin: 40px auto; /* Asegura que el contenedor tenga un margen superior e inferior */
+    border-radius: 10px; /* AÑADIDO: Esquinas redondeadas */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Estilos para el div que contiene la imagen */
+.contenedor .imagen {
+    flex: 1; /* Permite que este div ocupe espacio y se estire */
+    max-width: 50%; /* Limita el ancho máximo al 50% */
+    text-align: center; /* Centra la imagen si es más pequeña que el div */
+}
+
+/* Estilos para la imagen dentro del div */
+.contenedor .imagen img {
+    max-width: 100%; /* Asegura que la imagen no se salga de su contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 8px; /* Opcional: Bordes redondeados para la imagen */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Opcional: Sombra suave */
+}
+
+/* Estilos para el div que contiene el texto */
+.contenedor .texto {
+    flex: 1; /* Permite que este div ocupe espacio y se estire */
+    max-width: 50%; /* Limita el ancho máximo al 50% */
+    padding: 20px; /* Espaciado interno para el texto */
+    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño total */
+}
+
+/* Estilos para los párrafos de texto */
+.contenedor .texto p {
+    font-size: 1.1rem; /* Tamaño de fuente para una mejor lectura */
+    line-height: 1.6; /* Espacio entre líneas */
+    color: #333; /* Color de texto oscuro */
+    margin-bottom: 15px; /* Espacio entre párrafos */
+}
+
+.contenedor2 {
+    display: flex; /* Habilita Flexbox */
+    flex-direction: row; /* Elementos en fila por defecto */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    padding: 40px 20px; /* Espaciado alrededor de toda la sección */
+    max-width: 1200px; /* Opcional: Limita el ancho máximo */
+    margin: 0 auto; /* Centra el contenedor en la página */
+    gap: 40px; /* Espacio entre el texto y el mapa */
+    min-height: 500px; /* Opcional: Asegura una altura mínima para la sección */
+    margin: 40px auto; /* Asegura que el contenedor tenga un margen superior e inferior */
+    border-radius: 10px; /* AÑADIDO: Esquinas redondeadas */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Estilos para el div del texto de ubicación */
+.tetxoubicacion { /* Asegúrate de que el nombre de la clase es 'tetxoubicacion' y no 'textoubicacion' */
+    flex: 1; /* Permite que este div crezca y ocupe espacio */
+    max-width: 50%; /* Limita el ancho al 50% */
+    padding: 20px; /* Espaciado interno para el texto */
+    box-sizing: border-box; /* Incluye padding en el ancho */
+}
+
+.tetxoubicacion p {
+    font-size: 1.1rem; /* Tamaño de fuente para mejor lectura */
+    line-height: 1.6; /* Espacio entre líneas */
+    color: #333; /* Color de texto oscuro */
+    margin-bottom: 0; /* Quita el margen inferior predeterminado del último párrafo */
+}
+
+/* Estilos para el div del mapa */
+.mapa {
+    flex: 1; /* Permite que este div crezca y ocupe espacio */
+    max-width: 50%; /* Limita el ancho al 50% */
+    display: flex; /* Usar flex para centrar el iframe si es necesario */
+    justify-content: center; /* Centra el iframe horizontalmente */
+    align-items: center; /* Centra el iframe verticalmente */
+}
+
+/* Estilos para el iframe del mapa */
+.mapa iframe {
+    width: 100%; /* El iframe ocupa el 100% del ancho de su contenedor */
+    /* REMOVIDO: height: 450px; - Ahora la altura es responsiva */
+    aspect-ratio: 16 / 9; /* Mantiene una relación de aspecto 16:9 (ancho/alto) */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* --- Media Queries para responsividad (cuando imagen y texto se apilan) --- */
+@media (max-width: 768px) { /* Para tablets y móviles */
+    .contenedor {
+        flex-direction: column; /* Apila la imagen y el texto verticalmente */
+        text-align: center; /* Centra el texto cuando está apilado */
+        gap: 30px; /* Reduce el espacio entre la imagen y el texto apilados */
+    }
+
+    .contenedor .imagen,
+    .contenedor .texto {
+        max-width: 100%; /* Ocupan todo el ancho disponible */
+        padding: 0 10px; /* Ajusta el padding horizontal */
+    }
+
+    .contenedor .imagen img {
+        width: 80%; /* Reduce el tamaño de la imagen para que no sea demasiado grande en móviles */
+        margin: 0 auto; /* Centra la imagen */
+    }
+
+        .contenedor2 {
+        flex-direction: column; /* Apila el texto y el mapa verticalmente */
+        text-align: center; /* Centra el texto cuando está apilado */
+        gap: 30px; /* Reduce el espacio entre el texto y el mapa apilados */
+    }
+
+    .tetxoubicacion,
+    .mapa {
+        max-width: 100%; /* Ocupan todo el ancho disponible */
+        padding: 0 10px; /* Ajusta el padding horizontal */
+    }
+
+    .mapa iframe {
+        width: 100%; /* Asegura que el mapa ocupe todo el ancho disponible */
+        /* height: 300px; */ /* Si prefieres una altura fija en móviles, descomenta esto y ajusta */
+        aspect-ratio: 4 / 3; /* Una relación de aspecto más cuadrada para móviles */
+    }
+}
