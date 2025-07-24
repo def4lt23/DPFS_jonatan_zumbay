@@ -1,11 +1,11 @@
 header {
-    background-color: #F8F8F8;
+    background-color: #F1F8E9;
+    border-bottom: 1px solid #E0E0E0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px; /* AÑADIDO: Un poco de padding al header */
-    position: relative; /* AÑADIDO: CRUCIAL para el posicionamiento del menú*/
-
+    padding: 10px 20px; 
+    position: relative; 
 }
 
 body {
@@ -15,7 +15,7 @@ body {
 
 * {
     font-family: "Montserrat", sans-serif;
-    box-sizing: border-box; /* AÑADIDO: Muy importante para layout responsivo */
+    box-sizing: border-box; 
 }
 
 
@@ -27,21 +27,35 @@ nav ul {
 }
 
 nav li a {
-    color: black;
+    /*color: white;*/
+    color: #212121;
+    font-weight: bold;
+    background: linear-gradient(to right, #2ECC71, #2ECC71);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    background-position: left;
+    border-radius: 999px; /* estilo pastilla */
     text-decoration: none;
-    margin-left: 1.8vw;
-    margin-right: 1.8vw;
-    white-space: nowrap; /* AÑADIDO: Evita que el texto del enlace se rompa */
+      transition:
+        background-size 0.4s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+    margin-left: 0.1vw;
+    margin-right: 0.1vw;
+    white-space: nowrap;
+    padding: 12px 28px;
+}
+
+nav li a:hover {
+  background-size: 100% 100%;
+  color: white;
+  transform: scale(1.07);
 }
 
 nav ul li a {
-  color: #1A1A1A;
+  color: #212121;
   text-decoration: none;
   transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-  color: #00BFFF;
 }
 
 header img {
@@ -51,10 +65,10 @@ header img {
 }
 
 header button {
-    background-color: #00BFFF;
-    border: none;
+    background-color: #2ECC71;
     padding: 10px 20px;
-    border-radius: 5px;
+    border: none;
+    border-radius: 25px;
     cursor: pointer;
     max-width: 200px;
     height: auto;
@@ -63,24 +77,24 @@ header button {
 }
 
 header button a {
-    color: #F8F8F8;
+    color: #FFFFFF;
     text-decoration: none;
     font-weight: bold;
 
 }
 
 .botoncuenta:hover {
-    background-color: #007BFF; /* Cambia el color al pasar el ratón */
-    transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
+    background-color: #27AE60;
+    transform: scale(1.05); /* Efecto de zoom al pasar el cursor */
 
 }
 
 .iconoburger {
-    color: black;
+    color: #2ECC71;
     font-size: 30px;
     cursor: pointer;
     display: none; /* Ocultar menu en pantallas grandes */
-    z-index: 100; /* AÑADIDO: Asegura que esté por encima de todo */
+    z-index: 100; /* Asegura que esté por encima de todo */
 
 }
 
@@ -119,36 +133,37 @@ header button a {
 .dropdownmenu a {
     text-decoration: none;
     color: black;
-    display: block; /* AÑADIDO: Para que el enlace ocupe todo el espacio del li */
-    width: 100%; /* AÑADIDO: Para que el enlace ocupe todo el espacio del li */
-    text-align: center; /* AÑADIDO: Centra el texto */
+    display: block; /*Para que el enlace ocupe todo el espacio del li */
+    width: 100%; /*Para que el enlace ocupe todo el espacio del li */
+    text-align: center;
 }
 
 .dropdownmenu a:hover {
-    color: #007bff;
+    color: #388E3C;
 }
 
 
 footer {
-    background-color: #F8F8F8;
+    /*background: linear-gradient(to left, #FDF6EC, #F8C992);*/
+    background-color: #388E3C;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    flex-wrap: wrap; /* AÑADIDO: Para que los elementos se organicen en pantallas pequeñas */
+    flex-wrap: wrap; /* Para que los elementos se organicen en pantallas pequeñas */
     gap: 10px;
     border-top: 1px solid #E0E0E0;
 }
 
 footer p {
     margin: 0;
-    color: black;
+    color: #FAFAFA;
 }
 
 footer img {
     width: 100px;
     height: auto;
-    margin: 0 auto; /* AÑADIDO: Centrar con margen automático si el padre es un flex item */
+    margin: 0 auto;
     display: block;
 }
 
@@ -163,8 +178,12 @@ footer img {
     gap: 3px;
 }
 
+footer i {
+    color: #FAFAFA;
+}
+
 footer i:hover {
-  color: #007bff;; /* coral, para destacar hover */
+  color: #212121;
   cursor: pointer;
 }
 
@@ -172,21 +191,20 @@ footer i:hover {
 
 @media (max-width: 992px) {
     nav, .botoncuenta {
-        display: none; /* Ocultar el menú en pantallas pequeñas */
+        display: none; /* Ocultar el menu en pantallas pequeñas */
     }
 
     .iconoburger {
-        display: block; /* Mostrar el icono del menú en pantallas pequeñas */
+        display: block; /* Mostrar el icono del menu en pantallas pequeñas */
     }
 
     footer {
-        flex-direction: column; /* Apila los elementos del footer */
-        text-align: center;
+        flex-direction: column;
     }
 
-    footer p, .github-info {
+    footer p, .github-info, .fa-github {
         margin: 5px 0; /* Espacio vertical para los párrafos y github-info */
-        justify-content: center; /* Centra el contenido en columna */
+        justify-content: center;
         width: 100%; /* Ocupa el ancho completo */
     }
 
@@ -200,7 +218,7 @@ footer i:hover {
 
 @media (max-width: 576px) {
     .dropdownmenu {
-        left: 2rem; /* AÑADIDO: Alinea el menú desplegable a la izquierda */
-        width: unset; /* Ancho completo en pantallas muy pequeñas */
+        left: 2rem; /*Alinea el menu desplegable a la izquierda */
+        width: unset; /*Ancho completo en pantallas muy pequeñas */
     }
 }

@@ -1,61 +1,59 @@
-
-
 #carouselExampleCaptions {
-  width: 95%; /* Ocupa el 90% del ancho de la pantalla */
-  margin-left: 2.5%; /* Margen del 5% a la izquierda */
-  margin-right: 2.5%; /* Margen del 5% a la derecha */
+  width: 95%; 
+  margin-left: 2.5%; 
+  margin-right: 2.5%; 
 }
 
 #carouselExampleCaptions .carousel-item img {
-  width: 100%; /* Las imágenes siempre ocuparán el 100% del contenedor del carrusel */
-  height: 720px; /* Define una altura fija si lo deseas, o usa 'auto' */
+  width: 100%; 
+  height: 720px; /*altura fija*/
   object-fit: cover; /* Ajusta la imagen sin deformarla */
 }
 
-/* Estilos generales para la sección de tarjetas */
+/* CARTAS */
 .cards-section {
-  padding: 40px 20px; /* Espacio alrededor de toda la sección */
-  background-color: #f8f9fa; /* Un color de fondo suave para la sección */
-  text-align: center; /* Centra el texto de la sección si es que hay un título aquí*/
+  padding: 40px 20px;
+  background-color: #f8f9fa;
+  text-align: center; 
 }
 
-/* Contenedor para alinear las tarjetas */
+/* Contenedor para alinear las cartas */
 .card-container {
-  display: flex; /* Usa Flexbox para organizar las tarjetas */
-  flex-wrap: wrap; /* Permite que las tarjetas salten a la siguiente línea en pantallas pequeñas */
-  justify-content: center; /* Centra las tarjetas horizontalmente */
-  gap: 20px; /* Espacio entre las tarjetas */
-  max-width: 1200px; /* Ancho máximo para el contenedor, ajústalo según tu diseño */
-  margin: 0 auto; /* Centra el contenedor de tarjetas en la página */
+  display: flex; 
+  flex-wrap: wrap; /* Permite que las cartas salten a la siguiente linea en pantallas pequeñas */
+  justify-content: center; /* Centra las cartas horizontalmente */
+  gap: 20px; /* Espacio entre las cartas */
+  max-width: 1200px; /* Ancho máximo para el contenedor */
+  margin: 0 auto; /* Centra el contenedor de cartas en la pagina */
 }
 
-/* Estilos para cada tarjeta individual */
+/* Estilos para cada carta individual */
 .card {
-  border: 1px solid #dee2e6; /* Borde de un pixel gris claro */
-  border-radius: 8px; /* Esquinas ligeramente redondeadas */
-  padding: 20px; /* Espacio interno dentro de cada tarjeta */
-  background-color: #ffffff; /* Fondo blanco para las tarjetas */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Una pequeña sombra para dar profundidad */
-  flex: 1 1 300px; /* Flex-grow, flex-shrink, flex-basis: Permite que las tarjetas crezcan, se encojan y tengan una base de 300px */
-  max-width: 350px; /* Ancho máximo para cada tarjeta, evita que se estiren demasiado */
-  text-align: center; /* Centra el contenido de la tarjeta */
-  box-sizing: border-box; /* Asegura que el padding y el border no aumenten el tamaño total */
+  border: 1px solid #dee2e6; 
+  border-radius: 8px; 
+  padding: 20px; 
+  background-color: #ffffff; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  flex: 1 1 300px; /* Permite que las cartas crezcan, se encojan y tengan una base de 300px */
+  max-width: 350px; 
+  text-align: center; 
+  box-sizing: border-box; /* El padding y el border no aumenten el tamaño total */
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .card:hover {
-  box-shadow: 0 8px 20px rgba(0, 191, 255, 0.15); /* acento celeste */
+  box-shadow: 0 8px 20px rgba(0, 191, 255, 0.15);
   transform: translateY(-5px);
-  border-color: #00BFFF;
+  border-color: #388E3C;
 }
 
-/* Estilos para las imágenes dentro de las tarjetas */
+
 .card img {
-  max-width: 100%; /* Asegura que la imagen no se salga de la tarjeta */
-  height: 200px; /* Altura fija para todas las imágenes */
-  object-fit: cover; /* Recorta la imagen para que cubra el espacio sin deformarse */
-  border-radius: 4px; /* Un poco de redondeo en las esquinas de la imagen */
-  margin-bottom: 15px; /* Espacio debajo de la imagen */
+  max-width: 100%; 
+  height: 200px; 
+  object-fit: cover; /* Recorta la img para que cubra el espacio sin deformarse */
+  border-radius: 4px; 
+  margin-bottom: 15px;
   transition: filter 0.3s ease;
 }
 
@@ -63,76 +61,16 @@
   filter: brightness(1.05);
 }
 
-/* Estilos para los títulos de las tarjetas */
 .card h3 {
-  font-size: 1.5rem; /* Tamaño de fuente para el título */
-  color: #343a40; /* Color de texto oscuro */
-  margin-bottom: 10px; /* Espacio debajo del título */
+  font-size: 1.5rem; 
+  color: #343a40; 
+  margin-bottom: 10px; 
 }
 
-/* Estilos para los párrafos de las tarjetas */
 .card p {
-  font-size: 1rem; /* Tamaño de fuente para el párrafo */
-  color: #6c757d; /* Color de texto gris */
-  line-height: 1.5; /* Espacio entre líneas para mejor lectura */
-}
-
-/* --- Estilos Generales del Header (Desktop First) --- */
-.main-header {
-    display: flex; /* Para organizar el logo, el menú y el botón */
-    justify-content: space-between; /* Espacio entre los elementos */
-    align-items: center; /* Alinear verticalmente al centro */
-    padding: 15px 20px;
-    background-color: #f8f9fa; /* Un fondo claro para el header */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Una sombra sutil */
-}
-
-.header-logo {
-    height: 50px; /* Tamaño del logo */
-    width: auto;
-}
-
-.main-nav .nav-list {
-    list-style: none; /* Quita los puntos de la lista */
-    margin: 0;
-    padding: 0;
-    display: flex; /* Para que los ítems del menú estén en fila */
-}
-
-.main-nav .nav-list li {
-    margin-left: 25px; /* Espacio entre los ítems del menú */
-}
-
-.main-nav .nav-list a {
-    text-decoration: none; /* Quita el subrayado */
-    color: #333; /* Color de texto */
-    font-weight: bold;
-    padding: 5px 0;
-    transition: color 0.3s ease;
-}
-
-.main-nav .nav-list a:hover {
-    color: #007bff; /* Color al pasar el ratón */
-}
-
-.header-button {
-    background-color: #007bff; /* Color del botón */
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    margin-left: 20px; /* Espacio entre el menú y el botón */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.header-button a {
-    color: #fff; /* Color del texto del botón */
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.header-button:hover {
-    background-color: #0056b3;
+  font-size: 1rem; 
+  color: #6c757d; 
+  line-height: 1.5; 
 }
 
 .cards-section {
@@ -140,17 +78,17 @@
 }
 
 
-/* Media query para hacer las tarjetas responsivas en pantallas más pequeñas */
+/* responsive */
 @media (max-width: 992px) {
     .card {
-      flex-basis: calc(50% - 20px); /* Dos tarjetas por fila en tablets (con gap) */
+      flex-basis: calc(50% - 20px); /* Dos cartas por fila en tablets (con gap) */
       max-width: calc(50% - 20px);
     }
 }
 
 @media (max-width: 576px) {
     .card {
-    flex-basis: 100%; /* Una tarjeta por fila en móviles */
+    flex-basis: 100%; /* Una carta por fila en celulares */
     max-width: 100%;
     }
 }

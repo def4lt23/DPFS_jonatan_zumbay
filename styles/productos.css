@@ -1,167 +1,172 @@
-/* --- NUEVO: Estilos para el contenedor principal de filtros y productos --- */
+body h1 {
+     text-align: center; 
+     margin-top: 20px;
+     font-size: 2rem;
+ }  
+
+/* Contenedor principal de filtros y productos */
 .contenedor {
-    display: flex; /* **AÑADIDO**: Habilita Flexbox para colocar filtros y tarjetas lado a lado */
-    justify-content: space-between; /* **AÑADIDO**: Distribuye el espacio entre los ítems (filtro y cartas) */
-    align-items: flex-start; /* **AÑADIDO**: Alinea los ítems al inicio en el eje transversal (arriba) */
-    max-width: 1600px; /* **MODIFICADO**: Aumenta el ancho máximo del contenedor para dar espacio */
-    margin: 40px auto; /* **MODIFICADO**: Centra el contenedor y le da margen superior/inferior */
-    padding: 20px; /* **AÑADIDO**: Un poco de padding interno */
-    gap: 30px; /* **AÑADIDO**: Espacio entre el filtro y las tarjetas */
+    display: flex; /* colocar filtros y cartas lado a lado */
+    justify-content: space-between; /* Distribuye el espacio entre los ítems (filtro y cartas) */
+    align-items: flex-start; /* Alinea los Items al inicio en el eje transversal (arriba) */
+    max-width: 1600px; 
+    margin: 40px auto; 
+    padding: 20px; 
+    gap: 30px; 
 }
 
-/* --- NUEVO: Control de visibilidad para elementos responsive (fuera de media queries) --- */
+/* Control de visibilidad para elementos responsive */
 .mobile-only-types {
-    display: none; /* Oculto por defecto en pantallas grandes */
+    display: none; /* Oculto en pantallas grandes */
 }
 
 
-/* --- NUEVO: Estilos para el panel de filtros --- */
+/* Estilos para el panel de filtros */
 .filtro {
-    flex: 0 0 250px; /* **AÑADIDO**: No crece, no se encoge, tiene un ancho base de 200px */
-    width: 20%; /* **AÑADIDO**: Ocupa el 20% del ancho del contenedor padre */
-    padding: 25px 20px; /* **MODIFICADO**: Padding interno para el contenido del filtro */
-    background-color: #f8f8f8; /* **AÑADIDO**: Fondo claro para el panel de filtros */
-    border-radius: 8px; /* **AÑADIDO**: Bordes redondeados */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* **AÑADIDO**: Sombra sutil */
-    border-right: 1px solid #e0e0e0; /* **AÑADIDO**: Línea separadora a la derecha */
-    box-sizing: border-box; /* **AÑADIDO**: Asegura que el padding no aumente el tamaño total */
-    min-width: 180px; /* **AÑADIDO**: Ancho mínimo para que los filtros no se compriman demasiado */
+    flex: 0 0 250px; /* No crece, no se encoge, tiene un ancho base */
+    width: 20%; 
+    padding: 25px 20px; /* Padding interno para el contenido del filtro */
+    background-color: #f8f8f8; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); 
+    border-right: 1px solid #e0e0e0; /* LInea separadora a la derecha */
+    box-sizing: border-box; /* el padding no aumente el tamaño total */
+    min-width: 180px; /* para que los filtros no se compriman demasiado */
 }
 
 .filtro p {
-    font-size: 1.3rem; /* **MODIFICADO**: Tamaño de fuente para el título "FILTROS" */
-    font-weight: bold; /* **AÑADIDO**: Negrita para el título */
-    color: #333; /* **AÑADIDO**: Color más oscuro */
-    margin-bottom: 25px; /* **MODIFICADO**: Espacio debajo del título */
-    text-align: center; /* **AÑADIDO**: Centra el título "FILTROS" */
+    font-size: 1.3rem; 
+    font-weight: bold; 
+    color: #333; 
+    margin-bottom: 25px;
+    text-align: center;
 }
 
-/* Estilos para el grupo de checkboxes */
+/* Estilo para el grupo de checkboxes */
 .checkbox-group {
-    display: flex; /* **MODIFICADO**: Usar flex para organizar los elementos internos */
-    flex-direction: column; /* **MODIFICADO**: Apila los checkboxes verticalmente */
-    gap: 15px; /* **AÑADIDO**: Espacio entre los checkboxes */
-    margin-bottom: 25px; /* **AÑADIDO**: Espacio debajo del grupo */
+    display: flex; /* organizar los elementos internos */
+    flex-direction: column; /* Apila los checkboxes verticalmente */
+    gap: 15px; 
+    margin-bottom: 25px; 
 }
 
 .checkbox-group label {
-    display: flex; /* **AÑADIDO**: Para alinear checkbox y texto */
-    align-items: center; /* **AÑADIDO**: Centra verticalmente el checkbox con su texto */
-    font-size: 1rem; /* **AÑADIDO**: Tamaño de fuente */
-    color: #555; /* **AÑADIDO**: Color del texto */
-    cursor: pointer; /* **AÑADIDO**: Indica que es clicable */
+    display: flex; /* alinear checkbox y texto */
+    align-items: center; 
+    font-size: 1rem; 
+    color: #555; 
+    cursor: pointer; 
 }
 
 .checkbox-group input[type="checkbox"] {
-    margin-right: 8px; /* **AÑADIDO**: Espacio entre el checkbox y el texto */
-    transform: scale(1.1); /* **AÑADIDO**: Agranda un poco el checkbox */
-    accent-color: #00BFFF; /* **AÑADIDO**: Color del checkbox cuando está marcado */
+    margin-right: 8px; 
+    transform: scale(1.1); /* Agranda un poco el checkbox */
+    accent-color: #00BFFF; /* Color del checkbox cuando esta marcado */
 }
 
-/* Estilos para el contenedor del select */
+/* contenedor del selector */
 .select-container {
-    margin-top: 25px; /* **MODIFICADO**: Espacio arriba del select */
-    margin-bottom: 25px; /* **MODIFICADO**: Espacio debajo del select */
+    margin-top: 25px; 
+    margin-bottom: 25px;
 }
 
 .select-container label {
-    display: block; /* **AÑADIDO**: Hace que el label ocupe su propia línea */
-    margin-bottom: 8px; /* **AÑADIDO**: Espacio debajo del label */
-    font-size: 1rem; /* **AÑADIDO**: Tamaño de fuente */
-    color: #555; /* **AÑADIDO**: Color del texto */
-    font-weight: bold; /* **AÑADIDO**: Negrita */
+    display: block; /* el label ocupe su propia linea */
+    margin-bottom: 8px; 
+    font-size: 1rem; 
+    color: #555; 
+    font-weight: bold; 
 }
 
 .select-container select {
-    width: 100%; /* **AÑADIDO**: El select ocupa todo el ancho disponible */
-    padding: 10px; /* **AÑADIDO**: Padding interno */
-    border: 1px solid #ccc; /* **AÑADIDO**: Borde */
-    border-radius: 5px; /* **AÑADIDO**: Esquinas redondeadas */
-    font-size: 1rem; /* **AÑADIDO**: Tamaño de fuente */
-    background-color: #fff; /* **AÑADIDO**: Fondo blanco */
-    appearance: none; /* **AÑADIDO**: Quita el estilo por defecto del navegador */
+    width: 100%; /* ocupa todo el ancho disponible */
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    font-size: 1rem; 
+    background-color: #fff; 
+    appearance: none; /* Quita el estilo por defecto del navegador */
     -webkit-appearance: none; /* **AÑADIDO**: Para Safari */
     -moz-appearance: none; /* **AÑADIDO**: Para Firefox */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.1%203.2-15.6%208.1-3.6%204.9-3.3%2011.8.8%2016.7l128%20140.1c4.5%205%2011.2%207.7%2018.3%207.7s13.8-2.7%2018.3-7.7l128-140.1c4.1-4.9%204.4-11.8.9-16.7z%22%2F%3E%3C%2Fsvg%3E'); /* **AÑADIDO**: Icono de flecha personalizado */
-    background-repeat: no-repeat; /* **AÑADIDO**: No repetir el icono */
-    background-position: right 10px top 50%; /* **AÑADIDO**: Posiciona el icono */
-    background-size: 12px auto; /* **AÑADIDO**: Tamaño del icono */
-    cursor: pointer; /* **AÑADIDO**: Indica que es clicable */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.1%203.2-15.6%208.1-3.6%204.9-3.3%2011.8.8%2016.7l128%20140.1c4.5%205%2011.2%207.7%2018.3%207.7s13.8-2.7%2018.3-7.7l128-140.1c4.1-4.9%204.4-11.8.9-16.7z%22%2F%3E%3C%2Fsvg%3E'); /* Icono de flecha personalizado */
+    background-repeat: no-repeat; /* No repetir el icono */
+    background-position: right 10px top 50%; /* Posiciona el icono */
+    background-size: 12px auto; /* Tamaño del icono */
+    cursor: pointer; 
 }
 
-/* Estilos para el botón aplicar */
+/* boton aplicar */
 .boton-aplicar {
-    display: block; /* **AÑADIDO**: Ocupa todo el ancho disponible */
-    width: 100%; /* **MODIFICADO**: Asegura que el botón ocupe el 100% del ancho del filtro */
-    padding: 12px 20px; /* **MODIFICADO**: Padding interno */
-    background-color: #00BFFF; /* **AÑADIDO**: Color de fondo */
-    color: white; /* **AÑADIDO**: Color del texto */
-    border: none; /* **AÑADIDO**: Sin borde */
-    border-radius: 5px; /* **AÑADIDO**: Esquinas redondeadas */
-    font-size: 1.1rem; /* **AÑADIDO**: Tamaño de fuente */
-    cursor: pointer; /* **AÑADIDO**: Indica que es clicable */
-    transition: background-color 0.3s ease; /* **AÑADIDO**: Transición suave al pasar el ratón */
+    display: block; /* Ocupa todo el ancho disponible */
+    width: 100%; 
+    padding: 12px 20px; 
+    background-color: #2ECC71; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 1.1rem; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; /* Transicion suave al pasar el cursor */
 }
 
 .boton-aplicar:hover {
-    background-color: #007BFF; /* **AÑADIDO**: Color al pasar el ratón */
+    background-color: #27AE60;
 }
 
-/* Contenedor para alinear las tarjetas */
+/* cartas */
 .cartas {
-    display: flex; /* Usa Flexbox para organizar las tarjetas */
-    flex-wrap: wrap; /* Permite que las tarjetas salten a la siguiente línea en pantallas pequeñas */
-    justify-content: center; /* Centra las tarjetas horizontalmente */
-    gap: 20px; /* Espacio entre las tarjetas */
-    max-width: 1200px; /* Ancho máximo para el contenedor, ajústalo según tu diseño */
-    margin: 40px auto; /* Centra el contenedor de tarjetas en la página y le da margen para separarlo de otras secciones */
-    padding: 20px; /* Un poco de padding para que las tarjetas no se peguen a los bordes del contenedor */
+    display: flex; /* Usa Flexbox para organizar las cartas */
+    flex-wrap: wrap; /* Permite que las cartas salten a la siguiente linea en pantallas pequeñas */
+    justify-content: center; 
+    gap: 20px; 
+    max-width: 1200px; 
+    margin: 40px auto; /* Centra el contenedor de cartas en la pagina y le da margen para separarlo de otras secciones */
+    padding: 20px; 
 }
 
-/* Estilos para cada tarjeta individual */
+/* Estilos para cada carta indivudual */
 .card {
-    border: 1px solid #dee2e6; /* Borde de un pixel gris claro */
-    border-radius: 8px; /* Esquinas ligeramente redondeadas */
-    padding: 20px; /* Espacio interno dentro de cada tarjeta */
-    background-color: #ffffff; /* Fondo blanco para las tarjetas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Una pequeña sombra para dar profundidad */
-    flex: 1 1 300px; /* Flex-grow, flex-shrink, flex-basis: Permite que las tarjetas crezcan, se encojan y tengan una base de 300px */
-    max-width: 350px; /* Ancho máximo para cada tarjeta, evita que se estiren demasiado */
-    text-align: center; /* Centra el contenido de la tarjeta */
+    border: 1px solid #dee2e6; 
+    border-radius: 8px; 
+    padding: 20px; 
+    background-color: #ffffff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    flex: 1 1 300px; /*  Permite que las cartas crezcan, se encojan y tengan una base de 300px */
+    max-width: 350px; 
+    text-align: center; 
     box-sizing: border-box; /* Asegura que el padding y el border no aumenten el tamaño total */
-    position: relative; /* **MODIFICADO**: MUY IMPORTANTE para posicionar los botones del slider */
-    overflow: hidden; /* **AÑADIDO**: Asegura que las imágenes fuera de vista estén ocultas */
+    position: relative; 
+    overflow: hidden; /* Asegura que las imagenes fuera de vista esten ocultas */
 }
 
-/* **NUEVO**: Contenedor para el mini-carrusel de imágenes dentro de la tarjeta */
+/* mini-carrusel de img dentro de la carta */
 .product-image-slider {
     position: relative;
     width: 100%;
-    height: 200px; /* **MODIFICADO**: Altura fija para el área del slider (la misma que tus imágenes) */
-    overflow: hidden; /* Oculta las imágenes que no están visibles */
-    margin-bottom: 15px; /* **NUEVO**: Espacio entre el slider y el contenido de la tarjeta */
+    height: 200px; 
+    overflow: hidden; /* Oculta las img que no esten visibles */
+    margin-bottom: 15px; 
     aspect-ratio: 1 / 1;
 }
 
-/* **NUEVO**: Contenedor interno para las imágenes, que se moverá con JS */
+/* Contenedor interno para las img */
 .product-image-slider .image-wrapper {
-    display: flex; /* Para poner las imágenes en fila */
-    width: 100%; /* El ancho se ajusta dinámicamente con JS */
+    display: flex; 
+    width: 100%; 
     height: 100%;
-    transition: transform 0.5s ease-in-out; /* Animación de desplazamiento suave */
+    transition: transform 0.5s ease-in-out; /* Animacion de desplazamiento suave */
 }
 
-/* **NUEVO**: Estilos para las imágenes individuales dentro del slider */
+/* Estilos para las img individuales dentro del slider */
 .product-image-slider img {
-    min-width: 100%; /*Cada imagen ocupa el 100% del ancho del image-wrapper (para el scroll) */
+    min-width: 100%;
     height: 200px;
     object-fit: contain; /* Recorta la imagen para que cubra el espacio sin deformarse */
-    border-radius: 4px; /* Un poco de redondeo en las esquinas de la imagen */
-    /* **REMOVIDO**: margin-bottom: 15px; - Ya lo maneja el .product-image-slider */
+    border-radius: 4px;
     display: block; /* Elimina espacios extra que pueden aparecer con img */
 }
 
-/* **NUEVO**: Estilos para los botones de navegación del slider */
+/* botones de navegacion del slider */
 .slider-btn {
     position: absolute;
     top: 50%;
@@ -172,43 +177,43 @@
     padding: 8px 12px;
     cursor: pointer;
     font-size: 1.2em;
-    z-index: 2; /* **MODIFICADO**: Asegura que los botones estén por encima de las imágenes */
+    z-index: 2; /* Asegura que los botones estén por encima de las img */
     border-radius: 50%; /* Botones redondos */
-    transition: background-color 0.3s ease; /* Transición suave para el hover */
+    transition: background-color 0.3s ease; /* Transicion suave para el hover */
 }
 
 .slider-btn:hover {
-    background-color: rgba(0, 0, 0, 0.7); /* Oscurece al pasar el ratón */
+    background-color: rgba(0, 0, 0, 0.7); /* Oscurece al pasar el cursor */
 }
 
-/* **NUEVO**: Posicionamiento del botón "anterior" */
+/* Posicionamiento del botón "anterior" */
 .prev-btn {
     left: 10px;
 }
 
-/* **NUEVO**: Posicionamiento del botón "siguiente" */
+/* Posicionamiento del botón "siguiente" */
 .next-btn {
     right: 10px;
 }
 
-/* Estilos para los títulos de las tarjetas */
+/* titulos de las cartas */
 .card h3 {
-    font-size: 1.5rem; /* Tamaño de fuente para el título */
-    color: #343a40; /* Color de texto oscuro */
-    margin-bottom: 10px; /* Espacio debajo del título */
+    font-size: 1.5rem; 
+    color: #343a40; 
+    margin-bottom: 10px; 
 }
 
-/* Estilos para los párrafos de las tarjetas */
+/* Parrafos de las cartas */
 .card p {
-    font-size: 1rem; /* Tamaño de fuente para el párrafo */
-    color: #6c757d; /* Color de texto gris */
-    line-height: 1.5; /* Espacio entre líneas para mejor lectura */
-    margin-bottom: 15px; /* **NUEVO**: Espacio debajo del párrafo, útil si añades un botón de "ver detalles" */
+    font-size: 1rem; 
+    color: #6c757d; 
+    line-height: 1.5; /* Espacio entre lineas para mejor lectura */
+    margin-bottom: 15px; 
 }
 
-/* **NUEVO**: Estilo para un botón opcional de "Ver Detalles" dentro de la tarjeta */
+/* Boton opcional de "Ver Detalles" dentro de la carta */
 .btn-ver-detalles {
-    background-color: #00BFFF;
+    background-color: #2ECC71;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -219,125 +224,120 @@
 }
 
 .btn-ver-detalles:hover {
-    background-color: #007BFF;
-    transform: translateY(-2px); /* Pequeño efecto al pasar el ratón */
+    background-color: #27AE60;
+    transform: translateY(-2px); /* Pequeño efecto al pasar el cursor */
 }
 
-/* --- Media Queries para responsividad (ajustes de tarjetas) --- */
+/* responsive ajustes de cartas */
 @media (max-width: 992px) {
 
     .contenedor {
-        flex-direction: column; /* Apila el filtro y las tarjetas verticalmente */
-        align-items: center; /* Centra los elementos apilados horizontalmente */
-        padding: 15px; /* Ajusta el padding general del contenedor */
-        gap: 25px; /* Espacio entre el filtro y la sección de tarjetas */
+        flex-direction: column; /* Apila el filtro y las cartas verticalmente */
+        align-items: center; 
+        padding: 15px; 
+        gap: 25px; 
     }
 
     .filtro {
-        width: 100%; /* El filtro ahora ocupa todo el ancho disponible */
+        width: 100%; /* ahora ocupa todo el ancho disponible */
         max-width: 600px; /* Limita su ancho para que no se vea demasiado estirado en tablets */
         border-right: none; /* Quita la línea separadora vertical de escritorio */
         border-bottom: 1px solid #e0e0e0; /* Añade una línea horizontal como separador */
-        padding: 20px; /* Ajusta el padding interno */
+        padding: 20px; 
         order: 1; /* Asegura que el filtro aparezca primero arriba */
         
-        /* NUEVO: Propiedades para organizar los selects y el botón dentro del filtro */
-        display: flex; /* Convierte el filtro en un contenedor flex para sus elementos internos */
-        flex-wrap: wrap; /* Permite que los elementos internos salten de línea */
-        justify-content: center; /* Centra los elementos internos (selects, botón) */
-        gap: 15px; /* Espacio entre los selects y el botón */
+        display: flex; 
+        flex-wrap: wrap; /* elementos internos salten de linea */
+        justify-content: center; 
+        gap: 15px; 
     }
 
     .filtro p {
-        width: 100%; /* El título "FILTROS" ocupa todo el ancho */
+        width: 100%; 
         margin-bottom: 15px;
     }
 
-    /* NUEVO: Oculta los checkboxes en tablet y móvil */
+    /* Oculta los checkboxes en tablet y celualres */
     .checkbox-group.desktop-only {
         display: none;
     }
 
-    /* NUEVO: Muestra el select de tipos de lámparas en tablet y móvil */
+    /* Muestra el select de tipos de lamparas en tablet y celulares */
     .mobile-only-types {
         display: block; /* Muestra el select que estaba oculto */
         flex: 1 1 45%; /* Permite que ocupe casi la mitad del ancho del filtro */
-        max-width: 250px; /* Limita su ancho */
-        margin-bottom: 0; /* Asegura que no tenga margen extra */
+        max-width: 250px; 
+        margin-bottom: 0; 
     }
     
-    /* NUEVO: Ajusta el select de "Ordenar por" para que esté al lado del de tipos */
+    /* Ajusta el select de ordenar por, para que este al lado del de tipos */
     .select-container.order-by-select {
         flex: 1 1 45%; /* Permite que ocupe casi la mitad del ancho del filtro */
-        max-width: 250px; /* Limita su ancho */
-        margin-bottom: 0; /* Asegura que no tenga margen extra */
+        max-width: 250px; 
+        margin-bottom: 0;
     }
 
-    /* NUEVO: Ajusta el botón "Aplicar" */
+    /* Ajusta el boton */
     .boton-aplicar {
-        width: 100%; /* Ocupa todo el ancho del filtro */
-        max-width: 300px; /* Limita su ancho en el centro */
-        margin-top: 15px; /* Espacio encima del botón */
+        width: 100%; 
+        max-width: 300px; 
+        margin-top: 15px; 
     }
 
     .cartas {
-        width: 100%; /* Las tarjetas ocupan todo el ancho del contenedor */
-        padding-left: 0; /* Quita el padding izquierdo que compensaba el filtro lateral */
-        order: 2; /* Asegura que las tarjetas aparezcan después del filtro */
-        /* justify-content: center; // Ya debería estar definido en tu CSS de escritorio */
+        width: 100%; 
+        padding-left: 0;
+        order: 2; /* Asegura que las cartas aparezcan despues del filtro */
     }
 
     .card {
-        flex: 1 1 45%; /* Para que en tablets se muestren dos tarjetas por fila */
-        max-width: 400px; /* O un valor adecuado para tu diseño de 2 columnas */
+        flex: 1 1 45%; /* Para que en tablets se muestren dos cartas por fila */
+        max-width: 400px; 
     }
 
     .product-image-slider {
-        height: 200px; /* Ajusta la altura del slider en móviles si es necesario */
+        height: 200px; /* Ajusta la altura del slider en celulares si es necesario */
     }
 
     .slider-btn {
-        padding: 6px 10px; /* Botones más pequeños en móviles */
+        padding: 6px 10px; /* Botones mas pequeños en celulares */
         font-size: 1em;
     }
 }
 
-/* --- NUEVO: Media Query para Móviles (ancho máximo 576px) --- */
+/* responsive celulares */
 @media (max-width: 576px) {
     .contenedor {
-        padding: 10px; /* Reduce el padding general para pantallas más pequeñas */
-        gap: 20px; /* Reduce el espacio entre secciones */
+        padding: 10px; 
+        gap: 20px;
     }
 
     .filtro {
-        padding: 15px; /* Reduce el padding interno del filtro */
+        padding: 15px; 
         flex: auto;
-        flex-direction: column; /* Apila los selects y el botón verticalmente */
-        align-items: center; /* Centra los elementos internos */
-        gap: 10px; /* Reduce el espacio entre los elementos internos */
-        /* **AGREGA O MODIFICA ESTAS LÍNEAS EN TU .filtro PARA 576PX:** */
-        width: 100%; /* Asegura que el filtro ocupe todo el ancho disponible de su padre */
-        height: auto; /* Permite que el filtro ajuste su altura según el contenido */
-        /*max-width: 100%;*/ /***CRUCIAL**: Esto previene que el filtro se extienda más allá del viewport en dispositivos muy pequeños*/
-        box-sizing: border-box; /* **CRUCIAL**: Incluye padding y borde en el ancho/alto total del elemento */
-        min-width: unset; /* **IMPORTANTE**: Si tenías un min-width de escritorio que causaba problemas, esto lo quita */
-        /* height: auto;  Opcional, pero bueno para asegurar altura flexible */
+        flex-direction: column; /* Apila los selects y el boton verticalmente */
+        align-items: center; 
+        gap: 10px; 
+        width: 100%; 
+        height: auto; 
+        box-sizing: border-box; /* Incluye padding y borde en el ancho/alto total del elemento */
+        min-width: unset; /* esto quita el min-width */
     }
 
     .filtro p {
-        font-size: 1.2rem; /* Reduce el tamaño del título "FILTROS" */
+        font-size: 1.2rem; 
         margin-bottom: 10px;
     }
 
     .select-container.mobile-only-types,
     .select-container.order-by-select,
     .boton-aplicar {
-        width: 90%; /* Hace que los selects y el botón ocupen casi todo el ancho */
-        max-width: 300px; /* Mantiene un ancho máximo para no estirarse demasiado */
-        margin: 0 auto; /* Centra los selects y el botón */ 
+        width: 90%; 
+        max-width: 300px; 
+        margin: 0 auto; 
     }
 
-    /* Asegura que los <select> internos también respeten el ancho */
+    
     .mobile-only-types select,
     .select-container.order-by-select select {
         width: 100%;
@@ -345,28 +345,28 @@
     }
 
     .cartas {
-        /* Aquí sí, ajustamos el padding y margin para el contenedor de tarjetas en móvil */
-        padding: 15px; /* Padding reducido para las tarjetas en móvil */
-        margin: 20px auto; /* Margen para el contenedor de tarjetas en móvil */
+        /* ajustamos el padding y margin para el contenedor de cartas en celulares */
+        padding: 15px; 
+        margin: 20px auto; 
     }
 
     .card {
-        flex: 1 1 100%; /* Cada tarjeta ocupa todo el ancho de la pantalla */
-        max-width: 350px; /* Limita su ancho máximo en móviles */
-        padding: 15px; /* Reduce el padding de la tarjeta individual */
+        flex: 1 1 100%; /* ocupa todo el ancho de la pantalla */
+        max-width: 350px;
+        padding: 15px;
 
     }
 
     .card h3 {
-        font-size: 1.3rem; /* Reduce el tamaño del título de la tarjeta */
+        font-size: 1.3rem; 
     }
 
     .card p {
-        font-size: 0.9rem; /* Reduce el tamaño del texto de la tarjeta */
+        font-size: 0.9rem; 
     }
 
     .btn-ver-detalles {
-        font-size: 0.85rem; /* Reduce el tamaño del botón de detalles */
+        font-size: 0.85rem; 
         padding: 8px 12px;
     }
 }

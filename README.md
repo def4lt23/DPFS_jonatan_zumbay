@@ -140,6 +140,13 @@ Acente secundario #E0E0E0
 Color alternativo #00A388
 Color alternativo #FF7F50
 ```
+
+```css ACTUALIZACION JULIO 2025
+
+Editar el archivo con los colores nuevos usados e implementados en la pagina.
+
+```
+
 ============================================================================================
 # 🎨 Fuentes
 >**Fonts sugeridas para la pagina**:

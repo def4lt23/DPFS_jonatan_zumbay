@@ -11,7 +11,7 @@
 >>> SEMANA 3 (23 al 27)
 	* Se creo algunas imagenes importantes como el logo y algunas de muestra que se utilizaran en la pagina.
 	* Se escogio para la pagina las fonts, colores y decidieron algunos aspectos tecnicos (agregados al archivo README).
-	* Modificado y actualizado el archivo README
+	* Modificado y actualizado el archivo README.
 
 >>> SEMANA 4 (30 al 04 Julio)
 	* Se comenzo con la creacion de WIREFRAMES para el proyecto.
@@ -19,9 +19,17 @@
 > JULIO
 >>> SEMANA 1 (07 al 11)
 	* Se finalizo la creacion los modelos de WIREFRAMES para la vista movile del proyecto. Mediante la pagina de wireframes.cc
-	* Se creo para editar el archivo home (index.html)
+	* Se creo para editar el archivo home (index.html).
 
-=== RESUMEN DE ACTIVIDADES COMPLETADAS ===
-	* ARCHIVO README FINALIZADO.
-	* WIREFRAMES FINALIZADOS.
+>>> SEMANA 1 (14 al 18)
+	* Se creo y edito los archivos html y enlazaron para la navegacion (index - productos - quienessomos - carrito - registro).
+	* Se edito algunas imagenes (Logos) para adaptar a diferentes versiones de la pagina.
+	* Se creo mas imagenes para utilizar en la pagina.
+	* Se creo el archivo general.css que usaran todos los html.
 
+>>> SEMANA 1 (21 al 25)
+	* Se modifico las bases de los html para poder probar algunas funcionalidades simples.
+	* Se creo los archivos css para adaptar diferentes estilos.
+	* Se modifico el archivo README.md donde se tomaron en cuenta colores diferentes para las vistas de las paginas.
+	* Se pulio detalles como comentarios y aspectos responsive de las vistas html.
+	* Se creo el archivo retro.md, donde se actualiza los realizado con la devolucion de los profesores.
