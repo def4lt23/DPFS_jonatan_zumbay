@@ -1,0 +1,73 @@
+/* --- Estilos para la "cajita" individual del ítem (manteniendo los anteriores) --- */
+.item-caja {
+    display: flex; /* Usamos flexbox para organizar los elementos internos (imagen, detalles, botón) */
+    align-items: center; /* Centra verticalmente los ítems dentro de la caja */
+    gap: 20px; /* Espacio entre los elementos de la caja (imagen, detalles, botón) */
+    background-color: #fff; /* Fondo blanco para la caja */
+    border: 1px solid #ddd; /* Borde suave */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 15px 20px; /* Relleno interno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    max-width: 600px; /* Ancho máximo para la cajita individual */
+    margin: 20px auto; /* Centra la caja horizontalmente dentro de su contenedor y añade margen vertical */
+}
+
+/* --- Estilos para la imagen del producto (manteniendo los anteriores) --- */
+.item-imagen {
+    width: 100px; /* Ancho fijo para la imagen */
+    height: 100px; /* Alto fijo para la imagen */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+    border-radius: 4px; /* Ligeros bordes redondeados para la imagen */
+}
+
+/* --- Estilos para el contenedor de detalles (descripción y cantidad) (manteniendo los anteriores) --- */
+.item-detalles {
+    display: flex;
+    flex-direction: column; /* Coloca los elementos uno debajo del otro */
+    justify-content: center; /* Centra los elementos verticalmente en su propio contenedor */
+    flex-grow: 1; /* Permite que este contenedor ocupe el espacio disponible */
+}
+
+/* --- Estilos para la descripción del producto (manteniendo los anteriores) --- */
+.item-descripcion {
+    margin: 0 0 8px 0; /* Elimina márgenes por defecto y añade un poco de margen abajo */
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+}
+
+/* --- Estilos para el selector de cantidad (manteniendo los anteriores) --- */
+.item-cantidad {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    width: fit-content; /* Ajusta el ancho al contenido */
+}
+
+/* --- Estilos para el botón "Quitar" (manteniendo los anteriores) --- */
+.item-quitar {
+    background-color: #dc3545; /* Color rojo para el botón de quitar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease; /* Transición suave al pasar el mouse */
+    margin-left: auto; /* Empuja el botón a la derecha si hay espacio */
+}
+
+.item-quitar:hover {
+    background-color: #c82333; /* Color un poco más oscuro al pasar el mouse */
+}
+
+/* --- ESTILOS MODIFICADOS PARA LA CLASE .CONTENEDOR --- */
+.contenedor {
+    display: flex; /* Convierte el contenedor en un flex container */
+    flex-direction: column; /* Apila los elementos hijos (las item-caja) verticalmente */
+    align-items: center; /* Centra los hijos horizontalmente (las item-caja) */
+    width: 100%; /* El contenedor ocupa el 100% del ancho disponible de su padre */
+    padding: 20px 0; /* Añade un poco de espacio arriba y abajo del contenido */
+    box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
+}
