@@ -60,14 +60,30 @@
 }
 
 /* Estilos para el div del texto de ubicación */
-.tetxoubicacion { /* Asegúrate de que el nombre de la clase es 'tetxoubicacion' y no 'textoubicacion' */
+.textoubicacion { /* Asegúrate de que el nombre de la clase es 'tetxoubicacion' y no 'textoubicacion' */
     flex: 1; /* Permite que este div crezca y ocupe espacio */
     max-width: 50%; /* Limita el ancho al 50% */
     padding: 20px; /* Espaciado interno para el texto */
     box-sizing: border-box; /* Incluye padding en el ancho */
+
+    background-image: url('../images/fondomapa.jpg'); /* ruta a tu imagen */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  
+    /* Transparencia del fondo con color de apoyo */
+    background-color: rgba(255, 255, 255, 0.7); /* fondo blanco semi-transparente */
+    background-blend-mode: lighten; /* o 'overlay', según efecto que quieras */
+
+    border-radius: 12px;
+    color: #1A1A1A; /* color de texto */
+
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 
-.tetxoubicacion p {
+
+.textoubicacion p {
     font-size: 1.1rem; /* Tamaño de fuente para mejor lectura */
     line-height: 1.6; /* Espacio entre líneas */
     color: #333; /* Color de texto oscuro */
@@ -117,10 +133,15 @@
         gap: 30px; /* Reduce el espacio entre el texto y el mapa apilados */
     }
 
-    .tetxoubicacion,
+    .textoubicacion,
     .mapa {
         max-width: 100%; /* Ocupan todo el ancho disponible */
         padding: 0 10px; /* Ajusta el padding horizontal */
+    }
+
+    .textoubicacion{
+        padding-top: 50px;
+        padding-bottom: 50px;
     }
 
     .mapa iframe {

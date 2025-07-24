@@ -1,0 +1,173 @@
+/* Estilos para el contenedor principal de los formularios */
+.contenedor {
+    display: flex; /* Habilita Flexbox para colocar los formularios uno al lado del otro */
+    justify-content: center; /* Centra los formularios horizontalmente dentro del contenedor */
+    gap: 30px; /* Espacio entre los dos formularios */
+    flex-wrap: wrap; /* Permite que los formularios se apilen en pantallas pequeñas */
+    padding: 20px; /* Espaciado interno para el contenedor */
+    background-color: #fff; /* Fondo blanco para el contenedor principal de los formularios */
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para el contenedor */
+    margin: 20px auto; /* Centra el contenedor principal y le da margen superior/inferior */
+    max-width: 1500px; /* Limita el ancho máximo del contenedor para mejor legibilidad */
+}
+
+/* Estilos para cada formulario individual (Iniciar Sesión y Registrarse) */
+.iniciar_sesion,
+.registrarse {
+    flex: 1; /* Permite que cada formulario ocupe el espacio disponible */
+    /*min-width: 450px;*//* Ancho mínimo para cada formulario antes de apilarse */
+    max-width: 600px;
+    padding: 25px; /* Espaciado interno de cada formulario */
+    border: 1px solid #ddd; /* Borde sutil para la "cajita" divisoria */
+    border-radius: 8px; /* Bordes redondeados para cada formulario */
+    background-color: #fff; /* Fondo blanco para las cajitas individuales */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra más ligera para las cajitas individuales */
+    display: flex; /* Habilita Flexbox para los elementos internos del formulario */
+    flex-direction: column; /* Coloca los elementos internos en columna */
+    align-items: center; /* Centra los elementos horizontalmente dentro de su formulario */
+    /*padding-left: 50px;*/
+    /*text-align: center;*/ /* Centra el texto dentro del formulario (como los títulos h1) */
+}
+
+/* Estilos para los títulos h1 dentro de cada formulario */
+.iniciar_sesion h1,
+.registrarse h1 {
+    color: #0056b3; /* Color azul para los títulos de los formularios */
+    margin-bottom: 20px; /* Espacio debajo del título */
+    font-size: 1.8em; /* Tamaño de fuente del título */
+    text-align: center;
+}
+
+/* Estilos para las etiquetas <p> que contienen texto y input */
+.iniciar_sesion p,
+.registrarse p {
+    display: flex; /* Habilita Flexbox para la etiqueta <p> */
+    flex-direction: column;
+    align-items: flex-start; /* Alinea verticalmente el texto y el input */
+    margin-bottom: 15px; /* Espacio entre cada par de etiqueta/input */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    max-width: 280px; /* Limita el ancho para mejor lectura en formularios más largos */
+    padding: 0; /* Pequeño padding horizontal para la fila p-input */
+    box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
+    font-size: 1em; /* Tamaño de fuente para el texto de la etiqueta */
+    /*padding-left: 1px;*/
+}
+
+/* NUEVO: Contenedor para el texto de la etiqueta dentro de <p> */
+.iniciar_sesion p span.label-text,
+.registrarse p span.label-text {
+    display: inline-block; /* Permite controlar su ancho */
+    width: auto;
+    text-align: left; /* Alinea el texto a la izquierda dentro de su ancho fijo */
+    flex-shrink: 0; /* Evita que el texto de la etiqueta se encoja */
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.iniciar_sesion p span.label-text {
+    align-self: center;
+    width: 110px; /* <--- AJUSTA ESTE VALOR: Más pequeño para las etiquetas cortas de Login */
+}
+
+/* Estilos para los campos de entrada (inputs) */
+.iniciar_sesion input[type="text"],
+.iniciar_sesion input[type="password"],
+.registrarse input[type="text"],
+.registrarse input[type="password"],
+.registrarse input[type="email"] {
+    display: flex;
+    flex-grow: 1; /* Permite que el input crezca para ocupar el espacio restante */
+    padding: 10px; /* Relleno interno del input */
+    border: 1px solid #ccc; /* Borde del input */
+    border-radius: 5px; /* Bordes redondeados del input */
+    margin-left: 0; /* Espacio entre la etiqueta y el input */
+    font-size: 1rem; /* Tamaño de fuente del texto en el input */
+    box-sizing: border-box; /* Asegura que el padding y border no aumenten el ancho total */
+    margin-right: 5px;
+    width: 100%;
+}
+
+/* Estilos para los botones de enviar */
+.botoniniciar,
+.botonregistrar {
+    background-color: #007bff; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    padding: 12px 20px; /* Relleno interno del botón */
+    border: none; /* Elimina el borde predeterminado */
+    border-radius: 5px; /* Bordes redondeados del botón */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    font-size: 1rem; /* Tamaño de fuente del botón */
+    margin-top: 20px; /* Espacio superior para separar del último input */
+    transition: background-color 0.3s ease; /* Suave transición al pasar el mouse */
+    width: 100%; /* El botón ocupa todo el ancho disponible */
+    max-width: 200px; /* Limita el ancho máximo del botón */
+    box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
+    align-self: center;
+}
+
+/* Efecto hover para los botones */
+.botoniniciar:hover,
+.botonregistrar:hover {
+    background-color: #0056b3; /* Un azul más oscuro al pasar el mouse */
+}
+
+/* Estilos para el enlace "Olvide mi contraseña" */
+.iniciar_sesion a {
+    color: #007bff; /* Color del enlace */
+    text-decoration: none; /* Elimina el subrayado predeterminado */
+    margin-top: 15px; /* Espacio superior para separar del botón */
+    font-size: 0.9rem; /* Tamaño de fuente ligeramente menor */
+}
+
+/* Efecto hover para el enlace */
+.iniciar_sesion a:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+/* --- Media Queries para Responsividad (afectan solo a la sección de formularios) --- */
+@media (max-width: 768px) {
+    .contenedor {
+        flex-direction: column; /* Apila los formularios en pantallas más pequeñas */
+        align-items: center; /* Centra los formularios cuando están apilados */
+        padding: 15px; /* Ajusta el padding para pantallas pequeñas */
+        gap: 20px; /* Ajusta el espacio entre formularios apilados */
+    }
+
+    .iniciar_sesion,
+    .registrarse {
+        width: 95%; /* Ocupa casi todo el ancho disponible en móviles */
+        max-width: 400px; /* Asegura que no sea demasiado ancho en tablets */
+        margin-bottom: 0; /* No se necesita margen extra si el gap maneja el espacio */
+    }
+
+    .iniciar_sesion h1,
+    .registrarse h1 {
+        font-size: 1.5em; /* Reduce el tamaño del título en móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    .iniciar_sesion,
+    .registrarse {
+        padding: 15px; /* Reduce el padding en pantallas muy pequeñas */
+    }
+
+    .iniciar_sesion p,
+    .registrarse p {
+        flex-direction: column; /* Apila etiqueta y input si hay muy poco espacio */
+        align-items: flex-start; /* Alinea el texto a la izquierda cuando apilado */
+    }
+
+    .iniciar_sesion input,
+    .registrarse input {
+        margin-left: 0; /* Elimina el margen si están apilados */
+        margin-top: 5px; /* Añade un pequeño margen superior si están apilados */
+        width: 100%; /* Asegura que el input ocupe todo el ancho */
+    }
+
+    .botoniniciar,
+    .botonregistrar {
+        padding: 10px 15px; /* Reduce el padding de los botones en móviles */
+    }
+}

@@ -8,7 +8,8 @@
     border-radius: 8px; /* Bordes redondeados */
     padding: 15px 20px; /* Relleno interno */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
-    max-width: 600px; /* Ancho máximo para la cajita individual */
+    /*max-width: 2000px;*/ /* Ancho máximo para la cajita individual */
+    width: 70%;
     margin: 20px auto; /* Centra la caja horizontalmente dentro de su contenedor y añade margen vertical */
 }
 
@@ -42,7 +43,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1em;
-    width: fit-content; /* Ajusta el ancho al contenido */
+    width: 80px; /* Ajusta el ancho al contenido */
 }
 
 /* --- Estilos para el botón "Quitar" (manteniendo los anteriores) --- */
@@ -71,3 +72,20 @@
     padding: 20px 0; /* Añade un poco de espacio arriba y abajo del contenido */
     box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
 }
+
+.botonpagar {
+    background-color: #28a745; /* Color verde para el botón de pagar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease; /* Transición suave al pasar el mouse */
+    margin-top: 20px; /* Espacio arriba del botón */
+    width: 20%; /* Ancho fijo para el botón de pagar */
+}
+
+.botonpagar:hover {
+    background-color: #218838; /* Color un poco más oscuro al pasar el mouse */
+}   

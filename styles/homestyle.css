@@ -1,7 +1,4 @@
-main {
-    background-color: #F8F8F8;
 
-}
 
 #carouselExampleCaptions {
   width: 95%; /* Ocupa el 90% del ancho de la pantalla */
@@ -43,6 +40,13 @@ main {
   max-width: 350px; /* Ancho máximo para cada tarjeta, evita que se estiren demasiado */
   text-align: center; /* Centra el contenido de la tarjeta */
   box-sizing: border-box; /* Asegura que el padding y el border no aumenten el tamaño total */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 20px rgba(0, 191, 255, 0.15); /* acento celeste */
+  transform: translateY(-5px);
+  border-color: #00BFFF;
 }
 
 /* Estilos para las imágenes dentro de las tarjetas */
@@ -52,6 +56,11 @@ main {
   object-fit: cover; /* Recorta la imagen para que cubra el espacio sin deformarse */
   border-radius: 4px; /* Un poco de redondeo en las esquinas de la imagen */
   margin-bottom: 15px; /* Espacio debajo de la imagen */
+  transition: filter 0.3s ease;
+}
+
+.card:hover img {
+  filter: brightness(1.05);
 }
 
 /* Estilos para los títulos de las tarjetas */
@@ -124,6 +133,10 @@ main {
 
 .header-button:hover {
     background-color: #0056b3;
+}
+
+.cards-section {
+  background: radial-gradient(circle at top left, #F8F8F8, #E0E0E0);
 }
 
 

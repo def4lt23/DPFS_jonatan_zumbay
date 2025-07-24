@@ -8,10 +8,14 @@ header {
 
 }
 
+body {
+  background: radial-gradient(circle at top left, #F8F8F8, #E0E0E0);
+}
+
+
 * {
     font-family: "Montserrat", sans-serif;
     box-sizing: border-box; /* AÑADIDO: Muy importante para layout responsivo */
-
 }
 
 
@@ -28,6 +32,16 @@ nav li a {
     margin-left: 1.8vw;
     margin-right: 1.8vw;
     white-space: nowrap; /* AÑADIDO: Evita que el texto del enlace se rompa */
+}
+
+nav ul li a {
+  color: #1A1A1A;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #00BFFF;
 }
 
 header img {
@@ -123,6 +137,7 @@ footer {
     padding: 15px 20px;
     flex-wrap: wrap; /* AÑADIDO: Para que los elementos se organicen en pantallas pequeñas */
     gap: 10px;
+    border-top: 1px solid #E0E0E0;
 }
 
 footer p {
@@ -146,6 +161,11 @@ footer img {
     display: flex;
     align-items: center;
     gap: 3px;
+}
+
+footer i:hover {
+  color: #007bff;; /* coral, para destacar hover */
+  cursor: pointer;
 }
 
 /* ###### RESPONSIVE STYLES ###### */
