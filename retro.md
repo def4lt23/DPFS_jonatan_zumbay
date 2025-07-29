@@ -19,3 +19,9 @@ Excelente implementacion del primer sprint, destaco la organizacion, comentarios
 * SE CREO ARCHIVO retro.md CON RETROSPECTIVAS
 
 * ACLARACION: COMO HICE LOS FORMULARIOS DE LOGIN Y REGISTRARSE EN LA MISMA VISTA AGREGUE UNA NUEVA VISTA LLAMADA quienessomos.html DONDE SE MUESTRA UN POCO UNA PRESENTACION Y UBICACION DE LA EMPRESA. ADEMAS, USE MUY POCO JS SOLO PARA ALGUNAS FUNCIONALIDADES, EN FUTURAS ENTREGAS ESPERO ADAPTAR MEJOR ESTOS SCRIPTS EN UN ARCHIVO .JS
+
+**DEVOLUCION**
+Holaa como estas Jonatan, hace un momento vi tu proyecto, va excelente todo documentado el progreso, las vistas están perfectas, me encantó la ui de la pagina, vi que pesa mucho el repositorio, te recomiendo que comprimas las imagenes, te paso ésta pagina que me funcionó  https://www.iloveimg.com/es/comprimir-imagen. SPRINT 2 OK.
+
+============================================================================================
+>>>**SPRINT 3**

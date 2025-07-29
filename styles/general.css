@@ -180,6 +180,9 @@ footer img {
 
 footer i {
     color: #FAFAFA;
+    font-size: 30px;
+    padding-right: 5px;
+    
 }
 
 footer i:hover {
@@ -205,7 +208,8 @@ footer i:hover {
     footer p, .github-info, .fa-github {
         margin: 5px 0; /* Espacio vertical para los párrafos y github-info */
         justify-content: center;
-        width: 100%; /* Ocupa el ancho completo */
+        /*width: 100%;*/ /* Ocupa el ancho completo */
+        align-items: center;
     }
 
     .redes {
