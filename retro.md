@@ -25,3 +25,4 @@ Holaa como estas Jonatan, hace un momento vi tu proyecto, va excelente todo docu
 
 ============================================================================================
 >>>**SPRINT 3**
+* SE MODIFICARON LAS IMAGENES CON EL SITIO WEB RECOMENDADO, LA CARPETA PASO DE PESAR 132MB A 33MB, BAJANDO UN 75% DE SU TAMAÑO INICIAL.
