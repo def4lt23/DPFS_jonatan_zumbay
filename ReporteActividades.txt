@@ -21,15 +21,23 @@
 	* Se finalizo la creacion los modelos de WIREFRAMES para la vista movile del proyecto. Mediante la pagina de wireframes.cc
 	* Se creo para editar el archivo home (index.html).
 
->>> SEMANA 1 (14 al 18)
+>>> SEMANA 2 (14 al 18)
 	* Se creo y edito los archivos html y enlazaron para la navegacion (index - productos - quienessomos - carrito - registro).
 	* Se edito algunas imagenes (Logos) para adaptar a diferentes versiones de la pagina.
 	* Se creo mas imagenes para utilizar en la pagina.
 	* Se creo el archivo general.css que usaran todos los html.
 
->>> SEMANA 1 (21 al 25)
+>>> SEMANA 3 (21 al 25)
 	* Se modifico las bases de los html para poder probar algunas funcionalidades simples.
 	* Se creo los archivos css para adaptar diferentes estilos.
 	* Se modifico el archivo README.md donde se tomaron en cuenta colores diferentes para las vistas de las paginas.
 	* Se pulio detalles como comentarios y aspectos responsive de las vistas html.
 	* Se creo el archivo retro.md, donde se actualiza los realizado con la devolucion de los profesores.
+
+>>> SEMANA 4 (28 al 01 de Agosto)
+	* Se modifico las imagenes para que pesen menos en el archivo del proyecto.
+	* Se instalo express dentro de la carpeta del proyecto, renombrando los html a ejs.
+	* Se instalo nodemon para facilitar los cambios con el servidor.
+	* Editaron los archivos app.js y los de la carpeta routes para poder redireccionar las vistas.
+	* Se crearon los archivos de la carpeta controllers, de ahi se movieron las funciones de los archivos js de routes.
+	* Se creo el archivo .gitignore para no subir todo lo de la carpeta node_modules.
