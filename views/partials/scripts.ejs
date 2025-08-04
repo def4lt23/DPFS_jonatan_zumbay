@@ -1,0 +1,51 @@
+<!-- SCRIPT DEL BOTON HAMBURGUESA DEL RESPONSIVE -->
+<script>
+    const boton = document.querySelector('.iconoburger');
+    const botonicono = document.querySelector('.iconoburger i');
+    const dropdownMenu = document.querySelector('.dropdownmenu');
+
+    boton.onclick = function () {
+        dropdownMenu.classList.toggle('open');
+        const isOpen = dropdownMenu.classList.contains('open');
+
+        botonicono.classList = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+
+    };
+</script>
+
+<!-- SCRIPT PARA CAMBIAR LAS IMAGENES DE LOS PRODUCTOS EN LA VISTA DE DETALLE DEL PRODUCTO -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sliders = document.querySelectorAll('.product-image-slider');
+        sliders.forEach(slider => {
+            const imageWrapper = slider.querySelector('.image-wrapper');
+            const images = slider.querySelectorAll('img');
+            const prevBtn = slider.querySelector('.prev-btn');
+            const nextBtn = slider.querySelector('.next-btn');
+
+            let currentIndex = 0;
+
+            function updateSlider() {
+                imageWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex--;
+                if (currentIndex < 0) {
+                    currentIndex = images.length - 1;
+                }
+                updateSlider();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex++;
+                if (currentIndex >= images.length) {
+                    currentIndex = 0;
+                }
+                updateSlider();
+            });
+
+            updateSlider(); // Inicializa el slider
+        });
+    });
+</script>
