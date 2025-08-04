@@ -1,0 +1,34 @@
+<!-- AQUI SE COLOCO EL FOOTER Y EL SCRIPT DE BOTON HAMBURGUESA PORQUE TAMBIEN LO USAN TODAS LAS VISTAS -->
+<!-- MAS ADELANTE MOVER LOS SCRIPTS A OTRO ARCHIVO, COMO NO SE USAN MUCHOS NI SON LARGOS LOS MANTUVE ASI DE MOMENTO -->
+
+<footer>
+  <div>
+    <p>© 2025 LUZIFY || All Rights Reserved</p>
+    <p>Desarrollado por Jonatan Zumbay</p>
+    <div class="github-info">
+      <i class="fa-brands fa-github"></i>
+      <p>def4lt23</p>
+    </div>
+  </div>
+
+  <img src="/images/logocorto_blancov3.png" alt="">
+
+  <div class="redes">
+    <i class="fa-brands fa-square-facebook"></i>
+    <i class="fa-brands fa-square-instagram"></i>
+  </div>
+</footer>
+
+<script>
+  const boton = document.querySelector('.iconoburger');
+  const botonicono = document.querySelector('.iconoburger i');
+  const dropdownMenu = document.querySelector('.dropdownmenu');
+
+  boton.onclick = function () {
+    dropdownMenu.classList.toggle('open');
+    const isOpen = dropdownMenu.classList.contains('open');
+
+    botonicono.classList = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+
+  };
+</script>

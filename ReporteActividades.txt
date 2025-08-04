@@ -41,3 +41,7 @@
 	* Editaron los archivos app.js y los de la carpeta routes para poder redireccionar las vistas.
 	* Se crearon los archivos de la carpeta controllers, de ahi se movieron las funciones de los archivos js de routes.
 	* Se creo el archivo .gitignore para no subir todo lo de la carpeta node_modules.
+
+>AGOSTO
+>>> SEMANA 1 (04 al 08)
+	* Se creo la carpeta partials con los archivos correspondientes para mostrar las vistas de forma dinamica.

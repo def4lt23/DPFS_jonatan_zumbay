@@ -1,57 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- ENLACES DE CSS -->
-    <link rel="stylesheet" href="/styles/general.css">
-    <link rel="stylesheet" href="/styles/carrito.css">
-    <!-- ENLACES DE ICONOS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <!-- ENLACES DE BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-        crossorigin="anonymous"></script>
-    <!-- ENLACES DE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-
-    <title>LUZIFY | CARRITO</title>
-</head>
+    <%- include('../partials/head.ejs', {estilod:'carrito.css'}) %>
 
 <body>
-    <header>
-        <img src="/images/logo_verdecv3.png" alt="">
-
-        <nav>
-            <ul>
-                <li><a href="/">INICIO</a></li>
-                <li><a href="/products/productos">PRODUCTOS</a></li>
-                <li><a href="/users/quienessomos">QUIENES SOMOS</a></li>
-                <li><a href="/users/carrito">CARRITO</a></li>
-            </ul>
-        </nav>
-
-        <button class="botoncuenta">
-            <a href="/users/registro">MI CUENTA</a>
-        </button>
-        <div class="iconoburger">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-
-        <div class="dropdownmenu">
-            <li><a href="/users/registro">MI CUENTA</a></li>
-            <li><a href="/">INICIO</a></li>
-            <li><a href="/products/productos">PRODUCTOS</a></li>
-            <li><a href="/users/quienessomos">QUIENES SOMOS</a></li>
-            <li><a href="/users/carrito">CARRITO</a></li>
-        </div>
-    </header>
+    
+    <%- include('../partials/header.ejs') %>
 
     <main>
         <h1>
@@ -115,37 +69,7 @@
         </div>
     </main>
 
-    <footer>
-        <div>
-            <p>© 2025 LUZIFY || All Rights Reserved</p>
-            <p>Desarrollado por Jonatan Zumbay</p>
-            <div class="github-info">
-                <i class="fa-brands fa-github"></i>
-                <p>def4lt23</p>
-            </div>
-        </div>
-
-        <img src="/images/logocorto_blancov3.png" alt="">
-
-        <div class="redes">
-            <i class="fa-brands fa-square-facebook"></i>
-            <i class="fa-brands fa-square-instagram"></i>
-        </div>
-    </footer>
-
-    <script>
-        const boton = document.querySelector('.iconoburger');
-        const botonicono = document.querySelector('.iconoburger i');
-        const dropdownMenu = document.querySelector('.dropdownmenu');
-
-        boton.onclick = function () {
-            dropdownMenu.classList.toggle('open');
-            const isOpen = dropdownMenu.classList.contains('open');
-
-            botonicono.classList = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
-
-        };
-    </script>
+    <%- include('../partials/footer.ejs') %>
 </body>
 
 </html>
