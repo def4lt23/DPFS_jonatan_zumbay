@@ -7,7 +7,7 @@
     "precio": 50001,
     "colorIds": [2, 3],
     "stock": 10,
-    "imagen": "guitarra.png",
+    "imagen": ["lamp1a.png","lamp1b.png","lamp1c.png"],
     "destacado": true
   },
   {
@@ -18,7 +18,7 @@
     "precio": 50002,
     "colorIds": [2, 11],
     "stock": 5,
-    "imagen": "violin.png",
+    "imagen": ["lamp2a.png","lamp2b.png","lamp2c.png"],
     "destacado": false
   },
     {
@@ -29,7 +29,7 @@
     "precio": 50003,
     "colorIds": [1, 2, 3],
     "stock": 5,
-    "imagen": "piano.png",
+    "imagen": ["lamp3a.png","lamp3b.png","lamp3c.png"],
     "destacado": false
   },
     {
@@ -40,7 +40,7 @@
     "precio": 50004,
     "colorIds": [2],
     "stock": 5,
-    "imagen": "eiffel.png",
+    "imagen": ["lamp4a.png","lamp4b.png","lamp4c.png"],
     "destacado": false
   },
     {
@@ -51,7 +51,7 @@
     "precio": 50005,
     "colorIds": [1, 2, 3],
     "stock": 5,
-    "imagen": "pisa.png",
+    "imagen": ["lamp5a.png","lamp5b.png","lamp5c.png"],
     "destacado": false
   },
     {
@@ -62,7 +62,7 @@
     "precio": 50006,
     "colorIds": [1, 2],
     "stock": 5,
-    "imagen": "obelisco.png",
+    "imagen": ["lamp6a.png","lamp6b.png","lamp6c.png"],
     "destacado": false
   },
     {
@@ -73,7 +73,7 @@
     "precio": 50007,
     "colorIds": [1, 2, 12],
     "stock": 5,
-    "imagen": "cohete.png",
+    "imagen": ["lamp7a.png","lamp7b.png","lamp7c.png"],
     "destacado": false
   },
     {
@@ -84,7 +84,7 @@
     "precio": 50008,
     "colorIds": [1, 5, 9],
     "stock": 5,
-    "imagen": "mariposa.png",
+    "imagen": ["lamp8a.png","lamp8b.png"],
     "destacado": false
   },
     {
@@ -95,7 +95,7 @@
     "precio": 50009,
     "colorIds": [1, 2],
     "stock": 5,
-    "imagen": "python.png",
+    "imagen": ["lamp9a.png","lamp9b.png","lamp9c.png"],
     "destacado": false
   },
     {
@@ -106,7 +106,7 @@
     "precio": 50010,
     "colorIds": [1, 2],
     "stock": 5,
-    "imagen": "fernet.png",
+    "imagen": ["lamp10a.png","lamp10b.png","lamp10c.png"],
     "destacado": false
   }
 ]

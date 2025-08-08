@@ -1,4 +1,4 @@
-body h1 {
+body h1, h6 {
      text-align: center; 
      margin-top: 20px;
      font-size: 2rem;
@@ -122,10 +122,16 @@ body h1 {
     max-width: 1200px; 
     margin: 40px auto; /* Centra el contenedor de cartas en la pagina y le da margen para separarlo de otras secciones */
     padding: 20px; 
+    margin-top: 0px;
 }
 
 /* Estilos para cada carta indivudual */
 .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    min-height: 400px;
     border: 1px solid #dee2e6; 
     border-radius: 8px; 
     padding: 20px; 
@@ -211,6 +217,16 @@ body h1 {
     margin-bottom: 15px; 
 }
 
+/* descripcion de las cartas*/
+.cartadescrip {
+  min-height: 100px; /* ajustá para que todas las descripciones ocupen el mismo alto */
+}
+
+.cartaprecio {
+    min-height: 50px;
+    font-weight: bold;
+}
+
 /* Boton opcional de "Ver Detalles" dentro de la carta */
 .btn-ver-detalles {
     background-color: #2ECC71;
@@ -221,6 +237,9 @@ body h1 {
     cursor: pointer;
     font-size: 0.9rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    
+    margin-top: auto;        /* empuja al fondo */
+    margin-bottom: 10px;     /* separa del borde inferior */
 }
 
 .btn-ver-detalles:hover {
