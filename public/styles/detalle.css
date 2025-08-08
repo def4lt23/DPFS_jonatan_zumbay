@@ -1,0 +1,66 @@
+.contenedor {
+    display: flex; 
+    flex-direction: column; /* Asegura que los elementos se coloquen en fila */
+    justify-content: center; 
+    align-items: center;
+    padding: 40px 20px; 
+    max-width: 1200px; 
+    margin: 0 auto;
+    gap: 40px; 
+    margin: 40px auto;
+    border: 3px solid #2ECC71;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.fade-slider {
+  display: flex;
+  gap: 10px; /* espacio entre imágenes */
+}
+
+.fade-slider img {
+  width: 300px;     /* tamaño cuadrado */
+  height: 300px;
+  object-fit: cover;
+  /* sin posicionamiento absoluto ni animación */
+}
+
+.botonagregar {
+    background-color: #2ECC71; 
+    color: white; 
+    padding: 12px 20px; 
+    border: none; 
+    border-radius: 25px; 
+    cursor: pointer; 
+    font-size: 1rem; 
+    transition: background-color 0.3s ease; /* transicion al pasar el mouse */
+    width: 100%; 
+    max-width: 200px; 
+    box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
+    align-self: center;
+
+}
+
+.botonagregar:hover {
+    background-color: #27AE60;
+}
+
+.botonadmin {
+    background-color: #cc462e; 
+    color: white; 
+    padding: 12px 20px; 
+    border: none; 
+    border-radius: 25px; 
+    cursor: pointer; 
+    font-size: 1rem; 
+    transition: background-color 0.3s ease; /* transicion al pasar el mouse */
+    width: 100%; 
+    max-width: 200px; 
+    box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
+    align-self: center;
+
+}
+
+.botonadmin:hover {
+    background-color: #802c1d;
+}

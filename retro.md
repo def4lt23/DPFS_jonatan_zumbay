@@ -40,4 +40,5 @@ Excelente trabajo! Se implemento el sprint 3 con express y ejs 100% funcional, v
 ============================================================================================
 >>>**SPRINT 4**
 * SE CREO LA CARPETA data CON LOS ARCHIVOS JSON QUE SE MANEJARAN: products y user (PARA ALMACENAR INFO). colors y models (PARA ALMACENAR ATRIBUTOS)
-* 
+* SE EDITO EL ARCHIVO productsController.js PARA LEER EL JSON DE PRODUCTOS.
+* SE EDITO LA VISTA productos.ejs Y AHORA SE MANEJAN DE FORMA DINAMICA LOS PRODUCTOS SEGUN EL ARCHIVO JS DE DATA.

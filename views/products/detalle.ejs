@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs', {estilod:'detalle.css'}) %>
+
+    <body>
+        <%- include('../partials/header.ejs') %>
+
+            <section>
+                <h1>Conoce mas sobre este producto</h1>
+                <%= miProducto.nombre %>
+
+                    <div class="contenedor">
+                        <div class="imagen">
+                            <div class="fade-slider">
+                                <% miProducto.imagen.forEach(function(img, index) { %>
+                                    <img src="/images/<%= img %>" alt="Imagen <%= index + 1 %>"
+                                        class="<%= index === 0 ? 'active-image' : '' %>">
+                                    <% }); %>
+                            </div>
+                        </div>
+                        <div class="texto">
+                            <p><strong>Descripcion:</strong>
+                                <%= miProducto.descripcion %>
+                            </p>
+                            <p><strong>Precio:</strong> $<%= miProducto.precio %>
+                            </p>
+                            <p><strong>Tamaño:</strong>
+                                <%= miProducto.tamano %>
+                            </p>
+                            <p><strong>Colores:</strong>
+                                <% miColor.forEach(function(color, index) { %>
+                                    <label>
+                                        <input type="radio" name="coloresSeleccionados" value="<%= color %>">
+                                        <%= color %>
+                                    </label><br>
+                                    <% }); %>
+                                        <p><strong>Stock:</strong>
+                                            <%= miProducto.stock %> unidades
+                                        </p>
+                        </div>
+
+                        <div class="botones">
+                        <button class="botonagregar"> AGREGAR AL CARRITO</button>
+                        <button class="botonadmin">MODIFICAR (ADMINISTRADOR)</button>
+                        <button class="botonadmin">ELIMINAR (ADMINISTRADOR)</button>
+                        </div>
+
+                    </div>
+
+                    <%- include('../partials/footer.ejs') %>
+                        <%- include('../partials/scripts.ejs') %>
+            </section>
+    </body>
+
+</html>

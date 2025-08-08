@@ -6,6 +6,7 @@
     "modeloId": 1,
     "precio": 50001,
     "colorIds": [2, 3],
+    "tamano": "Mediana",
     "stock": 10,
     "imagen": ["lamp1a.png","lamp1b.png","lamp1c.png"],
     "destacado": true
@@ -17,6 +18,7 @@
     "modeloId": 1,
     "precio": 50002,
     "colorIds": [2, 11],
+    "tamano": "Mediana",
     "stock": 5,
     "imagen": ["lamp2a.png","lamp2b.png","lamp2c.png"],
     "destacado": false
@@ -28,6 +30,7 @@
     "modeloId": 1,
     "precio": 50003,
     "colorIds": [1, 2, 3],
+    "tamano": "Mediana",
     "stock": 5,
     "imagen": ["lamp3a.png","lamp3b.png","lamp3c.png"],
     "destacado": false
@@ -39,6 +42,7 @@
     "modeloId": 2,
     "precio": 50004,
     "colorIds": [2],
+    "tamano": "Grande",
     "stock": 5,
     "imagen": ["lamp4a.png","lamp4b.png","lamp4c.png"],
     "destacado": false
@@ -50,6 +54,7 @@
     "modeloId": 2,
     "precio": 50005,
     "colorIds": [1, 2, 3],
+    "tamano": "Grande",
     "stock": 5,
     "imagen": ["lamp5a.png","lamp5b.png","lamp5c.png"],
     "destacado": false
@@ -61,6 +66,7 @@
     "modeloId": 2,
     "precio": 50006,
     "colorIds": [1, 2],
+    "tamano": "Grande",
     "stock": 5,
     "imagen": ["lamp6a.png","lamp6b.png","lamp6c.png"],
     "destacado": false
@@ -72,6 +78,7 @@
     "modeloId": 3,
     "precio": 50007,
     "colorIds": [1, 2, 12],
+    "tamano": "Mediana",
     "stock": 5,
     "imagen": ["lamp7a.png","lamp7b.png","lamp7c.png"],
     "destacado": false
@@ -83,6 +90,7 @@
     "modeloId": 3,
     "precio": 50008,
     "colorIds": [1, 5, 9],
+    "tamano": "Mediana",
     "stock": 5,
     "imagen": ["lamp8a.png","lamp8b.png"],
     "destacado": false
@@ -94,6 +102,7 @@
     "modeloId": 4,
     "precio": 50009,
     "colorIds": [1, 2],
+    "tamano": "Mediana",
     "stock": 5,
     "imagen": ["lamp9a.png","lamp9b.png","lamp9c.png"],
     "destacado": false
@@ -105,6 +114,7 @@
     "modeloId": 5,
     "precio": 50010,
     "colorIds": [1, 2],
+    "tamano": "Grande",
     "stock": 5,
     "imagen": ["lamp10a.png","lamp10b.png","lamp10c.png"],
     "destacado": false
