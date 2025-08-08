@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "nombre": "Jonatan",
+    "apellido": "Zumbay",
+    "email": "jonezmby@gmail.com",
+    "password": "contrA1234",
+    "telefono": "+5493885123456",
+    "direccion": "Calle Humahuaca 348, El Carmen",
+    "rol": "administrador",
+    "fechaRegistro": "2025-08-07T10:30:00Z"
+  },
+  {
+    "id": 2,
+    "nombre": "Lucas",
+    "apellido": "Gomez",
+    "email": "lucas.gomez@example.com",
+    "password": "hashedpassword456",
+    "telefono": "+5493516543210",
+    "direccion": "Calle Falsa 456, Cordoba",
+    "rol": "cliente",
+    "fechaRegistro": "2025-08-07T14:45:00Z"
+  }
+]

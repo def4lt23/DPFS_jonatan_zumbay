@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "nombre": "Lampara Guitarra",
+    "descripcion": "Lampara LED con forma de guitarra, ideal para amantes de la musica.",
+    "modeloId": 1,
+    "precio": 50001,
+    "colorIds": [2, 3],
+    "stock": 10,
+    "imagen": "guitarra.png",
+    "destacado": true
+  },
+  {
+    "id": 2,
+    "nombre": "Lampara Violin",
+    "descripcion": "Lampara decorativa con diseño de violin, perfecta para amantes de la musica clasica. Su silueta elegante aporta calidez y estilo a cualquier ambiente.",
+    "modeloId": 1,
+    "precio": 50002,
+    "colorIds": [2, 11],
+    "stock": 5,
+    "imagen": "violin.png",
+    "destacado": false
+  },
+    {
+    "id": 3,
+    "nombre": "Lampara Piano",
+    "descripcion": "Lampara con forma de piano de cola, ideal para musicos o ambientes artisticos. Combina iluminacion suave con un diseño armonioso y distinguido.",
+    "modeloId": 1,
+    "precio": 50003,
+    "colorIds": [1, 2, 3],
+    "stock": 5,
+    "imagen": "piano.png",
+    "destacado": false
+  },
+    {
+    "id": 4,
+    "nombre": "Lampara Torre Eiffel",
+    "descripcion": "Lampara con diseño inspirado en la iconica Torre Eiffel de Paris. Un toque moderno y romantico para decorar habitaciones o escritorios.",
+    "modeloId": 2,
+    "precio": 50004,
+    "colorIds": [2],
+    "stock": 5,
+    "imagen": "eiffel.png",
+    "destacado": false
+  },
+    {
+    "id": 5,
+    "nombre": "Lampara Torre de Pisa",
+    "descripcion": "Diseño inclinado y original que representa la famosa Torre de Pisa. Una pieza unica que aporta historia y creatividad a tu espacio.",
+    "modeloId": 2,
+    "precio": 50005,
+    "colorIds": [1, 2, 3],
+    "stock": 5,
+    "imagen": "pisa.png",
+    "destacado": false
+  },
+    {
+    "id": 6,
+    "nombre": "Lampara Obelisco Bs As",
+    "descripcion": "Lampara LED con la silueta del emblematico Obelisco porteño. Ideal para quienes aman la ciudad y quieren un detalle decorativo lleno de identidad.",
+    "modeloId": 2,
+    "precio": 50006,
+    "colorIds": [1, 2],
+    "stock": 5,
+    "imagen": "obelisco.png",
+    "destacado": false
+  },
+    {
+    "id": 7,
+    "nombre": "Lampara Cohete Espacial",
+    "descripcion": "Lampara en forma de cohete, perfecta para cuartos infantiles o amantes del espacio. Un diseño divertido que enciende la imaginacion.",
+    "modeloId": 3,
+    "precio": 50007,
+    "colorIds": [1, 2, 12],
+    "stock": 5,
+    "imagen": "cohete.png",
+    "destacado": false
+  },
+    {
+    "id": 8,
+    "nombre": "Lampara Mariposa",
+    "descripcion": "Delicada lampara con diseño de mariposa, ideal para crear un ambiente relajado y natural. Perfecta para dormitorios o espacios creativos.",
+    "modeloId": 3,
+    "precio": 50008,
+    "colorIds": [1, 5, 9],
+    "stock": 5,
+    "imagen": "mariposa.png",
+    "destacado": false
+  },
+    {
+    "id": 9,
+    "nombre": "Lampara Python",
+    "descripcion": "Lampara LED con el logo de Python, ideal para programadores y entusiastas del desarrollo. Un detalle geek para tu escritorio.",
+    "modeloId": 4,
+    "precio": 50009,
+    "colorIds": [1, 2],
+    "stock": 5,
+    "imagen": "python.png",
+    "destacado": false
+  },
+    {
+    "id": 10,
+    "nombre": "Lampara Fernet",
+    "descripcion": "Lampara con la iconica botella de Fernet, ideal para bares, cocinas o fans de esta bebida clasica. Un toque divertido y original para decorar.",
+    "modeloId": 5,
+    "precio": 50010,
+    "colorIds": [1, 2],
+    "stock": 5,
+    "imagen": "fernet.png",
+    "destacado": false
+  }
+]

@@ -33,3 +33,11 @@ Holaa como estas Jonatan, hace un momento vi tu proyecto, va excelente todo docu
 * SE CREO EL ARCHIVO .GITIGNORE PARA NO SUBIR TODO LO DE LA CARPETA NODE_MODULES.
 * SE CREO LA CARPETA PARTIALS CON LOS ARCHIVOS CORRESPONDIENTES PARA MOSTRAR LAS VISTAS DE FORMA DINAMICA.
 * EDITADOS LOS ARCHIVOS EJS PARA LLAMAR LAS VISTAS DE LA CARPETA PARTIALS.
+
+**DEVOLUCION**
+Excelente trabajo! Se implemento el sprint 3 con express y ejs 100% funcional, vamos por el CRUD en el sprint 4, saludos!
+
+============================================================================================
+>>>**SPRINT 4**
+* SE CREO LA CARPETA data CON LOS ARCHIVOS JSON QUE SE MANEJARAN: products y user (PARA ALMACENAR INFO). colors y models (PARA ALMACENAR ATRIBUTOS)
+* 
