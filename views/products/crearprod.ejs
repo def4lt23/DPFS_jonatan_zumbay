@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs', {estilod:'crearprod.css'}) %>
+
+    <body>
+        <%- include('../partials/header.ejs') %>
+            <h1>VISTA ADMINISTRADOR</h1>
+            <H3>GENERAR UN NUEVO PRODUCTO</H3>
+            <div class="contenedor">
+                <form action="/products/crearprod" method="POST">
+                    <div class="clasep">
+                        <label for="nombre">1️⃣➡️NOMBRE DEL PRODUCTO:</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Añade el nombre de Lampara Nueva"
+                            required>
+                    </div>
+                    <div class="clasep">
+                        <label for="descripcion">2️⃣➡️DESCRIPCION:</label>
+                        <input type="text" id="descripcion" name="descripcion"
+                            placeholder="Añade una descripcion del producto nuevo" required>
+                    </div>
+                    <div class="clasep">
+                        <label for="opciones">3️⃣➡️TIPO DE LAMPARA:</label>
+                        <select id="opciones" name="opciones">
+                            <% modelsjs.forEach(function(tipo, index) { %>
+                                <option value="<%= tipo.id %>">
+                                    <%= tipo.nombre %>
+                                </option>
+                                <% }) %>
+                        </select>
+                    </div>
+                    <div class="clasep">
+                        <label for="precio">4️⃣➡️PRECIO:</label>
+                        <input type="text" id="precio" name="precio" placeholder="Añade el precio del producto nuevo"
+                            required min="0" step="0.01">
+                    </div>
+                    <fieldset class="claser">
+                        <legend>5️⃣➡️COLOR:</legend>
+                        <% colors.forEach(function(color) { %>
+                            <label>
+                                <input type="radio" id="color-<%= color.id %>" name="color" value="<%= color.id %>">
+                                <%= color.nombre %>
+                            </label>
+                            <% }) %>
+                                <br>
+                    </fieldset>
+
+                    <fieldset class="claser">
+                        <legend>6️⃣➡️TAMAÑO DEL PRODUCTO NUEVO</legend>
+                        <label>
+                            <input type="radio" name="tamano" value="Mediana">
+                            Mediana
+                        </label>
+                        <label>
+                            <input type="radio" name="tamano" value="Grande">
+                            Grande
+                        </label>
+                    </fieldset>
+                    <br>
+                    <div class="clasep">
+                        <label for="stock">7️⃣➡️CANTIDAD:</label>
+                        <input type="number" id="stock" name="stock" placeholder="Añade la cantidad del producto nuevo"
+                            min="0" required>
+                    </div>
+                    <div class="clasep">
+                        <label for="image">8️⃣➡️IMAGENES DEL PRODUCTO NUEVO</label>
+                        <input type="file" id="image" name="image" disabled>
+                    </div>
+                    <fieldset class="claser">
+                        <legend>9️⃣➡️¿AGREGAR ESTE NUEVO PRODUCTO A DESTACADOS?</legend>
+                        <label>
+                            <input type="radio" name="destacado" value="SI">
+                            SI
+                        </label>
+                        <label>
+                            <input type="radio" name="destacado" value="NO">
+                            NO
+                        </label>
+                    </fieldset>
+                    <br>
+                    <button type="submit" class="botoncrear">CREAR PRODUCTO</button>
+            </div>
+            <%- include('../partials/footer.ejs') %>
+                <%- include('../partials/scripts.ejs') %>
+    </body>
+
+</html>
