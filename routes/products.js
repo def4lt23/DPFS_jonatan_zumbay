@@ -2,13 +2,16 @@ var express = require('express');
 const productsController = require('../controllers/productsController');
 var router = express.Router();
 
-/* GET productos page */
+/* GET VER PRODUCTOS */
 router.get('/productos', productsController.productos);
 
-// :id significa que es un parámetro dinámico en la URL
-router.get('/detalle/:id', productsController.enviarProducto);
+// GET VER UN PRODUCTO:id parametro dinamico en la URL
+router.get('/detalle/:id', productsController.enviarProductos);
 
-/* GET productos nuevos page */
+/* GET CREAR PRODUCTOS NUEVOS */
 router.get('/crearprod', productsController.crearProductos);
+
+/*GET EDITAR UN PRODUCTO NUEVO*/
+router.get('/editarprod/:id', productsController.editarProductos);
 
 module.exports = router;

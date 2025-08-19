@@ -10,5 +10,6 @@
   { "id": 9, "nombre": "Rosa" },
   { "id": 10, "nombre": "Gris" },
   { "id": 11, "nombre": "Marron" },
-  { "id": 12, "nombre": "Turquesa" }
+  { "id": 12, "nombre": "Turquesa" },
+  { "id": 13, "nombre": "Rainbow" }
 ]

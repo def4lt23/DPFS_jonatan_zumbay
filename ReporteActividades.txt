@@ -45,3 +45,11 @@
 >AGOSTO
 >>> SEMANA 1 (04 al 08)
 	* Se creo la carpeta partials con los archivos correspondientes para mostrar las vistas de forma dinamica.
+	* Se creo la vista detalle.ejs donde se ve de forma dinamica la informacion correspondiente de cada producto.
+	* Se edito la vista de productos.ejs para listar todo de forma dinamica.
+	* Se agregaron las funciones correspondientes al archivo productsControllers.js y al de la routa products.js
+>>> SEMANA 2 (11 al 15)
+	* Se creo la vista crearprod.ejs donde se agregaran los productos nuevos.
+	* Se edito los archivos de routes y controllers para renderizar las vistas nuevas.
+>>> SEMANA 3 (18 al 22)
+>>> SEMANA 4 (25 al 29)

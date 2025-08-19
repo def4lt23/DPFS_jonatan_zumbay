@@ -1,0 +1,93 @@
+.contenedor {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    padding: 40px 20px; 
+    max-width: 1200px; 
+    margin: 0 auto;
+    gap: 40px; 
+    margin: 40px auto;
+    border: 3px solid #2ECC71;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.botoneditar {
+    background-color: #2ECC71; 
+    color: white; 
+    padding: 12px 20px; 
+    border: none; 
+    border-radius: 25px; 
+    cursor: pointer; 
+    font-size: 1rem; 
+    transition: background-color 0.3s ease; 
+    width: 100%; 
+    max-width: 200px; 
+    box-sizing: border-box; 
+    align-self: center;
+
+}
+
+.botoneditar:hover {
+    background-color: #27AE60;
+}
+
+.clasep textarea {
+  width: 100%;       /* ocupa todo el ancho disponible */
+  max-width: 90ch;   /* límite máximo parecido a "cols=90" */
+  min-height: 120px; 
+  resize: vertical;  /* permite cambiar altura pero no ancho */
+  padding: 8px;
+  font-size: 16px;
+}
+
+.clasep {
+    flex-direction: row; 
+    gap: 10px; 
+    width: 100%; 
+    max-width: 900px; 
+    margin-bottom: 30px;
+
+}
+
+.clasep label {
+    font-size: 20px;
+}
+
+.clasep input, select {
+    width: 100%; 
+}
+
+.claser {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    gap: 10px; /* espacio entre cada radio+label */
+}
+
+.claser legend {
+    grid-column: 1 / -1; /* que el legend ocupe todo el ancho del grid */
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.claser label {
+    gap: 5px; 
+}
+
+.claser input {
+    width: 15px;
+}
+
+.fade-slider {
+    padding-top: 10px;
+  display: flex;
+  gap: 10px; /* espacio entre imágenes */
+}
+
+.fade-slider img {
+  width: 300px;     /* tamaño cuadrado */
+  height: 300px;
+  object-fit: cover;
+  /* sin posicionamiento absoluto ni animación */
+}

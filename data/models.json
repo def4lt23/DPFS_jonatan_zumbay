@@ -3,5 +3,7 @@
   { "id": 2, "nombre": "Monumentos Historicos" },
   { "id": 3, "nombre": "Kids" },
   { "id": 4, "nombre": "Logos" },
-  { "id": 5, "nombre": "Bebidas" }
+  { "id": 5, "nombre": "Bebidas" },
+  { "id": 6, "nombre": "Animales" }
+  
 ]

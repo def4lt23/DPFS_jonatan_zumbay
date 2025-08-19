@@ -12,9 +12,9 @@ const productsController = {
     res.render("products/productos", {productosjs});
   },
 
-  // NUEVO MÉTODO para manejar el envío de un producto específico
+  // NUEVO METODO para manejar el envio de un producto especifico
   //PRIMERO VA EL NOMBRE DEL MÉTODO
-  enviarProducto: function (req, res, next) {
+  enviarProductos: function (req, res, next) {
     const productosjs = JSON.parse(fs.readFileSync(productsPath, 'utf-8')); //productos a js
     const colors = JSON.parse(fs.readFileSync(colorsPath, 'utf-8')); //colores a js
     
@@ -43,6 +43,25 @@ const productsController = {
     const modelsjs = JSON.parse(fs.readFileSync(modelsPath, 'utf-8')); //colores a js
 
     res.render("products/crearprod", {colors, modelsjs}); //envia los colores y modelos a la vista de crear productos
+  },
+
+  editarProductos: function (req, res, next) {
+    const productosjs = JSON.parse(fs.readFileSync(productsPath, 'utf-8')); //productos a js
+    const colors = JSON.parse(fs.readFileSync(colorsPath, 'utf-8')); //colores a js
+    const modelsjs = JSON.parse(fs.readFileSync(modelsPath, 'utf-8')); //colores a js
+
+    const idProducto = req.params.id; // <-- el id que viene desde la URL
+    const productoEncontrado = productosjs.find(p => p.id == idProducto); // busca por id
+
+    if (!productoEncontrado) { //si no lo encuentra
+      return res.status(404).send("Producto no encontrado");
+    }
+
+    res.render("products/editarprod", { 
+      miProducto: productoEncontrado,  //si lo encuentra se lo envia a editar con el nombre miProducto
+      colors, //colores
+      modelsjs
+    });
   }
 
 };
