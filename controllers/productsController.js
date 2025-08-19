@@ -22,7 +22,7 @@ const productsController = {
     const productoEncontrado = productosjs.find(p => p.id == idProducto); // busca por id
 
     if (!productoEncontrado) { //si no lo encuentra
-      return res.status(404).send("Producto no encontrado");
+      res.render("products/detalle", {miProducto: productoEncontrado});
     }
 
       // Mapear los colorIds del producto a los nombres de colores

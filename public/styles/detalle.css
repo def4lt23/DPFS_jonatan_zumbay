@@ -64,3 +64,15 @@
 .botonadmin:hover {
     background-color: #802c1d;
 }
+
+.error {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #27AE60;
+    border-radius: 5px;
+}
+
+.error img {
+    max-width: 400px;
+    height: auto;
+}

@@ -4,53 +4,61 @@
 
     <body>
         <%- include('../partials/header.ejs') %>
+            <% if (miProducto) { %>
+                <section>
+                    <h1>Conoce mas sobre este producto</h1>
+                    <%= miProducto.nombre %>
 
-            <section>
-                <h1>Conoce mas sobre este producto</h1>
-                <%= miProducto.nombre %>
-
-                    <div class="contenedor">
-                        <div class="imagen">
-                            <div class="fade-slider">
-                                <% miProducto.imagen.forEach(function(img, index) { %>
-                                    <img src="/images/<%= img %>" alt="Imagen <%= index + 1 %>"
-                                        class="<%= index === 0 ? 'active-image' : '' %>">
-                                    <% }); %>
+                        <div class="contenedor">
+                            <div class="imagen">
+                                <div class="fade-slider">
+                                    <% miProducto.imagen.forEach(function(img, index) { %>
+                                        <img src="/images/<%= img %>" alt="Imagen <%= index + 1 %>"
+                                            class="<%= index === 0 ? 'active-image' : '' %>">
+                                        <% }); %>
+                                </div>
                             </div>
-                        </div>
-                        <div class="texto">
-                            <p><strong>Descripcion:</strong>
-                                <%= miProducto.descripcion %>
-                            </p>
-                            <p><strong>Precio:</strong> $<%= miProducto.precio %>
-                            </p>
-                            <p><strong>Tamaño:</strong>
-                                <%= miProducto.tamano %>
-                            </p>
-                            <p><strong>Colores:</strong>
-                                <% miColor.forEach(function(color, index) { %>
-                                    <label>
-                                        <input type="radio" name="coloresSeleccionados" value="<%= color %>">
-                                        <%= color %>
-                                    </label><br>
-                                    <% }); %>
-                                        <p><strong>Stock:</strong>
-                                            <%= miProducto.stock %> unidades
-                                        </p>
-                        </div>
+                            <div class="texto">
+                                <p><strong>Descripcion:</strong>
+                                    <%= miProducto.descripcion %>
+                                </p>
+                                <p><strong>Precio:</strong> $<%= miProducto.precio %>
+                                </p>
+                                <p><strong>Tamaño:</strong>
+                                    <%= miProducto.tamano %>
+                                </p>
+                                <p><strong>Colores:</strong>
+                                    <% miColor.forEach(function(color, index) { %>
+                                        <label>
+                                            <input type="radio" name="coloresSeleccionados" value="<%= color %>">
+                                            <%= color %>
+                                        </label><br>
+                                        <% }); %>
+                                            <p><strong>Stock:</strong>
+                                                <%= miProducto.stock %> unidades
+                                            </p>
+                            </div>
 
-                        <div class="botones">
-                        <button class="botonagregar"> AGREGAR AL CARRITO</button>
-                        <button class="botonadmin">MODIFICAR (ADMINISTRADOR)</button>
-                        <button class="botonadmin">ELIMINAR (ADMINISTRADOR)</button>
-                        </div>
+                            <div class="botones">
+                                <button class="botonagregar"> AGREGAR AL CARRITO</button>
+                                <button class="botonadmin">MODIFICAR (ADMINISTRADOR)</button>
+                                <button class="botonadmin">ELIMINAR (ADMINISTRADOR)</button>
+                            </div>
 
+                        </div>
+                        <p>Valor de los precios en Pesos Argentinos || Tamaños: Mediano (20 a 30cm) - Grande (40 a 50cm)
+                        </p>
+
+                </section>
+                <% } else { %>
+                    <div class="error">
+                        <h1>Lampara o Producto no encontrado</h1>
+                        <img src="/images/lamperror.png" alt="">
                     </div>
-                    <p>Valor de los precios en Pesos Argentinos || Tamaños: Mediano (20 a 30cm) - Grande (40 a 50cm)</p>
+                    <% } %>
 
-                    <%- include('../partials/footer.ejs') %>
-                    <%- include('../partials/scripts.ejs') %>
-            </section>
+                        <%- include('../partials/footer.ejs') %>
+                            <%- include('../partials/scripts.ejs') %>
     </body>
 
 </html>
