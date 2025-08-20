@@ -22,7 +22,7 @@ const productsController = {
     const productoEncontrado = productosjs.find(p => p.id == idProducto); // busca por id
 
     if (!productoEncontrado) { //si no lo encuentra
-      res.render("products/detalle", {miProducto: productoEncontrado});
+      res.render("products/detalle", {miProducto: productoEncontrado}); //corregir despues, porque si elimino esto da error en colorid abajo
     }
 
       // Mapear los colorIds del producto a los nombres de colores
@@ -37,12 +37,37 @@ const productsController = {
     });
   },
 
-  crearProductos: function (req, res, next) {
+  crearProductosVista: function (req, res, next) {
     const productosjs = JSON.parse(fs.readFileSync(productsPath, 'utf-8')); //productos a js
     const colors = JSON.parse(fs.readFileSync(colorsPath, 'utf-8')); //colores a js
     const modelsjs = JSON.parse(fs.readFileSync(modelsPath, 'utf-8')); //colores a js
 
     res.render("products/crearprod", {colors, modelsjs}); //envia los colores y modelos a la vista de crear productos
+  },
+
+  crearProductosjson: function (req, res) {
+    const productosjs = JSON.parse(fs.readFileSync(productsPath, 'utf-8')); //productos a js
+    //console.log(req.body); //verifica que se envian los datos del formulario
+
+    const nuevoProducto = {
+      id: productosjs.length + 1, //asigna un id al nuevo producto
+      nombre: req.body.nombre,
+      descripcion: req.body.descripcion,
+      modeloId: parseInt(req.body.modeloId), // convierte el id del modelo a entero
+      precio: parseFloat(req.body.precio),
+      colorIds: req.body.color.map(c => parseInt(c)), // convierte los ids de colores a enteros
+      tamano: req.body.tamano,
+      stock: parseInt(req.body.stock),
+      imagen: ['lamperror.png'], // verifica si hay archivo, si no, asigna una imagen por defecto
+      destacado: req.body.destacado === 'SI' // verifica si el producto es destacado
+    };
+
+    //console.log(nuevoProducto); //verifica que se crea el nuevo producto
+    productosjs.push(nuevoProducto); // agrega el nuevo producto al array de productos
+    const productosJson = JSON.stringify(productosjs, null, 2); // convierte el array de productos a json
+    fs.writeFileSync(productsPath, productosJson, 'utf-8'); // escribe el archivo de productos
+    res.redirect('/products/productos'); // redirige a la lista de productos
+
   },
 
   editarProductos: function (req, res, next) {

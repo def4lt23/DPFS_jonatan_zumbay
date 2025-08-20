@@ -20,7 +20,7 @@
                     </div>
                     <div class="clasep">
                         <label for="opciones">3️⃣➡️TIPO DE LAMPARA:</label>
-                        <select id="opciones" name="opciones">
+                        <select id="opciones" name="modeloId">
                             <% modelsjs.forEach(function(tipo, index) { %>
                                 <option value="<%= tipo.id %>">
                                     <%= tipo.nombre %>
@@ -37,7 +37,7 @@
                         <legend>5️⃣➡️COLOR:</legend>
                         <% colors.forEach(function(color) { %>
                             <label>
-                                <input type="radio" id="color-<%= color.id %>" name="color" value="<%= color.id %>">
+                                <input type="checkbox" id="color-<%= color.id %>" name="color" value="<%= color.id %>">
                                 <%= color.nombre %>
                             </label>
                             <% }) %>
