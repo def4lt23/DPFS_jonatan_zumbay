@@ -22,7 +22,7 @@
 
                         <div class="clasep">
                             <label for="opciones">3️⃣➡️TIPO DE LAMPARA:</label>
-                            <select id="opciones" name="opciones">
+                            <select id="opciones" name="modeloId">
                                 <% modelsjs.forEach(function(tipo, index) { %>
                                     <option value="<%= tipo.id %>" <%=miProducto.modeloId===tipo.id ? 'selected' : '' %>
                                         >

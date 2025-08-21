@@ -1,53 +1,54 @@
-const fs = require('fs') //file system
-const path = require('path') // manejar las rutas
+const fs = require("fs"); //file system
+const path = require("path"); // manejar las rutas
 
-const productsPath = path.join(__dirname, '../data/products.json'); // ruta al archivo de productos
-const colorsPath = path.join(__dirname, '../data/colors.json'); // ruta al archivo de colores
-const modelsPath = path.join(__dirname, '../data/models.json'); // ruta a los modelos
+const productsPath = path.join(__dirname, "../data/products.json"); // ruta al archivo de productos
+const colorsPath = path.join(__dirname, "../data/colors.json"); // ruta al archivo de colores
+const modelsPath = path.join(__dirname, "../data/models.json"); // ruta a los modelos
 
 const productsController = {
   productos: function (req, res, next) {
-    const productosjs = JSON.parse(fs.readFileSync(productsPath, 'utf-8')) // leer el archivo y convertirlo a un objeto js
+    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); // leer el archivo y convertirlo a un objeto js
 
-    res.render("products/productos", {productosjs});
+    res.render("products/productos", { productosjs });
   },
 
   //:::::VER PRODUCTOS POR DETALLE (ID):::::
   enviarProductos: function (req, res, next) {
-    const productosjs = JSON.parse(fs.readFileSync(productsPath, 'utf-8')); //productos a js
-    const colors = JSON.parse(fs.readFileSync(colorsPath, 'utf-8')); //colores a js
-    
-    const idProducto = req.params.id; // <-- el id que viene desde la URL
-    const productoEncontrado = productosjs.find(p => p.id == idProducto); // busca por id
+    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
+    const colors = JSON.parse(fs.readFileSync(colorsPath, "utf-8")); //colores a js
 
-    if (!productoEncontrado) { //si no lo encuentra
-      res.render("products/detalle", {miProducto: productoEncontrado}); //de momento funciona. Corregir despues, porque si elimino esto da error en colorid abajo
+    const idProducto = req.params.id; // <-- el id que viene desde la URL
+    const productoEncontrado = productosjs.find((p) => p.id == idProducto); // busca por id
+
+    if (!productoEncontrado) {
+      //si no lo encuentra
+      res.render("products/detalle", { miProducto: productoEncontrado }); //de momento funciona. Corregir despues, porque si elimino esto da error en colorid abajo
     }
 
-      // Mapear los colorIds del producto a los nombres de colores
-      const colorNombres = productoEncontrado.colorIds.map(id => {
-      const color = colors.find(c => c.id === id);
-      return color ? color.nombre : 'Color desconocido';
+    // Mapear los colorIds del producto a los nombres de colores
+    const colorNombres = productoEncontrado.colorIds.map((id) => {
+      const color = colors.find((c) => c.id === id);
+      return color ? color.nombre : "Color desconocido";
     });
 
-    res.render("products/detalle", { 
-      miProducto: productoEncontrado,  //si lo encuentra se lo envia a detalle con el nombre miProducto
-      miColor: colorNombres //y los nombres de colores
+    res.render("products/detalle", {
+      miProducto: productoEncontrado, //si lo encuentra se lo envia a detalle con el nombre miProducto
+      miColor: colorNombres, //y los nombres de colores
     });
   },
 
   //:::::VER VISTA DE CREAR PRODUCTOS:::::
   crearProductosVista: function (req, res, next) {
-    const productosjs = JSON.parse(fs.readFileSync(productsPath, 'utf-8')); //productos a js
-    const colors = JSON.parse(fs.readFileSync(colorsPath, 'utf-8')); //colores a js
-    const modelsjs = JSON.parse(fs.readFileSync(modelsPath, 'utf-8')); //colores a js
+    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
+    const colors = JSON.parse(fs.readFileSync(colorsPath, "utf-8")); //colores a js
+    const modelsjs = JSON.parse(fs.readFileSync(modelsPath, "utf-8")); //colores a js
 
-    res.render("products/crearprod", {colors, modelsjs}); //envia los colores y modelos a la vista de crear productos
+    res.render("products/crearprod", { colors, modelsjs }); //envia los colores y modelos a la vista de crear productos
   },
 
   //:::::LOGICA PARA CREAR PRODUCTOS NUEVOS:::::
   crearProductosjson: function (req, res) {
-    const productosjs = JSON.parse(fs.readFileSync(productsPath, 'utf-8')); //productos a js
+    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
     //console.log(req.body); //verifica que se envian los datos del formulario
 
     const nuevoProducto = {
@@ -56,52 +57,70 @@ const productsController = {
       descripcion: req.body.descripcion,
       modeloId: parseInt(req.body.modeloId), // convierte el id del modelo a entero
       precio: parseFloat(req.body.precio),
-      colorIds: req.body.color.map(c => parseInt(c)), // convierte los ids de colores a enteros
+      colorIds: req.body.color.map((c) => parseInt(c)), // convierte los ids de colores a enteros
       tamano: req.body.tamano,
       stock: parseInt(req.body.stock),
-      imagen: ['lamperror.png'], // verifica si hay archivo, si no, asigna una imagen por defecto
-      destacado: req.body.destacado === 'SI' // verifica si el producto es destacado
+      imagen: ["lamperror.png"], // verifica si hay archivo, si no, asigna una imagen por defecto
+      destacado: req.body.destacado === "SI", // verifica si el producto es destacado
     };
 
     //console.log(nuevoProducto); //verifica que se crea el nuevo producto
     productosjs.push(nuevoProducto); // agrega el nuevo producto al array de productos
     const productosJson = JSON.stringify(productosjs, null, 2); // convierte el array de productos a json
-    fs.writeFileSync(productsPath, productosJson, 'utf-8'); // escribe el archivo de productos
-    res.redirect('/products/productos'); // redirige a la lista de productos
-
+    fs.writeFileSync(productsPath, productosJson, "utf-8"); // escribe el archivo de productos
+    res.redirect("/products/productos"); // redirige a la lista de productos
   },
 
   //:::::VER VISTA DE EDITAR PRODUCTOS:::::
   editarProductosVista: function (req, res, next) {
-    const productosjs = JSON.parse(fs.readFileSync(productsPath, 'utf-8')); //productos a js
-    const colors = JSON.parse(fs.readFileSync(colorsPath, 'utf-8')); //colores a js
-    const modelsjs = JSON.parse(fs.readFileSync(modelsPath, 'utf-8')); //colores a js
+    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
+    const colors = JSON.parse(fs.readFileSync(colorsPath, "utf-8")); //colores a js
+    const modelsjs = JSON.parse(fs.readFileSync(modelsPath, "utf-8")); //colores a js
 
     const idProducto = req.params.id; // <-- el id que viene desde la URL
-    const productoEncontrado = productosjs.find(p => p.id == idProducto); // busca por id
+    const productoEncontrado = productosjs.find((p) => p.id == idProducto); // busca por id
 
-    if (!productoEncontrado) { //si no lo encuentra
-      res.render("products/detalle", {miProducto: productoEncontrado}); //de momento funciona. Corregir despues
+    if (!productoEncontrado) {
+      //si no lo encuentra
+      res.render("products/detalle", { miProducto: productoEncontrado }); //de momento funciona. Corregir despues
     }
 
-    res.render("products/editarprod", { 
-      miProducto: productoEncontrado,  //si lo encuentra se lo envia a editar con el nombre miProducto
+    res.render("products/editarprod", {
+      miProducto: productoEncontrado, //si lo encuentra se lo envia a editar con el nombre miProducto
       colors, //colores
-      modelsjs
+      modelsjs,
     });
   },
 
   //:::::LOGICA PARA EDITAR PRODUCTOS NUEVOS:::::
   editarProductosjson: function (req, res) {
-    console.log("Se actualizo el producto: ", req.params.id); //verifica que se envian los datos del formulario
+    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
+    productosjs.forEach((produtemp) => {
+      if (produtemp.id == req.params.id) {
+        //console.log(`Se actualizo el producto con id ${req.params.id} y es el ${produ.nombre}`);
+        produtemp.nombre = req.body.nombre;
+        produtemp.descripcion = req.body.descripcion;
+        produtemp.modeloId = parseInt(req.body.modeloId);
+        produtemp.precio = parseInt(req.body.precio); // de momento lo dejo en entero
+        produtemp.colorIds = req.body.colorIds.map((c) => parseInt(c)); // convierte los ids de colores a enteros
+        produtemp.tamano = req.body.tamano;
+        produtemp.stock = parseInt(req.body.stock);
+        //queda pendiente imagen
+        produtemp.destacado = req.body.destacado === "SI";
+      }
+    });
+
+    const productosJson = JSON.stringify(productosjs, null, 2); // convierte el array de productos a json
+    fs.writeFileSync(productsPath, productosJson, "utf-8"); // escribe el archivo de productos
+    res.redirect(`/products/detalle/${req.params.id}`); // redirige a la lista de productos
+    //console.log(req.body); //verifica que se envian los datos del formulario
+    //console.log("Se actualizo el producto: ", req.params.id); //verifica que se envian los datos del formulario
   },
 
   //:::::LOGICA PARA ELIMINAR PRODUCTOS:::::
   eliminarProductos: function (req, res) {
     console.log("Se elimino el producto: ", req.params.id); //verifica que se envian los datos del formulario
-  }
-
+  },
 };
-
 
 module.exports = productsController;

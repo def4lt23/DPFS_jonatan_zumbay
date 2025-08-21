@@ -193,16 +193,16 @@
   },
   {
     "id": 11,
-    "nombre": "Lampara Piramide",
-    "descripcion": "Lámpara LED con diseño de pirámide egipcia, que aporta un toque místico y elegante a cualquier ambiente. Ideal para decorar escritorios, salas o habitaciones, creando una iluminación cálida y única.",
+    "nombre": "Lampara Piramide Egipcia",
+    "descripcion": "Lampara led con diseño de pirámide egipcia, que aporta un toque místico y elegante a cualquier ambiente. Ideal para decorar escritorios, salas o habitaciones, creando una iluminación cálida y única.",
     "modeloId": 2,
-    "precio": 50011,
+    "precio": 500111,
     "colorIds": [
-      3,
-      11
+      5,
+      6
     ],
-    "tamano": "Grande",
-    "stock": 8,
+    "tamano": "Mediana",
+    "stock": 6,
     "imagen": [
       "lamperror.png"
     ],
@@ -210,17 +210,17 @@
   },
   {
     "id": 12,
-    "nombre": "Lampara Linux",
-    "descripcion": "Lámpara LED con diseño del icónico pingüino de Linux, perfecta para fanáticos de la tecnología y la programación. Aporta un toque divertido y moderno a escritorios, oficinas o salas de estudio, iluminando el ambiente con estilo geek.",
+    "nombre": "Lampara Linux Logo Pinguino",
+    "descripcion": "Lampara LED con diseño del icónico pingüino de Linux, perfecta para fanáticos de la tecnología y la programación. Aporta un toque divertido y moderno a escritorios, oficinas o salas de estudio, iluminando el ambiente con estilo geek.",
     "modeloId": 4,
-    "precio": 50012,
+    "precio": 500122,
     "colorIds": [
       1,
       2,
       10
     ],
-    "tamano": "Mediana",
-    "stock": 3,
+    "tamano": "Grande",
+    "stock": 9,
     "imagen": [
       "lamperror.png"
     ],
