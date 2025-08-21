@@ -7,7 +7,7 @@
             <h1>VISTA ADMINISTRADOR</h1>
             <H3>GENERAR UN NUEVO PRODUCTO</H3>
             <div class="contenedor">
-                <form action="/products/crearprod" method="POST">
+                <form action="/products/crearprod" method="POST" enctype="multipart/form-data">
                     <div class="clasep">
                         <label for="nombre">1️⃣➡️NOMBRE DEL PRODUCTO:</label>
                         <input type="text" id="nombre" name="nombre" placeholder="Añade el nombre de Lampara Nueva"
@@ -63,8 +63,8 @@
                     </div>
                     <div class="clasep">
                         <label for="image">8️⃣➡️IMAGENES DEL PRODUCTO NUEVO</label>
-                        <input type="file" id="image" name="image" disabled>
-                    </div>
+                        <input type="file" id="image" name="imagen" multiple>  <!-- multiple porque pueden ser varias imagenes -->
+                    </div> 
                     <fieldset class="claser">
                         <legend>9️⃣➡️¿AGREGAR ESTE NUEVO PRODUCTO A DESTACADOS?</legend>
                         <label>

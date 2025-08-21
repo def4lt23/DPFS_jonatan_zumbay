@@ -60,7 +60,10 @@ const productsController = {
       colorIds: req.body.color.map((c) => parseInt(c)), // convierte los ids de colores a enteros
       tamano: req.body.tamano,
       stock: parseInt(req.body.stock),
-      imagen: ["lamperror.png"], // verifica si hay archivo, si no, asigna una imagen por defecto
+      imagen:
+        req.files && req.files.length > 0
+          ? req.files.map((f) => f.filename)
+          : ["lamperror.png"], // verifica si hay archivo, si no, asigna una imagen por defecto
       destacado: req.body.destacado === "SI", // verifica si el producto es destacado
     };
 
@@ -92,7 +95,7 @@ const productsController = {
     });
   },
 
-  //:::::LOGICA PARA EDITAR PRODUCTOS NUEVOS:::::
+  //:::::LOGICA PARA EDITAR PRODUCTOS:::::
   editarProductosjson: function (req, res) {
     const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
     productosjs.forEach((produtemp) => {
@@ -105,7 +108,9 @@ const productsController = {
         produtemp.colorIds = req.body.colorIds.map((c) => parseInt(c)); // convierte los ids de colores a enteros
         produtemp.tamano = req.body.tamano;
         produtemp.stock = parseInt(req.body.stock);
-        //queda pendiente imagen
+        if (req.files && req.files.length > 0) { //si se subieron nuevas imagenes
+          produtemp.imagen = req.files.map((file) => file.filename); // reemplaza las img existentes con las nuevas
+        } //si no se subieron nuevas imagenes, mantiene las existentes
         produtemp.destacado = req.body.destacado === "SI";
       }
     });
@@ -120,9 +125,11 @@ const productsController = {
   //:::::LOGICA PARA ELIMINAR PRODUCTOS:::::
   eliminarProductos: function (req, res) {
     const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
-    const productosFiltrados = productosjs.filter(product => product.id != req.params.id); // filtra los productos que no son el que se quiere eliminar 
+    const productosFiltrados = productosjs.filter(
+      (product) => product.id != req.params.id
+    ); // filtra los productos que no son el que se quiere eliminar
     //recordar que anteriormente se uso una comparacion simple (!=)
-    const productosJson = JSON.stringify(productosFiltrados, null, 2); // convierte el array de productos a json 
+    const productosJson = JSON.stringify(productosFiltrados, null, 2); // convierte el array de productos a json
     fs.writeFileSync(productsPath, productosJson, "utf-8"); // escribe el archivo de productos
     res.redirect("/products/productos"); // redirige a la lista de productos
     //console.log("Se elimino el producto: ", req.params.id); //verifica que se envian los datos del formulario

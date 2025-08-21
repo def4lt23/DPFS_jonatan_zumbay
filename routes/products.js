@@ -1,5 +1,6 @@
 var express = require('express');
 const productsController = require('../controllers/productsController');
+const upload = require('../middlewares/multer'); // Importar multer para manejar archivos
 var router = express.Router();
 
 /* GET VER PRODUCTOS */
@@ -9,13 +10,12 @@ router.get('/productos', productsController.productos);
 router.get('/detalle/:id', productsController.enviarProductos);
 
 /* GET CREAR PRODUCTOS NUEVOS */
-router.get('/crearprod', productsController.crearProductosVista); //cargar formulario
-
-router.post('/crearprod', productsController.crearProductosjson); //enviar informacion del formulario
+router.get('/crearprod', productsController.crearProductosVista);
+router.post('/crearprod', upload.array('imagen', 5), productsController.crearProductosjson); //enviar informacion del formulario
 
 /*GET EDITAR UN PRODUCTO NUEVO*/
 router.get('/editarprod/:id', productsController.editarProductosVista);
-router.put('/editarprod/:id', productsController.editarProductosjson); //recibe la informacion del formulario
+router.put('/editarprod/:id', upload.array('imagen', 5), productsController.editarProductosjson); //recibe la informacion del formulario
 
 /*GET ELIMINAR UN PRODUCTO*/
 router.delete('/eliminarprod/:id', productsController.eliminarProductos); //recibe la informacion del formulario
