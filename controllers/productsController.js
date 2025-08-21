@@ -12,8 +12,7 @@ const productsController = {
     res.render("products/productos", {productosjs});
   },
 
-  // NUEVO METODO para manejar el envio de un producto especifico
-  //PRIMERO VA EL NOMBRE DEL MÉTODO
+  //:::::VER PRODUCTOS POR DETALLE (ID):::::
   enviarProductos: function (req, res, next) {
     const productosjs = JSON.parse(fs.readFileSync(productsPath, 'utf-8')); //productos a js
     const colors = JSON.parse(fs.readFileSync(colorsPath, 'utf-8')); //colores a js
@@ -22,7 +21,7 @@ const productsController = {
     const productoEncontrado = productosjs.find(p => p.id == idProducto); // busca por id
 
     if (!productoEncontrado) { //si no lo encuentra
-      res.render("products/detalle", {miProducto: productoEncontrado}); //corregir despues, porque si elimino esto da error en colorid abajo
+      res.render("products/detalle", {miProducto: productoEncontrado}); //de momento funciona. Corregir despues, porque si elimino esto da error en colorid abajo
     }
 
       // Mapear los colorIds del producto a los nombres de colores
@@ -37,6 +36,7 @@ const productsController = {
     });
   },
 
+  //:::::VER VISTA DE CREAR PRODUCTOS:::::
   crearProductosVista: function (req, res, next) {
     const productosjs = JSON.parse(fs.readFileSync(productsPath, 'utf-8')); //productos a js
     const colors = JSON.parse(fs.readFileSync(colorsPath, 'utf-8')); //colores a js
@@ -45,6 +45,7 @@ const productsController = {
     res.render("products/crearprod", {colors, modelsjs}); //envia los colores y modelos a la vista de crear productos
   },
 
+  //:::::LOGICA PARA CREAR PRODUCTOS NUEVOS:::::
   crearProductosjson: function (req, res) {
     const productosjs = JSON.parse(fs.readFileSync(productsPath, 'utf-8')); //productos a js
     //console.log(req.body); //verifica que se envian los datos del formulario
@@ -70,7 +71,8 @@ const productsController = {
 
   },
 
-  editarProductos: function (req, res, next) {
+  //:::::VER VISTA DE EDITAR PRODUCTOS:::::
+  editarProductosVista: function (req, res, next) {
     const productosjs = JSON.parse(fs.readFileSync(productsPath, 'utf-8')); //productos a js
     const colors = JSON.parse(fs.readFileSync(colorsPath, 'utf-8')); //colores a js
     const modelsjs = JSON.parse(fs.readFileSync(modelsPath, 'utf-8')); //colores a js
@@ -79,7 +81,7 @@ const productsController = {
     const productoEncontrado = productosjs.find(p => p.id == idProducto); // busca por id
 
     if (!productoEncontrado) { //si no lo encuentra
-      return res.status(404).send("Producto no encontrado");
+      res.render("products/detalle", {miProducto: productoEncontrado}); //de momento funciona. Corregir despues
     }
 
     res.render("products/editarprod", { 
@@ -87,6 +89,16 @@ const productsController = {
       colors, //colores
       modelsjs
     });
+  },
+
+  //:::::LOGICA PARA EDITAR PRODUCTOS NUEVOS:::::
+  editarProductosjson: function (req, res) {
+    console.log("Se actualizo el producto: ", req.params.id); //verifica que se envian los datos del formulario
+  },
+
+  //:::::LOGICA PARA ELIMINAR PRODUCTOS:::::
+  eliminarProductos: function (req, res) {
+    console.log("Se elimino el producto: ", req.params.id); //verifica que se envian los datos del formulario
   }
 
 };

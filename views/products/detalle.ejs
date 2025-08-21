@@ -40,9 +40,13 @@
                             </div>
 
                             <div class="botones">
-                                <button class="botonagregar"> AGREGAR AL CARRITO</button>
-                                <button class="botonadmin">MODIFICAR (ADMINISTRADOR)</button>
-                                <button class="botonadmin">ELIMINAR (ADMINISTRADOR)</button>
+                                <button class="botonagregar">AGREGAR AL CARRITO</button>
+                                <% if (true) { %> <!-- luego editar cuando se implemente opcion de administrador -->
+                                 <a class="botonadmin" href="/products/editarprod/<%= miProducto.id %>">EDITAR PRODUCTO (ADMIN)</a>
+                                 <form action="/products/eliminarprod/<%= miProducto.id %>?_method=DELETE" method="post">
+                                    <button class="botonadmin">ELIMINAR (ADMIN)</button>
+                                 </form>
+                                <% } %>
                             </div>
 
                         </div>

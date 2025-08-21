@@ -4,99 +4,108 @@
 
     <body>
         <%- include('../partials/header.ejs') %>
-            <h1>ESTAS EDITANDO EL PRODUCTO: <%= miProducto.nombre %>
-            </h1>
+            <% if (miProducto) { %>
+                <h1>ESTAS EDITANDO EL PRODUCTO: <%= miProducto.nombre %>
+                </h1>
 
-            <div class="contenedor">
-                <form action="/products/editarprod/<%= miProducto.id %>" method="POST">
-                    <div class="clasep">
-                        <label for="nombre">1️⃣➡️NOMBRE DEL PRODUCTO:</label>
-                        <input type="text" id="nombre" name="nombre" value="<%= miProducto.nombre %>" required>
-                    </div>
-                    <div class="clasep">
-                        <label for="descripcion">2️⃣➡️DESCRIPCION:</label>
-                        <textarea id="descripcion" name="descripcion" rows="4" cols="90"
-                            required><%= miProducto.descripcion %></textarea>
-                    </div>
+                <div class="contenedor">
+                    <form action="/products/editarprod/<%= miProducto.id %>?_method=PUT" method="post">
+                        <div class="clasep">
+                            <label for="nombre">1️⃣➡️NOMBRE DEL PRODUCTO:</label>
+                            <input type="text" id="nombre" name="nombre" value="<%= miProducto.nombre %>" required>
+                        </div>
+                        <div class="clasep">
+                            <label for="descripcion">2️⃣➡️DESCRIPCION:</label>
+                            <textarea id="descripcion" name="descripcion" rows="4" cols="90"
+                                required><%= miProducto.descripcion %></textarea>
+                        </div>
 
-                    <div class="clasep">
-                        <label for="opciones">3️⃣➡️TIPO DE LAMPARA:</label>
-                        <select id="opciones" name="opciones">
-                            <% modelsjs.forEach(function(tipo, index) { %>
-                                <option value="<%= tipo.id %>" <%=miProducto.modeloId===tipo.id ? 'selected' : '' %> >
-                                    <%= tipo.nombre %>
-                                </option>
+                        <div class="clasep">
+                            <label for="opciones">3️⃣➡️TIPO DE LAMPARA:</label>
+                            <select id="opciones" name="opciones">
+                                <% modelsjs.forEach(function(tipo, index) { %>
+                                    <option value="<%= tipo.id %>" <%=miProducto.modeloId===tipo.id ? 'selected' : '' %>
+                                        >
+                                        <%= tipo.nombre %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                        </div>
+                        <div class="clasep">
+                            <label for="precio">4️⃣➡️PRECIO:</label>
+                            <input type="text" id="precio" name="precio" value="<%= miProducto.precio %>" required
+                                min="0" step="0.01">
+                        </div>
+                        <fieldset class="claser">
+                            <legend>5️⃣➡️COLOR:</legend>
+                            <% colors.forEach(function(color) { %>
+                                <label>
+                                    <input type="checkbox" name="colorIds" value="<%= color.id %>"
+                                        <%=miProducto.colorIds.includes(color.id) ? 'checked' : '' %> >
+                                    <%= color.nombre %>
+                                </label>
                                 <% }) %>
-                        </select>
-                    </div>
-                    <div class="clasep">
-                        <label for="precio">4️⃣➡️PRECIO:</label>
-                        <input type="text" id="precio" name="precio" value="<%= miProducto.precio %>" required min="0"
-                            step="0.01">
-                    </div>
-                    <fieldset class="claser">
-                        <legend>5️⃣➡️COLOR:</legend>
-                        <% colors.forEach(function(color) { %>
+                                    <br>
+                                    <br>
+                        </fieldset>
+                        <fieldset class="claser">
+                            <legend>6️⃣➡️TAMAÑO DEL PRODUCTO</legend>
                             <label>
-                                <input type="checkbox" name="colorIds" value="<%= color.id %>"
-                                    <%=miProducto.colorIds.includes(color.id) ? 'checked' : '' %> >
-                                <%= color.nombre %>
+                                <input type="radio" name="tamano" value="Mediana" <%=miProducto.tamano==='Mediana'
+                                    ? 'checked' : '' %>>
+                                Mediana
                             </label>
-                            <% }) %>
-                                <br>
-                                <br>
-                    </fieldset>
-                    <fieldset class="claser">
-                        <legend>6️⃣➡️TAMAÑO DEL PRODUCTO</legend>
-                        <label>
-                            <input type="radio" name="tamano" value="Mediana" <%=miProducto.tamano==='Mediana'
-                                ? 'checked' : '' %>>
-                            Mediana
-                        </label>
-                        <label>
-                            <input type="radio" name="tamano" value="Grande" <%=miProducto.tamano==='Grande' ? 'checked'
-                                : '' %>>
-                            Grande
-                        </label>
-                    </fieldset>
-                    <br>
-                    <div class="clasep">
-                        <label for="stock">7️⃣➡️CANTIDAD:</label>
-                        <input type="number" id="stock" name="stock" value="<%= miProducto.stock %>"
-                            placeholder="Añade la cantidad del producto nuevo" min="0" required>
-                    </div>
-                    <div class="clasep">
-                        <label for="image">8️⃣➡️IMAGENES DEL PRODUCTO</label>
-                        <input type="file" id="image" name="image" disabled>
-                        <div class="imagen">
-                            <div class="fade-slider">
-                                <% miProducto.imagen.forEach(function(img, index) { %>
-                                    <img src="/images/<%= img %>" alt="Imagen <%= index + 1 %>"
-                                        class="<%= index === 0 ? 'active-image' : '' %>">
-                                    <% }); %>
+                            <label>
+                                <input type="radio" name="tamano" value="Grande" <%=miProducto.tamano==='Grande'
+                                    ? 'checked' : '' %>>
+                                Grande
+                            </label>
+                        </fieldset>
+                        <br>
+                        <div class="clasep">
+                            <label for="stock">7️⃣➡️CANTIDAD:</label>
+                            <input type="number" id="stock" name="stock" value="<%= miProducto.stock %>"
+                                placeholder="Añade la cantidad del producto nuevo" min="0" required>
+                        </div>
+                        <div class="clasep">
+                            <label for="image">8️⃣➡️IMAGENES DEL PRODUCTO</label>
+                            <input type="file" id="image" name="image" disabled>
+                            <div class="imagen">
+                                <div class="fade-slider">
+                                    <% miProducto.imagen.forEach(function(img, index) { %>
+                                        <img src="/images/<%= img %>" alt="Imagen <%= index + 1 %>"
+                                            class="<%= index === 0 ? 'active-image' : '' %>">
+                                        <% }); %>
+                                </div>
                             </div>
                         </div>
+                        <fieldset class="claser">
+                            <legend>9️⃣➡️¿AGREGAR ESTE PRODUCTO A DESTACADOS?</legend>
+                            <label>
+                                <input type="radio" name="destacado" value="SI">
+                                SI
+                            </label>
+                            <label>
+                                <input type="radio" name="destacado" value="NO">
+                                NO
+                            </label>
+                        </fieldset>
+                        <br>
+                        <button type="submit" class="botoneditar">EDITAR PRODUCTO</button>
+
+
+                    </form>
+                </div>
+
+                <% } else { %>
+                    <div class="error">
+                        <h1>Lampara o Producto no encontrado</h1>
+                        <img src="/images/lamperror.png" alt="">
                     </div>
-                    <fieldset class="claser">
-                        <legend>9️⃣➡️¿AGREGAR ESTE PRODUCTO A DESTACADOS?</legend>
-                        <label>
-                            <input type="radio" name="destacado" value="SI">
-                            SI
-                        </label>
-                        <label>
-                            <input type="radio" name="destacado" value="NO">
-                            NO
-                        </label>
-                    </fieldset>
-                    <br>
-                    <button type="submit" class="botoneditar">EDITAR PRODUCTO</button>
+                    <% } %>
 
-
-                </form>
-            </div>
-
-            <%- include('../partials/footer.ejs') %>
-                <%- include('../partials/scripts.ejs') %>
+                        <%- include('../partials/footer.ejs') %>
+                            <%- include('../partials/scripts.ejs') %>
     </body>
 
 </html>

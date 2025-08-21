@@ -13,8 +13,8 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-.botoneditar {
-    background-color: #2ECC71; 
+.botoneditar, 
+.botoneliminar {
     color: white; 
     padding: 12px 20px; 
     border: none; 
@@ -29,9 +29,23 @@
 
 }
 
+.botoneditar {
+    background-color: #2ECC71; 
+}
+
+.botoneliminar {
+    background-color: #E74C3C; 
+}
+
 .botoneditar:hover {
     background-color: #27AE60;
 }
+
+.botoneliminar:hover {
+    background-color: #C0392B;
+}
+
+
 
 .clasep textarea {
   width: 100%;       /* ocupa todo el ancho disponible */
@@ -90,4 +104,16 @@
   height: 300px;
   object-fit: cover;
   /* sin posicionamiento absoluto ni animación */
+}
+
+.error {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #27AE60;
+    border-radius: 5px;
+}
+
+.error img {
+    max-width: 400px;
+    height: auto;
 }
