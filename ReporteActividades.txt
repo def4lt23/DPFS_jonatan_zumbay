@@ -52,4 +52,9 @@
 	* Se creo la vista crearprod.ejs donde se agregaran los productos nuevos.
 	* Se edito los archivos de routes y controllers para renderizar las vistas nuevas.
 >>> SEMANA 3 (18 al 22)
+	* Se creo las vistas crearprod.ejs y editarprod.ejs para poder crear y editar productos del archivo json.
+	* Se instalo MULTER para poder trabajar con imagenes en la edicion y creacion de los productos.
+	* Se hicieron correcciones en las vistas en cuanto a botones y forma de mostrar la informacion.
+	* Se editaron constantemente para el CRUD los archivos de products en routes y controllers.
+	* Se corrigieron botones y textos en css para mejor visibilidad.
 >>> SEMANA 4 (25 al 29)

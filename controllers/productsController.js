@@ -57,7 +57,7 @@ const productsController = {
       descripcion: req.body.descripcion,
       modeloId: parseInt(req.body.modeloId), // convierte el id del modelo a entero
       precio: parseFloat(req.body.precio),
-      colorIds: req.body.color.map((c) => parseInt(c)), // convierte los ids de colores a enteros
+      colorIds: req.body.color ? req.body.color.map((c) => parseInt(c)) : [1], // verifica si hay color elegido, sino asigna el primer color
       tamano: req.body.tamano,
       stock: parseInt(req.body.stock),
       imagen:
@@ -105,10 +105,21 @@ const productsController = {
         produtemp.descripcion = req.body.descripcion;
         produtemp.modeloId = parseInt(req.body.modeloId);
         produtemp.precio = parseInt(req.body.precio); // de momento lo dejo en entero
-        produtemp.colorIds = req.body.colorIds.map((c) => parseInt(c)); // convierte los ids de colores a enteros
+        // Manejo de colores
+        let coloresSeleccionados = req.body.colorIds;
+
+        if (!coloresSeleccionados) {
+          coloresSeleccionados = [1]; // se asigna el color por defecto si no se selecciona ninguno
+        } else if (!Array.isArray(coloresSeleccionados)) { //si eligio solo un color se debe convertir a array
+          coloresSeleccionados = [coloresSeleccionados];
+        }
+        // Convertir todos los ids a enteros
+        produtemp.colorIds = coloresSeleccionados.map((c) => parseInt(c));
+        
         produtemp.tamano = req.body.tamano;
         produtemp.stock = parseInt(req.body.stock);
-        if (req.files && req.files.length > 0) { //si se subieron nuevas imagenes
+        if (req.files && req.files.length > 0) {
+          //si se subieron nuevas imagenes
           produtemp.imagen = req.files.map((file) => file.filename); // reemplaza las img existentes con las nuevas
         } //si no se subieron nuevas imagenes, mantiene las existentes
         produtemp.destacado = req.body.destacado === "SI";

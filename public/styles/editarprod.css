@@ -1,20 +1,31 @@
+body {
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: auto;
+} /*dejar siempre el footer abajo*/
+
+body h1 {
+    text-align: center;
+}
+
 .contenedor {
     display: flex; 
     flex-direction: column;
     justify-content: center; 
     align-items: center;
-    padding: 40px 20px; 
+    padding: 20px; 
     max-width: 1200px; 
-    margin: 0 auto;
-    gap: 40px; 
-    margin: 40px auto;
+    margin: 20px auto;
+    box-sizing: border-box;
+    gap: 40px;
     border: 3px solid #2ECC71;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-.botoneditar, 
-.botoneliminar {
+.botoneditar,
+.botonerror {
+    background-color: #2ECC71; 
     color: white; 
     padding: 12px 20px; 
     border: none; 
@@ -26,26 +37,37 @@
     max-width: 200px; 
     box-sizing: border-box; 
     align-self: center;
-
 }
 
-.botoneditar {
-    background-color: #2ECC71; 
+.botones {
+    text-align: center;
+    justify-content: center;
+    display: flex;
 }
 
-.botoneliminar {
-    background-color: #E74C3C; 
+.botones button {
+    padding: 10px;
+    margin: 0 5px;
 }
 
-.botoneditar:hover {
+.botones a,
+.botonerror {
+    text-decoration: none;
+    padding: 10px;
+}
+
+.botoneditar:hover{
     background-color: #27AE60;
 }
 
-.botoneliminar:hover {
-    background-color: #C0392B;
+.botonerror:hover{
+    background-color: #27AE60;
 }
 
-
+.botonerror {
+    position: relative;
+    top: 25px;
+}
 
 .clasep textarea {
   width: 100%;       /* ocupa todo el ancho disponible */
@@ -57,10 +79,10 @@
 }
 
 .clasep {
-    flex-direction: row; 
+    display: flex;
+    flex-direction: column; 
     gap: 10px; 
-    width: 100%; 
-    max-width: 900px; 
+    width: 100%;
     margin-bottom: 30px;
 
 }
@@ -70,12 +92,14 @@
 }
 
 .clasep input, select {
-    width: 100%; 
+  width: 100%;  
+  max-width: 100%; 
+  box-sizing: border-box;
 }
 
 .claser {
     display: grid; 
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
     gap: 10px; /* espacio entre cada radio+label */
 }
 
@@ -95,13 +119,16 @@
 
 .fade-slider {
     padding-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
   display: flex;
   gap: 10px; /* espacio entre imágenes */
 }
 
 .fade-slider img {
-  width: 300px;     /* tamaño cuadrado */
-  height: 300px;
+  width: 100%; 
+  max-width: 300px; 
+  height: auto;
   object-fit: cover;
   /* sin posicionamiento absoluto ni animación */
 }
@@ -116,4 +143,14 @@
 .error img {
     max-width: 400px;
     height: auto;
+}
+
+/* responsive */
+@media (max-width: 992px) {
+  .contenedor {
+    padding: 10px;
+  }
+  .fade-slider img {
+    max-width: 100%; /* imágenes fluidas en móvil */
+  }
 }

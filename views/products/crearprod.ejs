@@ -6,6 +6,8 @@
         <%- include('../partials/header.ejs') %>
             <h1>VISTA ADMINISTRADOR</h1>
             <H3>GENERAR UN NUEVO PRODUCTO</H3>
+            <h6>⚠️Recordar que todos los campos son obligatorios, a excepcion de imagenes que sin cargar se colocara una
+                de prueba.⚠️</h6>
             <div class="contenedor">
                 <form action="/products/crearprod" method="POST" enctype="multipart/form-data">
                     <div class="clasep">
@@ -15,8 +17,8 @@
                     </div>
                     <div class="clasep">
                         <label for="descripcion">2️⃣➡️DESCRIPCION:</label>
-                        <input type="text" id="descripcion" name="descripcion"
-                            placeholder="Añade una descripcion del producto nuevo" required>
+                        <textarea id="descripcion" name="descripcion" rows="4" cols="98"
+                            placeholder="Añade una descripcion del producto nuevo" required></textarea>
                     </div>
                     <div class="clasep">
                         <label for="opciones">3️⃣➡️TIPO DE LAMPARA:</label>
@@ -43,11 +45,11 @@
                             <% }) %>
                                 <br>
                     </fieldset>
-
+                    <br>
                     <fieldset class="claser">
                         <legend>6️⃣➡️TAMAÑO DEL PRODUCTO NUEVO</legend>
                         <label>
-                            <input type="radio" name="tamano" value="Mediana">
+                            <input type="radio" name="tamano" value="Mediana" required>
                             Mediana
                         </label>
                         <label>
@@ -63,12 +65,13 @@
                     </div>
                     <div class="clasep">
                         <label for="image">8️⃣➡️IMAGENES DEL PRODUCTO NUEVO</label>
-                        <input type="file" id="image" name="imagen" multiple>  <!-- multiple porque pueden ser varias imagenes -->
-                    </div> 
+                        <input type="file" id="image" name="imagen" multiple>
+                        <!-- multiple porque pueden ser varias imagenes -->
+                    </div>
                     <fieldset class="claser">
                         <legend>9️⃣➡️¿AGREGAR ESTE NUEVO PRODUCTO A DESTACADOS?</legend>
                         <label>
-                            <input type="radio" name="destacado" value="SI">
+                            <input type="radio" name="destacado" value="SI" required>
                             SI
                         </label>
                         <label>
@@ -77,7 +80,10 @@
                         </label>
                     </fieldset>
                     <br>
-                    <button type="submit" class="botoncrear">CREAR PRODUCTO</button>
+                    <div class="botonadmin">
+                        <button type="submit" class="botoncrear">CREAR PRODUCTO</button>
+                        <a class="botoncrear" href="/products/productos"> ❌ Cancelar</a>
+                    </div>
             </div>
             <%- include('../partials/footer.ejs') %>
                 <%- include('../partials/scripts.ejs') %>

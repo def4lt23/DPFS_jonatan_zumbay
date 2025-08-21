@@ -1,3 +1,13 @@
+body {
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: auto;
+} /*dejar siempre el footer abajo*/
+
+body h1, p {
+    text-align: center;
+}
+
 .contenedor {
     display: flex; 
     flex-direction: column; /* Asegura que los elementos se coloquen en fila */
@@ -15,29 +25,44 @@
 
 .fade-slider {
   display: flex;
-  gap: 10px; /* espacio entre imágenes */
+  flex-wrap: wrap;       /* saltar a la siguiente fila */
+  gap: 10px;             /* espacio entre img */
+  justify-content: center;
 }
 
 .fade-slider img {
-  width: 300px;     /* tamaño cuadrado */
-  height: 300px;
+  width: 100%;            
+  max-width: 300px;       
+  height: auto;           
   object-fit: cover;
-  /* sin posicionamiento absoluto ni animación */
+  flex: 1 1 200px;        /* crece, se encoge, base 200px */
 }
 
-.botonagregar {
+.botones a {
+    text-decoration: none;
+    padding: 10px;
+}
+
+.botones button {
+    padding: 10px;
+}
+
+.botones {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* espacio entre botones */
+    margin-top: 20px; 
+}
+
+.botonagregar, .botonerror {
     background-color: #2ECC71; 
-    color: white; 
-    padding: 12px 20px; 
+    color: white;
     border: none; 
     border-radius: 25px; 
     cursor: pointer; 
     font-size: 1rem; 
     transition: background-color 0.3s ease; /* transicion al pasar el mouse */
-    width: 100%; 
-    max-width: 200px; 
-    box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
-    align-self: center;
 
 }
 
@@ -48,25 +73,31 @@
 .botonadmin {
     background-color: #cc462e; 
     color: white; 
-    padding: 12px 20px; 
     border: none; 
     border-radius: 25px; 
     cursor: pointer; 
     font-size: 1rem; 
     transition: background-color 0.3s ease; /* transicion al pasar el mouse */
-    width: 100%; 
-    max-width: 200px; 
-    box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
-    align-self: center;
-
 }
 
 .botonadmin:hover {
     background-color: #802c1d;
 }
 
+.botonerror {
+    position: relative;
+    top: 25px;
+}
+
+.botonerror:hover {
+    background-color: #27AE60;
+}
+
 .error {
+    flex-direction: column;
+    justify-content: center ;
     text-align: center;
+    align-items: center;
     padding: 20px;
     border: 1px solid #27AE60;
     border-radius: 5px;
@@ -75,4 +106,12 @@
 .error img {
     max-width: 400px;
     height: auto;
+}
+
+.conterror a {
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
 }

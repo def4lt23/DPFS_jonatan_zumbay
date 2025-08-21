@@ -46,3 +46,15 @@ Excelente trabajo! Se implemento el sprint 3 con express y ejs 100% funcional, v
 * SE CREO LA VISTA crearprod.ejs DONDE SE AGREGARAN LOS PRODUCTOS NUEVOS, ADEMAS SE MODIFICO productsController.js Y LA RUTA CORRESPONDIENTE PARA LEER LAS OPCIONES DE FORMA DINAMICA.
 * SE MODIFICO ARCHIVO detalle.ejs PARA MOSTRAR UN MENSAJE DE PRODUCTO NO ENCONTRADO EN CASO QUE NO COINCIDA EL ID CON EL DE ALGUN PRODUCTO.
 * SE CREO LA VISTA editarprod.ejs DONDE MUESTRA TODAS LAS PROPIEDADES DEL PRODUCTO Y DEJA CAMBIAR ALGUNA DE ELLAS.
+* SE MODIFICO ARCHIVO detalle.ejs PARA PODER EDITAR O ELIMINAR LOS PRODUCTOS DEL EL ARCHIVO products.json DE LA CARPETA DATA.
+* SE INSTALO MULTER PARA PODER TRABAJAR CON IMAGENES, AHORA SE PUEDE CREAR Y EDITAR LOS PRODUCTOS CON IMAGENES.
+* SE MODIFICO ARCHIVOS CSS PARA ADAPTAR MEJOR LOS BOTONES DE LAS VISTAS Y EL USO DE RESPONSIVE.
+||| EN RESUMEN |||
+    a- Se pueden leer, crear, editar y eliminar productos. Todo de forma dinamica relacionado con el archivo json de data.
+    b- Se tuvo en cuenta los controles de creacion y edicion (de que sean requeridos los campos y de controlar si se manda vacio alguna opocion para setear algunas por defecto y que no quede vacia alguna propiedad).
+    c- Si se lee un id incorrecto se mostrara un mensaje de error.
+    d- Se pueden trabajar con imagenes gracias a MULTER.
+    e- Se dejo una carpeta "test_images" para que se pueda probar la subida de imagenes (ya fueron previamente comprimidas).
+    NOTA: Soy conciente que la forma de crear los id de los productos nuevos es muy facil de romper y provocar errores, mas adelante se implementara un metodo mas seguro de hacerlo. Para hacer pruebas el metodo actual funciona.
+
+**DEVOLUCION**
