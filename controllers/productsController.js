@@ -82,7 +82,7 @@ const productsController = {
 
     if (!productoEncontrado) {
       //si no lo encuentra
-      res.render("products/detalle", { miProducto: productoEncontrado }); //de momento funciona. Corregir despues
+      res.render("products/editarprod", { miProducto: productoEncontrado }); //de momento funciona. Corregir despues
     }
 
     res.render("products/editarprod", {
@@ -119,7 +119,13 @@ const productsController = {
 
   //:::::LOGICA PARA ELIMINAR PRODUCTOS:::::
   eliminarProductos: function (req, res) {
-    console.log("Se elimino el producto: ", req.params.id); //verifica que se envian los datos del formulario
+    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
+    const productosFiltrados = productosjs.filter(product => product.id != req.params.id); // filtra los productos que no son el que se quiere eliminar 
+    //recordar que anteriormente se uso una comparacion simple (!=)
+    const productosJson = JSON.stringify(productosFiltrados, null, 2); // convierte el array de productos a json 
+    fs.writeFileSync(productsPath, productosJson, "utf-8"); // escribe el archivo de productos
+    res.redirect("/products/productos"); // redirige a la lista de productos
+    //console.log("Se elimino el producto: ", req.params.id); //verifica que se envian los datos del formulario
   },
 };
 

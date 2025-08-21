@@ -92,6 +92,7 @@
                         </fieldset>
                         <br>
                         <button type="submit" class="botoneditar">EDITAR PRODUCTO</button>
+                        <a class="botoneditar" href="/products/productos">Cancelar</a>
 
 
                     </form>
@@ -99,8 +100,9 @@
 
                 <% } else { %>
                     <div class="error">
-                        <h1>Lampara o Producto no encontrado</h1>
+                        <h1>Lampara o Producto no encontrado en EDITAR</h1>
                         <img src="/images/lamperror.png" alt="">
+                        <a class="botoneditar" href="/">Volver a Home</a>
                     </div>
                     <% } %>
 
