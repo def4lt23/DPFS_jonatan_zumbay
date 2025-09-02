@@ -58,3 +58,9 @@ Excelente trabajo! Se implemento el sprint 3 con express y ejs 100% funcional, v
     NOTA: Soy conciente que la forma de crear los id de los productos nuevos es muy facil de romper y provocar errores, mas adelante se implementara un metodo mas seguro de hacerlo. Para hacer pruebas el metodo actual funciona.
 
 **DEVOLUCION**
+Excelente avance del proyecto, en el metodo de enviarProductos vi que tenes un condicional que hace render, en ese caso tendras que hacer un return asino te tire el error de doble respuesta. Lo probé agregando el return y dej de aparecer el error. El crud funciona perfecto, sin detalles para agregar, vamos por el siguiente sprint! Saludos
+
+============================================================================================
+>>>**SPRINT 5**
+
+**DEVOLUCION**

@@ -22,7 +22,7 @@ const productsController = {
 
     if (!productoEncontrado) {
       //si no lo encuentra
-      res.render("products/detalle", { miProducto: productoEncontrado }); //de momento funciona. Corregir despues, porque si elimino esto da error en colorid abajo
+      return res.render("products/detalle", { miProducto: productoEncontrado }); //de momento funciona. Corregir despues, porque si elimino esto da error en colorid abajo
     }
 
     // Mapear los colorIds del producto a los nombres de colores
