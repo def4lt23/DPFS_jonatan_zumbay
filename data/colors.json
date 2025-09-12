@@ -1,15 +1,58 @@
 [
-  { "id": 1, "nombre": "Blanco" },
-  { "id": 2, "nombre": "Negro" },
-  { "id": 3, "nombre": "Madera" },
-  { "id": 4, "nombre": "Azul" },
-  { "id": 5, "nombre": "Amarillo" },
-  { "id": 6, "nombre": "Rojo" },
-  { "id": 7, "nombre": "Verde" },
-  { "id": 8, "nombre": "Naranja" },
-  { "id": 9, "nombre": "Rosa" },
-  { "id": 10, "nombre": "Gris" },
-  { "id": 11, "nombre": "Marron" },
-  { "id": 12, "nombre": "Turquesa" },
-  { "id": 13, "nombre": "Rainbow" }
+  {
+    "id": 0,
+    "nombre": "Ninguno"
+  },
+  {
+    "id": 1,
+    "nombre": "Blanco"
+  },
+  {
+    "id": 2,
+    "nombre": "Negro"
+  },
+  {
+    "id": 3,
+    "nombre": "Madera"
+  },
+  {
+    "id": 4,
+    "nombre": "Azul"
+  },
+  {
+    "id": 5,
+    "nombre": "Amarillo"
+  },
+  {
+    "id": 6,
+    "nombre": "Rojo"
+  },
+  {
+    "id": 7,
+    "nombre": "Verde"
+  },
+  {
+    "id": 8,
+    "nombre": "Naranja"
+  },
+  {
+    "id": 9,
+    "nombre": "Rosa"
+  },
+  {
+    "id": 10,
+    "nombre": "Gris"
+  },
+  {
+    "id": 11,
+    "nombre": "Marron"
+  },
+  {
+    "id": 12,
+    "nombre": "Turquesa"
+  },
+  {
+    "id": 13,
+    "nombre": "Rainbow"
+  }
 ]

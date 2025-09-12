@@ -53,7 +53,7 @@
                                 <div class="image-wrapper">
                                     <!-- recorrer las imagenes de cada producto -->
                                     <% prodi.imagen.forEach((img, index)=> { %>
-                                        <img src="/images/<%= img %>" alt="Imagen <%= index + 1 %>"
+                                        <img src="/images/products/<%= img %>" alt="Imagen <%= index + 1 %>"
                                             class="<%= index === 0 ? 'active-image' : '' %>">
                                         <% }) %>
                                 </div>
@@ -78,6 +78,7 @@
 
             <div class="contenedor_boton_admin">
                 <a class="botonadmin" href="/products/crearprod">AÑADIR UN PRODUCTO (ADMIN)</a>
+                <a class="botonadmin" href="/products/editarPropiedad">EDITAR PROPIEDADES (ADMIN)</a>
             </div>
             <%- include('../partials/footer.ejs') %>
                 <%- include('../partials/scripts.ejs') %>

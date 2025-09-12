@@ -1,9 +1,26 @@
 [
-  { "id": 1, "nombre": "Instrumentos Musicales" },
-  { "id": 2, "nombre": "Monumentos Historicos" },
-  { "id": 3, "nombre": "Kids" },
-  { "id": 4, "nombre": "Logos" },
-  { "id": 5, "nombre": "Bebidas" },
-  { "id": 6, "nombre": "Animales" }
-  
+  {
+    "id": 0,
+    "nombre": "Sin Modelo"
+  },
+  {
+    "id": 1,
+    "nombre": "Instrumentos Musicales"
+  },
+  {
+    "id": 2,
+    "nombre": "Monumentos Historicos"
+  },
+  {
+    "id": 3,
+    "nombre": "Kids"
+  },
+  {
+    "id": 4,
+    "nombre": "Logos"
+  },
+  {
+    "id": 5,
+    "nombre": "Bebidas"
+  }
 ]

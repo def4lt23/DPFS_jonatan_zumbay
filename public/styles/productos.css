@@ -254,7 +254,9 @@ body h1, h6 {
 .contenedor_boton_admin {
     text-align: center; /* Centra el botón horizontalmente */
     margin: 20px auto; /* Espacio arriba y abajo del botón */
-    max-width: 400px; /* Limita el ancho máximo del contenedor */
+    max-width: 800px; /* Limita el ancho máximo del contenedor */
+    display: flex;
+    justify-content: center;
 }
 
 .botonadmin {
@@ -270,6 +272,8 @@ body h1, h6 {
     max-width: 200px; 
     box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
     align-self: center;
+    margin: 5px;
+    text-decoration: none; /* Quita el subrayado del enlace */
 }
 
 .botonadmin:hover {

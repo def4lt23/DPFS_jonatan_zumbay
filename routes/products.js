@@ -1,6 +1,6 @@
 var express = require('express');
 const productsController = require('../controllers/productsController');
-const upload = require('../middlewares/multer'); // Importar multer para manejar archivos
+const {upload} = require('../middlewares/multer'); // Importar multer para manejar archivos , se colocaron llaves porque son dos uploads
 var router = express.Router();
 
 /* GET VER PRODUCTOS */
@@ -20,4 +20,7 @@ router.put('/editarprod/:id', upload.array('imagen', 5), productsController.edit
 /*GET ELIMINAR UN PRODUCTO*/
 router.delete('/eliminarprod/:id', productsController.eliminarProductos); //recibe la informacion del formulario
 
+/* GET EDITAR PROPIEDADES DE PRODUCTOS */
+router.get('/editarPropiedad', productsController.editarPropiedadesVista);
+router.post('/editarPropiedad', productsController.editarPropiedadesjson); //recibe la informacion del formulario
 module.exports = router;

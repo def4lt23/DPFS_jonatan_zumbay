@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs', {estilod:'editarPropiedades.css'}) %>
+
+    <body>
+        <%- include('../partials/header.ejs') %>
+            <h1> EDITAR PROPIEDADES DE LOS PRODUCTOS </h1>
+            <h5>❌ PARA ELIMINAR: SELECCIONAR EL CHECK CORRESPONDIENTE Y CLICK EN EDITAR</h5>
+            <h5>➕ PARA AGREGAR: ESCRIBIR EL NOMBRE DEBAJO DE AÑADIR Y CLICK EN EDITAR </h5>
+            <div class="contenedor">
+                <form action="/products/editarPropiedad" method="POST">
+                    <fieldset class="claser">
+                        <legend>➡️ LISTA DE MODELOS DE LAMPARAS:</legend>
+                        <% miModelo.forEach(modelo=> { %>
+                            <label>
+                                <input type="checkbox" name="modeloIds" value="<%= modelo.id %>">
+                                <%= modelo.nombre %>
+                            </label>
+                            <% }) %>
+                    </fieldset>
+
+                    <div class="clasep">
+                        <label for="nombre">➡️ AÑADIR MODELO:</label>
+                        <input type="text" id="nombreModelo" name="nombreModelo" placeholder="nombre de nuevo modelo">
+                    </div>
+
+                    <fieldset class="claser">
+                        <legend>➡️ LISTA DE COLORES:</legend>
+                        <% miColor.forEach(color=> { %>
+                            <label>
+                                <input type="checkbox" name="colorIds" value="<%= color.id %>">
+                                <%= color.nombre %>
+                            </label>
+                            <% }) %>
+                    </fieldset>
+
+                    <div class="clasep">
+                        <label for="nombre">➡️ AÑADIR COLOR:</label>
+                        <input type="text" id="nombreColor" name="nombreColor" placeholder="nombre de nuevo color">
+                    </div>
+
+                    <div class="botones">
+                        <button type="submit" class="botoneditar">EDITAR PROPIEDADES</button>
+                        <a class="botoneditar" href="/products/productos">❌ CANCELAR</a>
+                    </div>
+                </form>
+            </div>
+            <%- include('../partials/footer.ejs') %>
+                <%- include('../partials/scripts.ejs') %>
+    </body>
+
+</html>

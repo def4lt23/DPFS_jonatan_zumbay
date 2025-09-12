@@ -15,7 +15,7 @@
                         <div class="imagen">
                             <div class="fade-slider">
                                 <% miProducto.imagen.forEach(function(img, index) { %>
-                                    <img src="/images/<%= img %>" alt="Imagen <%= index + 1 %>"
+                                    <img src="/images/products/<%= img %>" alt="Imagen <%= index + 1 %>"
                                         class="<%= index === 0 ? 'active-image' : '' %>">
                                     <% }); %>
                             </div>
