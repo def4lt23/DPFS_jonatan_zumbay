@@ -4,21 +4,38 @@
     "nombre": "Jonatan",
     "apellido": "Zumbay",
     "email": "jonezmby@gmail.com",
+    "usuario": "jonezmby",
     "password": "contrA1234",
-    "telefono": "+5493885123456",
+    "telefono": "3885123456",
     "direccion": "Calle Humahuaca 348, El Carmen",
     "rol": "administrador",
+    "avatar": "https://example.com/avatars/jonatan.png",
     "fechaRegistro": "2025-08-07T10:30:00Z"
   },
   {
     "id": 2,
-    "nombre": "Lucas",
-    "apellido": "Gomez",
-    "email": "lucas.gomez@example.com",
-    "password": "hashedpassword456",
-    "telefono": "+5493516543210",
-    "direccion": "Calle Falsa 456, Cordoba",
+    "nombre": "jonataneze",
+    "apellido": "zmby",
+    "email": "jonatan@gmail.com",
+    "usuario": "jzzzz",
+    "contrasena": "beto1234",
+    "telefono": "123456",
+    "direccion": "calle monster",
     "rol": "cliente",
-    "fechaRegistro": "2025-08-07T14:45:00Z"
+    "avatar": "sinavatar.png",
+    "fechaRegistro": "2025-09-13T00:51:41.008Z"
+  },
+  {
+    "id": 3,
+    "nombre": "Roberto",
+    "apellido": "Cataldo",
+    "email": "roberto@gmail.com",
+    "usuario": "Robert93",
+    "contrasena": "beto1233",
+    "telefono": "388565756",
+    "direccion": "Brigada",
+    "rol": "administrador",
+    "avatar": "avatar-1757726066387.png",
+    "fechaRegistro": "2025-09-13T01:14:26.396Z"
   }
 ]

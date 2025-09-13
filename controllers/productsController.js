@@ -1,5 +1,6 @@
 const fs = require("fs"); //file system
 const path = require("path"); // manejar las rutas
+const {v4: uudi} = require("uuid"); // generar ids unicos
 
 const productsPath = path.join(__dirname, "../data/products.json"); // ruta al archivo de productos
 const colorsPath = path.join(__dirname, "../data/colors.json"); // ruta al archivo de colores
@@ -52,7 +53,7 @@ const productsController = {
     //console.log(req.body); //verifica que se envian los datos del formulario
 
     const nuevoProducto = {
-      id: productosjs.length + 1, //asigna un id al nuevo producto
+      id: uudi(), // genera un id unico
       nombre: req.body.nombre,
       descripcion: req.body.descripcion,
       modeloId: parseInt(req.body.modeloId), // convierte el id del modelo a entero
@@ -171,7 +172,7 @@ const productsController = {
     if (req.body.nombreModelo && req.body.nombreModelo.trim() !== "") {
       // si se envio un nuevo modelo y no esta vacio
       const nuevoModelo = {
-        id: modelsjs.length + 1,
+        id: uudi(), // genera un id unico
         nombre: req.body.nombreModelo,
       };
 
@@ -184,7 +185,7 @@ const productsController = {
     if (req.body.nombreColor && req.body.nombreColor.trim() !== "") {
       // si se envio un nuevo color y no esta vacio
       const nuevoColor = {
-        id: colors.length + 1,
+        id: uudi(), // genera un id unico
         nombre: req.body.nombreColor,
       };
 
@@ -267,7 +268,7 @@ const productsController = {
       );
     }
 
-    console.log(req.body);
+    //console.log(req.body);
 
     res.redirect("/products/productos"); // redirige a la lista de productos
   },
