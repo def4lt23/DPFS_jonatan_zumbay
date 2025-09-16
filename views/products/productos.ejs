@@ -76,12 +76,15 @@
 
             </div>
 
-            <div class="contenedor_boton_admin">
-                <a class="botonadmin" href="/products/crearprod">AÑADIR UN PRODUCTO (ADMIN)</a>
-                <a class="botonadmin" href="/products/editarPropiedad">EDITAR PROPIEDADES (ADMIN)</a>
-            </div>
-            <%- include('../partials/footer.ejs') %>
-                <%- include('../partials/scripts.ejs') %>
+            <% if (userLogged.rol==="administrador" ) { %>
+                <div class="contenedor_boton_admin">
+                    <a class="botonadmin" href="/products/crearprod">AÑADIR UN PRODUCTO (ADMIN)</a>
+                    <a class="botonadmin" href="/products/editarPropiedad">EDITAR PROPIEDADES (ADMIN)</a>
+                </div>
+                <% } %>
+
+                    <%- include('../partials/footer.ejs') %>
+                        <%- include('../partials/scripts.ejs') %>
     </body>
 
 </html>

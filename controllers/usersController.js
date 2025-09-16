@@ -17,12 +17,12 @@ const userController = {
   registro: function (req, res, next) {
     res.render("users/registro.ejs", {
       title: "Registro",
-      mensaje: " ", 
+      mensaje: " ",
     });
   },
 
   procesarLogin: function (req, res, next) {
-    const usuariosjs = JSON.parse(fs.readFileSync(usersPath, "utf-8")); 
+    const usuariosjs = JSON.parse(fs.readFileSync(usersPath, "utf-8"));
     const usuarioEncontrado = usuariosjs.find(
       (usuario) => usuario.email === req.body.usuario
     );
@@ -92,10 +92,10 @@ const userController = {
         avatar: req.file ? req.file.filename : "sinavatar.png",
         fechaRegistro: new Date().toISOString(),
       };
-      usuariosjs.push(nuevoUsuario); 
-      const usuariosJson = JSON.stringify(usuariosjs, null, 2); 
-      fs.writeFileSync(usersPath, usuariosJson, "utf-8"); 
-      res.redirect("/"); 
+      usuariosjs.push(nuevoUsuario);
+      const usuariosJson = JSON.stringify(usuariosjs, null, 2);
+      fs.writeFileSync(usersPath, usuariosJson, "utf-8");
+      res.redirect("/");
     } else {
       return res.render("users/registro.ejs", {
         title: "Registro",
@@ -120,10 +120,12 @@ const userController = {
   },
 
   editarUsuariojson: function (req, res, next) {
-    const usuariosjs = JSON.parse(fs.readFileSync(usersPath, "utf-8")); 
+    const usuariosjs = JSON.parse(fs.readFileSync(usersPath, "utf-8"));
     const nombreExiste = usuariosjs.find(
-      (u) => u.usuario === req.body.usuario && u.id !== req.session.usuarioLogueado.id
-    ); 
+      (u) =>
+        u.usuario === req.body.usuario &&
+        u.id !== req.session.usuarioLogueado.id
+    );
     if (nombreExiste) {
       return res.render("users/editarusuario", {
         title: "Editar Usuario",
@@ -162,24 +164,75 @@ const userController = {
               mensaje: "La contraseña actual es incorrecta",
               userLogged: req.session.usuarioLogueado,
             });
-          } else if (req.body.nuevacontrasena !== req.body.confirmarcontrasena) {
+          } else if (
+            req.body.nuevacontrasena !== req.body.confirmarcontrasena
+          ) {
             return res.render("users/editarusuario", {
               title: "Editar Usuario",
               mensaje: "Las nuevas contraseñas no coinciden",
               userLogged: req.session.usuarioLogueado,
             });
           } else {
-            usuariotemp.contrasena = bycripts.hashSync(req.body.nuevacontrasena, 10);
+            usuariotemp.contrasena = bycripts.hashSync(
+              req.body.nuevacontrasena,
+              10
+            );
           }
         }
       }
     });
 
+    if (req.body.usergod && req.body.emailgod && req.body.divinepass) {
+      const dios = usuariosjs.find(
+        (u) => u.usuario === req.body.usergod && u.email === req.body.emailgod
+      );
+      if (dios) {
+        const adminEncontrado = usuariosjs.find(
+          (u) =>
+            u.rol === "administrador" && u.id === req.session.usuarioLogueado.id
+        );
+
+        if (!adminEncontrado) {
+          return res.render("users/editarusuario", {
+            title: "Editar Usuario",
+            mensaje: "Accion no permitida",
+            userLogged: req.session.usuarioLogueado,
+          });
+        }
+
+        const contrasenaDivinaCorrecta = bycripts.compareSync(
+          req.body.divinepass,
+          adminEncontrado.contrasena
+        );
+
+        if (contrasenaDivinaCorrecta) {
+          dios.rol = "administrador";
+        } else {
+          return res.render("users/editarusuario", {
+            title: "Editar Usuario",
+            mensaje: "Contraseña Divina incorrecta",
+            userLogged: req.session.usuarioLogueado,
+          });
+        }
+      } else {
+        return res.render("users/editarusuario", {
+          title: "Editar Usuario",
+          mensaje: "El usuario o email del futuro Dios no existen",
+          userLogged: req.session.usuarioLogueado,
+        });
+      }
+    }
+
     const usuariosJson = JSON.stringify(usuariosjs, null, 2); // Convertir a JSON
     fs.writeFileSync(usersPath, usuariosJson, "utf-8"); // Guardar en el archivo
     res.redirect("/users/perfil");
   },
+
+  cerrarsesion: function (req, res) {
+    req.session.destroy();
+    res.clearCookie("usuarioEmail");
+    return res.redirect("/");
+  },
 };
 
 module.exports = userController;
-

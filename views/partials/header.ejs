@@ -12,6 +12,8 @@
 
   <% if (isLogged) { %>
     <button class="botoncuenta">
+      <!-- edite aqui las prop del avatar para no tocar la otra imagen del logo y para hacerlo mas rapido -->
+      <img src="/images/users/<%= userLogged.avatar %>" alt="imagen de perfil" style="width:40px; height:auto; border-radius:50%; margin-left: 0px; margin-right: 4px;">
       <a class="botoncuenta" href="/users/perfil"><%= userLogged.usuario %></a>
     </button>
     <% } else { %>

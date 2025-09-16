@@ -83,6 +83,12 @@ header button a {
 
 }
 
+.botoncuenta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .botoncuenta:hover {
     background-color: #27AE60;
     transform: scale(1.05); /* Efecto de zoom al pasar el cursor */

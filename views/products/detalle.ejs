@@ -44,7 +44,7 @@
                         <div class="botones">
                             <button class="botonagregar">AGREGAR AL CARRITO</button>
                             <a class="botonagregar" href="/products/productos">Volver</a>
-                            <% if (true) { %> <!-- luego editar cuando se implemente opcion de administrador -->
+                            <% if (userLogged.rol === "administrador") { %>
                                 <a class="botonadmin" href="/products/editarprod/<%= miProducto.id %>">EDITAR PRODUCTO
                                     (ADMIN)</a>
                                 <form action="/products/eliminarprod/<%= miProducto.id %>?_method=DELETE" method="post">
