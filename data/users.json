@@ -26,16 +26,29 @@
     "fechaRegistro": "2025-09-13T00:51:41.008Z"
   },
   {
-    "id": 3,
-    "nombre": "Roberto",
-    "apellido": "Cataldo",
-    "email": "roberto@gmail.com",
-    "usuario": "Robert93",
-    "contrasena": "beto1233",
-    "telefono": "388565756",
-    "direccion": "Brigada",
+    "id": "eb66c031-23bb-414f-916e-fa507c4ebcfd",
+    "nombre": "ELLIOT",
+    "apellido": "ANDERSON",
+    "email": "elliot@gmail.com",
+    "usuario": "mrrobot",
+    "contrasena": "$2b$10$.fUbDmXcZz1YHeAUA2iA/eckEADJkuO8g7g9rC5qL8t.T0hs7jkzW",
+    "telefono": "123321456",
+    "direccion": "CA",
+    "rol": "cliente",
+    "avatar": "sinavatar.png",
+    "fechaRegistro": "2025-09-16T15:43:10.400Z"
+  },
+  {
+    "id": "5b2193d1-b3e3-42d3-a20b-3cc2c43216f8",
+    "nombre": "Seishiro",
+    "apellido": "Nagi",
+    "email": "bachira@gmail.com",
+    "usuario": "Genious99",
+    "contrasena": "$2b$10$WE2ClKhTx33sMkdIwQxMTeciS6uK80Hz0YESM7gPFSZMeTGwx.lt2",
+    "telefono": "789456456",
+    "direccion": "Blue Lock",
     "rol": "administrador",
-    "avatar": "avatar-1757726066387.png",
-    "fechaRegistro": "2025-09-13T01:14:26.396Z"
+    "avatar": "avatar-1758056896354.png",
+    "fechaRegistro": "2025-09-16T15:58:55.843Z"
   }
 ]

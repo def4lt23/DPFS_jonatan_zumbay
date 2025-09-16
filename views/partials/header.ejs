@@ -1,27 +1,34 @@
-  <header>
-    <img src="/images/logo_verdecv3.png" alt="">
+<header>
+  <img src="/images/logo_verdecv3.png" alt="">
 
-    <nav>
-      <ul>
-        <li><a href="/">INICIO</a></li>
-        <li><a href="/products/productos">PRODUCTOS</a></li>
-        <li><a href="/users/quienessomos">QUIENES SOMOS</a></li>
-        <li><a href="/users/carrito">CARRITO</a></li>
-      </ul>
-    </nav>
-
-    <button class="botoncuenta">
-      <a href="/users/registro">MI CUENTA</a>
-    </button>
-    <div class="iconoburger">
-      <i class="fa-solid fa-bars"></i>
-    </div>
-
-    <div class="dropdownmenu">
-      <li><a href="/users/registro">MI CUENTA</a></li>
+  <nav>
+    <ul>
       <li><a href="/">INICIO</a></li>
       <li><a href="/products/productos">PRODUCTOS</a></li>
       <li><a href="/users/quienessomos">QUIENES SOMOS</a></li>
       <li><a href="/users/carrito">CARRITO</a></li>
-    </div>
-  </header>
+    </ul>
+  </nav>
+
+  <% if (isLogged) { %>
+    <button class="botoncuenta">
+      <a class="botoncuenta" href="/users/perfil"><%= userLogged.usuario %></a>
+    </button>
+    <% } else { %>
+      <button class="botoncuenta">
+        <a href="/users/registro">MI CUENTA</a>
+      </button>
+      <% } %>
+
+        <div class="iconoburger">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <div class="dropdownmenu">
+          <li><a href="/users/registro">MI CUENTA</a></li>
+          <li><a href="/">INICIO</a></li>
+          <li><a href="/products/productos">PRODUCTOS</a></li>
+          <li><a href="/users/quienessomos">QUIENES SOMOS</a></li>
+          <li><a href="/users/carrito">CARRITO</a></li>
+        </div>
+</header>

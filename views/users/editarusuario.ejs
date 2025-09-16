@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs', {estilod:'editarusuario.css'}) %>
+
+    <body>
+        <%- include('../partials/header.ejs') %>
+            <h1>EDITAR USUARIO</h1>
+            <h6><%= mensaje %></h6>
+            <div class="contenedor">
+                <form action="/users/editarusuario/<%= userLogged.id %>?_method=PUT" method="post"
+                    enctype="multipart/form-data">
+                    <div class="clasep">
+                        <label for="nombre">1️⃣➡️NOMBRE</label>
+                        <input type="text" id="nombre" name="nombre" value="<%= userLogged.nombre %>" required>
+                    </div>
+                    <div class="clasep">
+                        <label for="apellido">2️⃣➡️APELLIDO</label>
+                        <input type="text" id="apellido" name="apellido" value="<%= userLogged.apellido %>" required>
+                    </div>
+                    <div class="clasep">
+                        <label for="email">3️⃣➡️EMAIL (Solo lectura)</label>
+                        <input type="email" id="email" name="email" value="<%= userLogged.email %>" readonly>
+                    </div>
+                    <div class="clasep">
+                        <label for="telefono">4️⃣➡️TELEFONO</label>
+                        <input type="text" id="telefono" name="telefono" value="<%= userLogged.telefono %>" required>
+                    </div>
+                    <div class="clasep">
+                        <label for="direccion">5️⃣➡️DIRECCION</label>
+                        <input type="text" id="direccion" name="direccion" value="<%= userLogged.direccion %>" required>
+                    </div>
+                    <div class="clasep">
+                        <label for="usuario">6️⃣➡️NOMBRE DE USUARIO</label>
+                        <input type="text" id="usuario" name="usuario" value="<%= userLogged.usuario %>" required>
+                    </div>
+                    <div class="clasep">
+                        <label for="imagen">7️⃣➡️AVATAR (⚠️SI CARGA UNO NUEVO SE BORRARA EL ANTERIOR⚠️)</label>
+                        <input type="file" id="imagen" name="imagen" accept="image/*">
+                        <div class="avatar">
+                            <img src="/images/users/<%= userLogged.avatar %>" alt="Avatar de <%= userLogged.usuario %>"
+                                width="100">
+                        </div>
+                    </div>
+
+                    <div class="clasep">
+                        <label for="contrasena">8️⃣➡️EDITAR CONTRASEÑA (⚠️en caso de no cambiar dejar los campos en
+                            blanco⚠️)</label>
+                        <input type="password" id="contrasena" name="contrasena"
+                            placeholder="Ingrese contraseña actual">
+                        <br>
+                        <input type="password" id="nuevacontrasena" name="nuevacontrasena"
+                            placeholder="Ingrese nueva contraseña">
+                        <br>
+                        <input type="password" id="confirmarcontrasena" name="confirmarcontrasena"
+                            placeholder="Confirme nueva contraseña">
+                    </div>
+
+                    <div class="botones">
+                        <div>
+                            <button class="boton" type="submit">Guardar Cambios</button>
+                        </div>
+                        <div>
+                            <a class="boton" href="/users/perfil">Cancelar</a>
+                        </div>
+                </form>
+
+            </div>
+
+            <p>¿Estas teniendo problemas? Por favor envianos un mail a <a
+                    href="mailto:correo@example.com">soporte@luzify.com.ar</a></p>
+        </div>
+
+            <%- include('../partials/footer.ejs') %>
+                <%- include('../partials/scripts.ejs') %>
+    </body>
+
+</html>

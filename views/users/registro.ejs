@@ -10,7 +10,9 @@
         <h1>
           Inicia sesion o registrate para continuar
         </h1>
-        <h6><%= mensaje %></h6>
+        <h6>
+          <%= mensaje %>
+        </h6>
 
         <div class="contenedor">
           <div class="iniciar_sesion">
@@ -20,6 +22,7 @@
                   required> </p>
               <p><span class="label-text">Contraseña:</span> <input type="password" name="contrasena"
                   placeholder="Contraseña" required></p>
+              <div class="remember"><span class="label-text">Recuerdame</span> <input type="checkbox" name="recordar"></div>
               <button type="submit" class="botoniniciar">Iniciar Sesion</button>
             </form>
             <a href="">Olvide mi contraseña</a>

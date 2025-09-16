@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs', {estilod:'perfil.css'}) %>
+
+    <body>
+        <%- include('../partials/header.ejs') %>
+            <div class="contenedor">
+                <h1>PERFIL DE USUARIO: <%= usuario.usuario %>
+                </h1>
+                <div class="perfil">
+                    <div class="foto">
+                        <img src="/images/users/<%= usuario.avatar %>" alt="Foto de perfil de <%= usuario.usuario %>">
+                    </div>
+                    <div class="info">
+                        <p><strong>Nombre:</strong>
+                            <%= usuario.nombre %>
+                        </p>
+                        <p><strong>Apellido:</strong>
+                            <%= usuario.apellido %>
+                        </p>
+                        <p><strong>Email:</strong>
+                            <%= usuario.email %>
+                        </p>
+                        <p><strong>Usuario:</strong>
+                            <%= usuario.usuario %>
+                        </p>
+                        <p><strong>Direccion:</strong>
+                            <%= usuario.direccion %>
+                        </p>
+                        <p><strong>Telefono:</strong>
+                            <%= usuario.telefono %>
+                        </p>
+                        <div class="botones">
+                            <div>
+                                <a class="boton" href="/">Volver a Home</a>
+                            </div>
+                            <div>
+                                <a class="boton" href="/users/editarusuario/<%= usuario.id %>">Editar Perfil</a>
+                            </div>
+                            <div>
+                                <a class="boton" href="/">Cerrar Sesion</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <%- include('../partials/footer.ejs') %>
+                <%- include('../partials/scripts.ejs') %>
+
+    </body>
+
+
+</html>

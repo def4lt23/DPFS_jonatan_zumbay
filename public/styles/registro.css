@@ -133,6 +133,13 @@ main p {
     text-decoration: underline; /* Subrayado al pasar el mouse */
 }
 
+.remember {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; /*centrar elemento*/
+    gap: 10px;
+}
+
 /* responsive */
 @media (max-width: 768px) {
     .contenedor {
