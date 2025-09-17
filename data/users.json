@@ -1,28 +1,41 @@
 [
   {
-    "id": "5b2193d1-b3e3-42d3-a20b-3cc2c43216f8",
-    "nombre": "Seishiro",
-    "apellido": "Nagi",
-    "email": "bachira@gmail.com",
-    "usuario": "Genious99",
-    "contrasena": "$2b$10$WE2ClKhTx33sMkdIwQxMTeciS6uK80Hz0YESM7gPFSZMeTGwx.lt2",
-    "telefono": "789456456",
-    "direccion": "Blue Lock",
-    "rol": "administrador",
-    "avatar": "avatar-1758056896354.png",
-    "fechaRegistro": "2025-09-16T15:58:55.843Z"
-  },
-  {
     "id": "848b0d07-e9ba-4d25-a106-3fb1243faf78",
     "nombre": "Jonatan",
     "apellido": "Zumbay",
     "email": "jonatan@gmail.com",
-    "usuario": "jone",
+    "usuario": "Jone",
     "contrasena": "$2b$10$UZBpdasT422Vf8G.1kIViewdk6uMhFqpILq0pWH4ZcXpN9iihy7ne",
     "telefono": "789456123",
     "direccion": "belgrano 19",
     "rol": "administrador",
-    "avatar": "avatar-1758061340398.jfif",
+    "avatar": "avatar-1758144923748.png",
     "fechaRegistro": "2025-09-16T22:22:20.467Z"
+  },
+  {
+    "id": "f6e40862-86ee-42b2-87bd-1012b2f74133",
+    "nombre": "Michael",
+    "apellido": "Kaiser",
+    "email": "kaiser@gmail.com",
+    "usuario": "Emperador",
+    "contrasena": "$2b$10$AaGocVqmRhXY7xBV3jX.0uuaiQy8b7vqLQt4w46Wrwc22ILjjiBAm",
+    "telefono": "3885123456",
+    "direccion": "Sala de la Primera Selección, Edificio 5, Japón",
+    "rol": "administrador",
+    "avatar": "avatar-1758144857283.png",
+    "fechaRegistro": "2025-09-17T21:34:17.356Z"
+  },
+  {
+    "id": "0d7d479a-d5c8-4d25-a231-438bb790c7ee",
+    "nombre": "Giyu",
+    "apellido": "Tomioka",
+    "email": "giyu@gmail.com",
+    "usuario": "Giyu__",
+    "contrasena": "$2b$10$AmSYDHWYdAvoB3I6AvkZs.mduL1BFRL4J/adcv5ontTYZnm3xw.sC",
+    "telefono": "3884123456",
+    "direccion": "Finca del Agua, Sede del Cuerpo de Exterminio de Demonios, Japón",
+    "rol": "cliente",
+    "avatar": "avatar-1758145101412.png",
+    "fechaRegistro": "2025-09-17T21:38:21.474Z"
   }
 ]

@@ -73,9 +73,11 @@ Excelente avance del proyecto, en el metodo de enviarProductos vi que tenes un c
 **CORRECCIONES**
 * SE AGREGO LA SECCION DE EDITAR PROPIEDADES (SOLO ADMIN) PARA EDITAR MODELOS Y COLORES DE LAS LAMPARAS.
 * SE AGREGO EL NOMBRE DE USUARIO Y CERRAR SESION EN EL MENU HAMBURGUESA PARA PANTALLAS PEQUEÑAS.
+* SE EDITO EN PRODUCTOS Y DETALLE DE PRODUCTO PARA QUE SOLO LOS ADMIN PUEDAN VER LOS BOTONES DE EDICION.
 ||| EN RESUMEN |||
     a- Se puede hacer alta, baja y modificacion de usuarios. Teniendo en cuenta los campos requeridos y controlando para no repetir. Para los administradores se les agrega la opcion de volver administrador a otro usuario.
     b- Con los nuevos middlewares se puede evitar que se accedan a ciertas secciones de la pagina para evitar errores, sumando tambien para saber si un usuario es admin o esta logueado para mostrar mas o menos informacion.
     c- Las id son creadas de otra manera mas robusta y segura para evitar errores con uuid.
+    NOTA: la contraseña de las 3 cuentas creadas es: "holahola" (sin comillas).
 
 **DEVOLUCION**

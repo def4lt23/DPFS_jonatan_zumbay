@@ -63,7 +63,7 @@ const userController = {
     }
   },
 
-  //::::: REGISTRARSE :::::
+  //::::: REGISTRARSE || USUARIO NUEVO :::::
   procesarRegistro: function (req, res, next) {
     const usuariosjs = JSON.parse(fs.readFileSync(usersPath, "utf-8"));
 
@@ -100,7 +100,7 @@ const userController = {
         contrasena: bycripts.hashSync(req.body.contrasena1, 10), //encripto la contraseña
         telefono: req.body.telefono,
         direccion: req.body.direccion,
-        rol: req.body.rol,
+        rol: "cliente", //por defecto todos son clientes
         avatar: req.file ? req.file.filename : "sinavatar.png", //si sube avatar lo guardo, sino le asigno uno por defecto
         fechaRegistro: new Date().toISOString(),
       };

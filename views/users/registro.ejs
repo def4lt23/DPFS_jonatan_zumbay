@@ -20,7 +20,7 @@
           <div class="iniciar_sesion">
             <form action="/users/login" method="POST">
               <h1>Tengo cuenta</h1>
-              <p><span class="label-text">Usuario:</span> <input type="text" name="usuario" placeholder="Usuario"
+              <p><span class="label-text">Email:</span> <input type="text" name="usuario" placeholder="email de usuario"
                   required> </p>
               <p><span class="label-text">Contraseña:</span> <input type="password" name="contrasena"
                   placeholder="Contraseña" required></p>
@@ -51,13 +51,6 @@
               <p><span class="label-text">Repetir Contraseña Nueva:</span> <input type="password" name="contrasena2"
                   placeholder="Repetir Contraseña" required></p>
               <p><span class="label-text">Elegir Imagen de Perfil</span> <input type="file" id="image" name="imagen">
-              </p>
-              <p>
-                <span class="label-text">Rol</span>
-                <select name="rol" required>
-                  <option value="cliente" selected>Cliente</option>
-                  <option value="administrador">Administrador</option>
-                </select>
               </p>
               <button type="submit" class="botonregistrar">Crear Cuenta</button>
             </form>
