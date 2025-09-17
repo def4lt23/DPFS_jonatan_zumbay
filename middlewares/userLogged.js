@@ -13,7 +13,7 @@ function userLogged (req, res, next) {
     res.locals.isAdmin = false;
   }
 
-  if(!req.session.userLogged && req.cookies.usuarioEmail) { // si no hay session pero si cookie
+  if(!req.session.usuarioLogueado && req.cookies.usuarioEmail) { // si no hay session pero si cookie
     const usersPath = path.join(__dirname, "../data/users.json"); // ruta al archivo de usuarios
     const usuariosjs = JSON.parse(fs.readFileSync(usersPath, "utf-8")); //usuarios a js
 

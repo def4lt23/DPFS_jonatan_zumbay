@@ -62,5 +62,20 @@ Excelente avance del proyecto, en el metodo de enviarProductos vi que tenes un c
 
 ============================================================================================
 >>>**SPRINT 5**
+**VISTAS**
+* SE AGREGARON LAS VISTAS DEP PERFIL, EDITAR USUARIO Y ELIMINAR USUARIO. TAMBIEN SE MODIFICO LA DE REGISTRO CON FORM PARA QUE ENVIE INFORMACION.
+* SE EDITARON LOS ARCHIVOS EN ROUTES Y CONTROLLERS PARA QUE MANEJEN LAS FUNCIONES DE LOS USUARIOS (ALTA, BAJA Y MODIFICACION).
+**INSTALACION**
+* SE INSTALO SESION, COOKIE-PARSER, BCRYPTSJS Y UUID PARA EL MANEJO DE USUARIOS. SE TUVO EN CUENTA EL ORDEN EN EL ARCHIVO APP.JS PARA EVITAR ERRORES.
+**MIDDLEWARES**
+* SE CREARON USERLOGGED, LOGGED, GUESTONLY Y ADMIN. TODOS CON EL FIN DE MANEJAR USUARIOS, DE ESA FORMA IMPEDIR QUE SE ACCEDAN A ENLACES QUE NO TIENEN PERMITIDOS.
+* SE EDITO EL ARCHIVO MULTER.JS PARA MANEJAR IMAGENES DE LOS USUARIOS.
+**CORRECCIONES**
+* SE AGREGO LA SECCION DE EDITAR PROPIEDADES (SOLO ADMIN) PARA EDITAR MODELOS Y COLORES DE LAS LAMPARAS.
+* SE AGREGO EL NOMBRE DE USUARIO Y CERRAR SESION EN EL MENU HAMBURGUESA PARA PANTALLAS PEQUEÑAS.
+||| EN RESUMEN |||
+    a- Se puede hacer alta, baja y modificacion de usuarios. Teniendo en cuenta los campos requeridos y controlando para no repetir. Para los administradores se les agrega la opcion de volver administrador a otro usuario.
+    b- Con los nuevos middlewares se puede evitar que se accedan a ciertas secciones de la pagina para evitar errores, sumando tambien para saber si un usuario es admin o esta logueado para mostrar mas o menos informacion.
+    c- Las id son creadas de otra manera mas robusta y segura para evitar errores con uuid.
 
 **DEVOLUCION**

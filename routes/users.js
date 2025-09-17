@@ -2,7 +2,8 @@ var express = require('express');
 const logged = require('../middlewares/logged');
 const guestOnly = require('../middlewares/guestOnly');
 const {uploadUser} = require('../middlewares/multer'); // Importar multer para manejar archivos, va con llaves porque son dos uploads
-const {carrito, quienessomos, registro, procesarLogin, procesarRegistro, vistaPerfil, editarUsuarioVista, editarUsuariojson, cerrarsesion} 
+const {carrito, quienessomos, registro, procesarLogin, procesarRegistro, vistaPerfil, editarUsuarioVista, editarUsuariojson, 
+    cerrarsesion, eliminarUsuarioVista, eliminarUsuariojson} 
 = require('../controllers/usersController');
 var router = express.Router();
 
@@ -26,5 +27,9 @@ router.put('/editarusuario/:id', logged, uploadUser.single('imagen'), editarUsua
 
 /*CERRAR SESION*/ 
 router.get('/logout', logged, cerrarsesion); /* Logica para cerrar sesion */
+
+/*ELIMINAR USUARIO*/
+router.get('/eliminarUsuario', logged, eliminarUsuarioVista); /* Vista para eliminar usuario */
+router.delete('/eliminarUsuario/:id', logged, eliminarUsuariojson); /* Logica para eliminar usuario */
 
 module.exports = router;

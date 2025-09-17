@@ -13,8 +13,11 @@
   <% if (isLogged) { %>
     <button class="botoncuenta">
       <!-- edite aqui las prop del avatar para no tocar la otra imagen del logo y para hacerlo mas rapido -->
-      <img src="/images/users/<%= userLogged.avatar %>" alt="imagen de perfil" style="width:40px; height:auto; border-radius:50%; margin-left: 0px; margin-right: 4px;">
-      <a class="botoncuenta" href="/users/perfil"><%= userLogged.usuario %></a>
+      <img src="/images/users/<%= userLogged.avatar %>" alt="imagen de perfil"
+        style="width:40px; height:40px; border-radius:50%; margin-left: 0px; margin-right: 4px;">
+      <a class="botoncuenta" href="/users/perfil">
+        <%= userLogged.usuario %>
+      </a>
     </button>
     <% } else { %>
       <button class="botoncuenta">
@@ -27,10 +30,24 @@
         </div>
 
         <div class="dropdownmenu">
-          <li><a href="/users/registro">MI CUENTA</a></li>
-          <li><a href="/">INICIO</a></li>
-          <li><a href="/products/productos">PRODUCTOS</a></li>
-          <li><a href="/users/quienessomos">QUIENES SOMOS</a></li>
-          <li><a href="/users/carrito">CARRITO</a></li>
+          <% if (isLogged) { %>
+            <li class="liusuario">
+              <img src="/images/users/<%= userLogged.avatar %>" alt="imagen de perfil"
+                style="width:20px; height:20px; border-radius:50%; margin-left: 0px; margin-right: 4px;">
+              <a href="/users/perfil">
+                <%= userLogged.usuario %>
+              </a>
+            </li>
+            <% } else { %>
+              <li><a href="/users/registro">REGISTRARSE</a></li>
+              <% } %>
+                <li><a href="/">INICIO</a></li>
+                <li><a href="/products/productos">PRODUCTOS</a></li>
+                <li><a href="/users/quienessomos">QUIENES SOMOS</a></li>
+                <li><a href="/users/carrito">CARRITO</a></li>
+                <% if (isLogged) { %>
+                 <li><a href="/users/logout">CERRAR SESION</a></li>
+                <% } %>
+                
         </div>
 </header>

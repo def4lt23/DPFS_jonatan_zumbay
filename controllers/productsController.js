@@ -58,7 +58,7 @@ const productsController = {
       descripcion: req.body.descripcion,
       modeloId: parseInt(req.body.modeloId), // convierte el id del modelo a entero
       precio: parseFloat(req.body.precio),
-      colorIds: req.body.color ? req.body.color.map((c) => parseInt(c)) : [1], // verifica si hay color elegido, sino asigna el primer color
+      colorIds: req.body.color ? req.body.color.map((c) => parseInt(c)) : [0], // verifica si hay color elegido, sino asigna el primer color
       tamano: req.body.tamano,
       stock: parseInt(req.body.stock),
       imagen:
@@ -112,7 +112,7 @@ const productsController = {
         let coloresSeleccionados = req.body.colorIds;
 
         if (!coloresSeleccionados) {
-          coloresSeleccionados = [1]; // se asigna el color por defecto si no se selecciona ninguno
+          coloresSeleccionados = [0]; // se asigna el color por defecto si no se selecciona ninguno
         } else if (!Array.isArray(coloresSeleccionados)) {
           //si eligio solo un color se debe convertir a array
           coloresSeleccionados = [coloresSeleccionados];

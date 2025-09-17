@@ -58,18 +58,18 @@
                     </div>
 
                     <% if (userLogged.rol==="administrador" ) { %>
-                        <div class="clasep">
-                            <label>Volver Dios a otro</label>
-                            <label for="usergod">Escribe nombre de usuario</label>
+                        <div class="clasep" style="border: 2px solid gold; padding: 10px; margin-top: 20px;">
+                            <label>🫰💥Volver Dios a otro</label>
+                            <label for="usergod">➡️Escribe nombre de usuario</label>
                             <input type="text" id="udergod" name="usergod" placeholder="Nombre de usuario a iluminar">
-                            <label for="emailgod">Escribe email</label>
+                            <label for="emailgod">➡️Escribe email</label>
                             <input type="text" id="emailgod" name="emailgod" placeholder="Email a iluminar">
-                            <label for="divinepass">Escribe TU contraseña</label>
+                            <label for="divinepass">➡️Escribe TU contraseña</label>
                             <input type="password" id="divinepass" name="divinepass"
                                 placeholder="Tu contraseña para corroborar tu divinidad">
                         </div>
                         <% } %>
-                        
+
                             <div class="botones">
                                 <div>
                                     <button class="boton" type="submit">Guardar Cambios</button>
@@ -77,12 +77,15 @@
                                 <div>
                                     <a class="boton" href="/users/perfil">Cancelar</a>
                                 </div>
+                            </div>
                 </form>
 
             </div>
 
             <p>¿Estas teniendo problemas? Por favor envianos un mail a <a
                     href="mailto:correo@example.com">soporte@luzify.com.ar</a></p>
+            <div class="botones">
+                <a class="boton_eliminar" href="/users/eliminarUsuario">O puedes borrar tu cuenta</a>
             </div>
 
             <%- include('../partials/footer.ejs') %>

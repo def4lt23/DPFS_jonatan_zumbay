@@ -136,6 +136,13 @@ header button a {
 
 }
 
+.liusuario {
+    background-color: #C8E6C9; /* Color de fondo diferente para el usuario */
+    border-radius: 5px;
+    margin: 0.5rem 1rem; /* Margen para separar del borde */
+    display: flex;         /* Hace que los hijos estén en línea */
+}
+
 .dropdownmenu a {
     text-decoration: none;
     color: black;

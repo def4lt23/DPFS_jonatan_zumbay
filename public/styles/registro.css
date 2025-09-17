@@ -10,6 +10,24 @@ main p {
     font-size: 20px; 
 }
 
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-8px); }
+  80% { transform: translateX(8px); }
+  100% { transform: translateX(0); }
+}
+
+main h6 {
+    text-align: center; 
+    margin-top: 10px; 
+    font-size: 20px; 
+    color: #27AE60;
+    font-weight: bold;
+    animation: shake 0.4s;
+}
+
 /* Contenedor principal de los formularios */
 .contenedor {
     display: flex; 

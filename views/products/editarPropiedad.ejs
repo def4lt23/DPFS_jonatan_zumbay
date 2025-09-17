@@ -11,9 +11,10 @@
                 <form action="/products/editarPropiedad" method="POST">
                     <fieldset class="claser">
                         <legend>➡️ LISTA DE MODELOS DE LAMPARAS:</legend>
-                        <% miModelo.forEach(modelo=> { %>
+                        <% miModelo.forEach((modelo, index)=> { %>
                             <label>
-                                <input type="checkbox" name="modeloIds" value="<%= modelo.id %>">
+                                <input type="checkbox" name="modeloIds" value="<%= modelo.id %>" 
+                                <%=index===0 ? "disabled checked" : "" %>>
                                 <%= modelo.nombre %>
                             </label>
                             <% }) %>
@@ -26,9 +27,10 @@
 
                     <fieldset class="claser">
                         <legend>➡️ LISTA DE COLORES:</legend>
-                        <% miColor.forEach(color=> { %>
+                        <% miColor.forEach((color, index)=> { %>
                             <label>
-                                <input type="checkbox" name="colorIds" value="<%= color.id %>">
+                                <input type="checkbox" name="colorIds" value="<%= color.id %>" 
+                                <%=index===0 ? "disabled checked" : "" %>>
                                 <%= color.nombre %>
                             </label>
                             <% }) %>
