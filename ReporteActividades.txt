@@ -58,3 +58,19 @@
 	* Se editaron constantemente para el CRUD los archivos de products en routes y controllers.
 	* Se corrigieron botones y textos en css para mejor visibilidad.
 >>> SEMANA 4 (25 al 29)
+	* Se edito vista registro con form para poder enviar informacion.
+	* Se crearon la vistas perfil.ejs, editarusuario.ejs y eliminarusuario.ejs.
+	* Se edito el archivo users.js de routes para manejar las vistas.
+
+>SEPTIEMBRE
+>>> SEMANA 1 (01 al 05)
+	* Se instalo sesion, cookie-parser, bcrypts y uuid para el manejo de usuarios. Todo editado en app.js .
+	* Se edito el archivo usersController.js donde se maneja la logica de los usuarios.
+	* Se edito el archivo multer.js para poder manejar imagenes con los usuarios.
+	* Se crearon los archivos logged.js, userLogged.js, guestOnly.js y admin.js para controlar la navegacion.
+>>> SEMANA 2 (08 al 12)
+	* Se editaron archivos de css para las nuevas vistas y mensajes de errores.
+>>> SEMANA 3 (15 al 19)
+	* Se repararon errores de edicion de usuarios en editarusuario.
+	* Se editaron botones de modo responsive y botones de administrador para que se muestren de forma correcta.
+>>> SEMANA 4 (22 al 26)
