@@ -20,6 +20,27 @@ body h1 {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
+body.dark-mode .contenedor,
+body.dark-mode .contenedor2 {
+    background-color: #1E1E1E;
+    border-color: #333333;
+}
+
+.contenedor:hover,
+.contenedor2:hover {
+  box-shadow: 0 8px 20px rgba(0, 191, 255, 0.15);
+}
+
+body.dark-mode .contenedor .texto p{
+    color: #E0E0E0;
+}
+
+body.dark-mode {
+    background: radial-gradient(circle at top left, #121212, #1E1E1E);
+    color: #E0E0E0;
+}
+
+
 .contenedor .imagen {
     flex: 1; /* Permite que este div ocupe espacio y se estire */
     max-width: 50%; 

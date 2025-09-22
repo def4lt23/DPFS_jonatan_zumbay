@@ -17,6 +17,10 @@
   text-align: center; 
 }
 
+body.dark-mode .cards-section {
+    background: #121212;
+}
+
 /* Contenedor para alinear las cartas */
 .card-container {
   display: flex; 
@@ -39,6 +43,12 @@
   text-align: center; 
   box-sizing: border-box; /* El padding y el border no aumenten el tamaño total */
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+body.dark-mode .card {
+    background-color: #1E1E1E;
+    border: 1px solid #333333;
+    color: #E0E0E0;
 }
 
 .card:hover {
@@ -65,6 +75,10 @@
   font-size: 1.5rem; 
   color: #343a40; 
   margin-bottom: 10px; 
+}
+
+body.dark-mode .card h3 {
+    color: #ffffff;
 }
 
 .card p {

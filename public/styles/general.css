@@ -8,14 +8,22 @@ header {
     position: relative; 
 }
 
+body.dark-mode header {
+    background-color: #121212;
+    border-bottom: 1px solid #333333;
+}
+
 body {
   background: radial-gradient(circle at top left, #F8F8F8, #E0E0E0);
 }
 
-
 * {
     font-family: "Montserrat", sans-serif;
     box-sizing: border-box; 
+}
+
+body.dark-mode main {
+    background: #121212;
 }
 
 
@@ -44,6 +52,10 @@ nav li a {
     margin-right: 0.1vw;
     white-space: nowrap;
     padding: 12px 28px;
+}
+
+body.dark-mode nav li a {
+    color: #E0E0E0;
 }
 
 nav li a:hover {

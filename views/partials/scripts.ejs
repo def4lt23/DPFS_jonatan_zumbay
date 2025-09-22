@@ -49,3 +49,33 @@
         });
     });
 </script>
+
+<!-- SCRIPT DARK MODE -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const body = document.body;
+    const logo = document.getElementById("logo");
+
+    // Restaurar preferencia al cargar la página
+    const isDark = localStorage.getItem("darkMode") === "true";
+    if (isDark) {
+      body.classList.add("dark-mode");
+      logo.src = "/images/logo_amarillov3.png"; // logo oscuro
+    } else {
+      logo.src = "/images/logo_verdev3.png"; // logo normal
+    }
+
+    // Activar/desactivar modo oscuro al hacer click en el logo
+    if (logo) {
+      logo.addEventListener("click", () => {
+        const darkMode = body.classList.toggle("dark-mode");
+        localStorage.setItem("darkMode", darkMode);
+
+        // Cambiar logo segun el modo
+        logo.src = darkMode ? "/images/logo_amarillov3.png" : "/images/logo_verdev3.png";
+      });
+    }
+  });
+</script>
+
+

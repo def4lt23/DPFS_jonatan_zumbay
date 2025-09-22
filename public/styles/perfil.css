@@ -1,7 +1,9 @@
 body {
     display: grid;
     min-height: 100dvh;
-    grid-template-rows: auto;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8; /* fondo normal */
 } /*dejar siempre el footer abajo*/
 
 body h1 {
@@ -21,6 +23,20 @@ body h1 {
     border: 3px solid #2ECC71;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.contenedor:hover {
+  box-shadow: 0 8px 20px rgba(0, 191, 255, 0.15);
+}
+
+body.dark-mode {
+    background-color: #121212;
+}
+
+body.dark-mode .contenedor {
+    background-color: #1e1e1e;
+    border: 3px solid #388E3C;
+    color: #E0E0E0;
 }
 
 .perfil {

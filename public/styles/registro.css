@@ -28,6 +28,11 @@ main h6 {
     animation: shake 0.4s;
 }
 
+body.dark-mode {
+    background-color: #121212; 
+    color: #e0e0e0; 
+}
+
 /* Contenedor principal de los formularios */
 .contenedor {
     display: flex; 
@@ -40,6 +45,14 @@ main h6 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
     margin: 20px auto; 
     max-width: 1500px; 
+}
+
+body.dark-mode .contenedor {
+    background-color: #121212;
+}
+
+.contenedor:hover {
+  box-shadow: 0 8px 20px rgba(0, 191, 255, 0.15);
 }
 
 /* Estilos para cada formulario Iniciar Sesion y Registrarse */
@@ -60,6 +73,17 @@ main h6 {
     /*text-align: center;*/ 
 }
 
+body.dark-mode .iniciar_sesion,
+body.dark-mode .registrarse {
+    background-color: #121212;
+    border: 3px solid #388E3C;
+    color: #E0E0E0;
+}
+
+body.dark-mode .iniciar_sesion h1,
+body.dark-mode .registrarse h1 {
+    color: #E0E0E0;
+}
 
 .iniciar_sesion h1,
 .registrarse h1 {

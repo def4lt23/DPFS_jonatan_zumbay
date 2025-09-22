@@ -15,6 +15,19 @@ body h1, h6 {
     gap: 30px; 
 }
 
+body.dark-mode .contenedor {
+    background: #121212;
+}
+
+body.dark-mode .contenedor_titulo {
+    background: #121212;
+    color: #E0E0E0;
+}
+
+body.dark-mode {
+    background: #121212;
+}
+
 /* Control de visibilidad para elementos responsive */
 .mobile-only-types {
     display: none; /* Oculto en pantallas grandes */
@@ -32,6 +45,16 @@ body h1, h6 {
     border-right: 1px solid #e0e0e0; /* LInea separadora a la derecha */
     box-sizing: border-box; /* el padding no aumente el tamaño total */
     min-width: 180px; /* para que los filtros no se compriman demasiado */
+}
+
+body.dark-mode .filtro p {
+    color: #E0E0E0;
+}
+
+body.dark-mode .filtro {
+    background-color: #1E1E1E;
+    border-color: #333333;
+    color: #E0E0E0;
 }
 
 .filtro p {
@@ -95,6 +118,12 @@ body h1, h6 {
     cursor: pointer; 
 }
 
+body.dark-mode .select-container select {
+    background-color: #2E2E2E;
+    border-color: #555;
+    color: #E0E0E0;
+}
+
 /* boton aplicar */
 .boton-aplicar {
     display: block; /* Ocupa todo el ancho disponible */
@@ -143,6 +172,24 @@ body h1, h6 {
     box-sizing: border-box; /* Asegura que el padding y el border no aumenten el tamaño total */
     position: relative; 
     overflow: hidden; /* Asegura que las imagenes fuera de vista esten ocultas */
+}
+
+.card:hover {
+  box-shadow: 0 8px 20px rgba(0, 191, 255, 0.15);
+}
+
+body.dark-mode .card {
+    background-color: #1E1E1E;
+    border-color: #333333;
+    color: #E0E0E0;
+}
+
+body.dark-mode .card h3  {
+    color: #E0E0E0;
+}
+
+body.dark-mode .cartaprecio {
+    color: #E0E0E0;
 }
 
 .card a {
