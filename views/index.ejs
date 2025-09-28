@@ -7,8 +7,11 @@
     <%- include('./partials/header.ejs') %>
 
       <main>
+        <div class="mensaje">
+          <h6>Aprovecha nuestros envios gratis a todo el pais 🚚📦</h6>
+        </div>
 
-        <div id="carouselExampleCaptions" class="carousel slide">
+        <section id="carouselExampleCaptions" class="carousel slide">
           <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
               aria-current="true" aria-label="Slide 1"></button>
@@ -50,39 +53,44 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
-        </div>
+        </section>
 
-        <section class="cards-section">
-          <div class="card-container">
-            <div class="card">
-              <img src="/images/carta3.JPG" alt="Descripción de la imagen 1">
-              <h3>Diseño que ilumina tu espacio</h3>
+        <section class="info">
+          <div class="bloque">
+            <h3>Diseño que ilumina tu espacio</h3>
+            <div class="contenido">
+              <img src="/images/carta3.JPG" alt="">
               <p>Descubrí nuestras lámparas pensadas para combinar estilo y funcionalidad. Cada pieza resalta tu
                 ambiente
                 con una luz cálida y envolvente.</p>
             </div>
+          </div>
 
-            <div class="card">
-              <img src="/images/carta2.JPG" alt="Descripción de la imagen 2">
-              <h3>Calidad en cada detalle</h3><br>
+          <div class="bloque">
+            <h3>Calidad en cada detalle</h3>
+            <div class="contenido">
               <p>Seleccionamos cuidadosamente cada elemento para asegurar durabilidad y estética. Así se construyen
                 productos que se sienten y se ven bien.</p>
-            </div>
+              <img src="/images/carta2.JPG" alt="">
 
-            <div class="card">
-              <img src="/images/products/lamp9a.png" alt="Descripción de la imagen 3">
-              <h3>Creaciones con identidad propia</h3>
-              <p>Diseñamos y armamos modelos exclusivos que no vas a encontrar en otro lugar. Originalidad y pasión en
-                cada
-                lámpara.</p>
             </div>
           </div>
+
+          <div class="bloque">
+            <h3>Creaciones con identidad propia</h3>
+            <div class="contenido">
+              <img src="/images/products/lamp9a.png" alt="">
+              <p>Diseñamos y armamos modelos exclusivos que no vas a encontrar en otro lugar. Originalidad y pasión en
+                cada lámpara.</p>
+            </div>
+          </div>
+
         </section>
 
       </main>
 
       <%- include('./partials/footer.ejs') %>
-      <%- include('./partials/scripts.ejs') %>
+        <%- include('./partials/scripts.ejs') %>
 
   </body>
 

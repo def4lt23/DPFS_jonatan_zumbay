@@ -7,24 +7,24 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true
         },
         name: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(100),
             allowNull: false
         },
         description: {
-            type: DataTypes.STRING
+            type: DataTypes.TEXT
         },
         modelid: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.INTEGER
         },
         price: {
             type: DataTypes.DECIMAL(10, 2).UNSIGNED,
             allowNull: false
         },
         colorid: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.INTEGER
         },
         size: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(20),
         },
         stock: {
             type: DataTypes.INTEGER,

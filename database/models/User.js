@@ -7,35 +7,35 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true
         },
         name: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(100),
             allowNull: false
         },
         lastname: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(100),
             allowNull: false
         },
         email: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(100),
             allowNull: false
         },
         user: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(100),
             allowNull: false
         },
         pass: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING(100)
         },
         numberphone: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING(20)
         },
         addres: {
-            type: DataTypes.STRING
+            type: DataTypes.TEXT
         },
         rol: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING(20)
         },
         avatar: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING(255)
         },
         registerday: {
             type: DataTypes.DATE,
