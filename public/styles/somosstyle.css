@@ -1,9 +1,46 @@
-body h1 {
-    text-align: center; 
-    margin-top: 20px;
-    font-size: 2rem; 
-
+.titulo {
+  text-align: center; /* centra cualquier inline-block dentro */
 }
+
+.titulo h1 {
+  position: relative; /*necesario para resaltar titulo*/
+  display: inline-block; /* ancho solo del texto */
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.titulo h1::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.1em;
+  width: 100%;
+  height: 40%;
+  background: #2ECC71;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: resaltar 1s ease forwards;
+  animation-delay: 0.8s; /* empieza medio segundo despues */
+}
+
+body.dark-mode .titulo{
+    color: #fafafa;
+}
+
+
+body.dark-mode {
+    background-color: #121212;
+}
+
+.bloques {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centra horizontalmente */
+  gap: 1rem; /* espacio entre bloques */
+  margin-top: 2rem;
+}
+
 /*contenedor de imagen y texto*/
 .contenedor { 
     display: flex; 
@@ -11,35 +48,25 @@ body h1 {
     justify-content: center; 
     align-items: center;
     padding: 40px 20px; 
-    max-width: 1200px; 
-    margin: 0 auto;
+    max-width: 1200px;
     gap: 40px; 
-    margin: 40px auto;
     border: 3px solid #2ECC71;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1rem;
 }
 
-body.dark-mode .contenedor,
-body.dark-mode .contenedor2 {
+body.dark-mode .contenedor{
     background-color: #1E1E1E;
-    border-color: #333333;
 }
 
-.contenedor:hover,
-.contenedor2:hover {
+.contenedor:hover{
   box-shadow: 0 8px 20px rgba(0, 191, 255, 0.15);
 }
 
 body.dark-mode .contenedor .texto p{
     color: #E0E0E0;
 }
-
-body.dark-mode {
-    background: radial-gradient(circle at top left, #121212, #1E1E1E);
-    color: #E0E0E0;
-}
-
 
 .contenedor .imagen {
     flex: 1; /* Permite que este div ocupe espacio y se estire */
@@ -68,22 +95,6 @@ body.dark-mode {
     line-height: 1.6; /* Espacio entre lineas */
     color: #333; 
     margin-bottom: 15px; 
-}
-
-.contenedor2 {
-    display: flex; 
-    flex-direction: row; /* Elementos en fila */
-    justify-content: center; 
-    align-items: center; 
-    padding: 40px 20px; 
-    max-width: 1200px; 
-    margin: 0 auto; 
-    gap: 40px; 
-    min-height: 500px; 
-    margin: 40px auto; 
-    border: 3px solid #2ECC71;
-    border-radius: 10px; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 
@@ -132,6 +143,12 @@ body.dark-mode {
     aspect-ratio: 16 / 9; /* Mantiene una relación de aspecto 16:9 (ancho/alto) */
     border-radius: 8px; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+@keyframes resaltar {
+  to {
+    transform: scaleX(1);
+  }
 }
 
 /* responsive */

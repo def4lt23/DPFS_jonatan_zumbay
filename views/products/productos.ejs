@@ -4,88 +4,92 @@
 
     <body>
         <%- include('../partials/header.ejs') %>
-            <div class="contenedor_titulo">
-            <h1>TODOS NUESTROS PRODUCTOS</h1>
-            <h6>💲 Valor de los precios en pesos argentinos 💲</h6>
-            </div>
-            <div class="contenedor">
-                <div class="filtro">
-                    <p>FILTROS</p>
-                    <div class="checkbox-group desktop-only">
-                        <label>
-                            <input type="checkbox" name="tipo" value="tipo1"> Lamparas Instrumentales
-                        </label>
-                        <label>
-                            <input type="checkbox" name="tipo" value="tipo2"> Lamparas Monumentos
-                        </label>
-                        <label>
-                            <input type="checkbox" name="tipo" value="tipo3"> Nuevos Modelos
-                        </label>
-                    </div>
-
-                    <div class="select-container mobile-only-types">
-                        <select id="tipo-lampara-movil" name="tipo_lampara_movil">
-                            <option value="">-- Selecciona un tipo --</option>
-                            <option value="tipo1">Lamparas Instrumentales</option>
-                            <option value="tipo2">Lamparas Monumentos</option>
-                            <option value="tipo3">Nuevos Modelos</option>
-                        </select>
-                    </div>
-
-                    <div class="select-container order-by-select">
-                        <select id="tipo-lampara" name="tipo_lampara">
-                            <option value="">-- Ordenar por --</option>
-                            <option value="futurista">Precio Mayor a Menor</option>
-                            <option value="abstracta">Precio Menor a Mayor</option>
-                            <option value="monumento">Mas Vendidas</option>
-                            <option value="marca">A - Z</option>
-                        </select>
-                    </div>
-
-                    <button class="boton-aplicar" type="submit">Aplicar</button>
-
+            <main>
+                <div class="contenedor_titulo">
+                    <h1>TODOS NUESTROS PRODUCTOS</h1>
+                    <h6>💲 Valor de los precios en pesos argentinos 💲</h6>
                 </div>
-
-                <div class="cartas">
-                    <% productosjs.forEach(prodi=> { %>
-                        <div class="card">
-                            <div class="product-image-slider">
-                                <button class="slider-btn prev-btn">&lt;</button>
-                                <div class="image-wrapper">
-                                    <!-- recorrer las imagenes de cada producto -->
-                                    <% prodi.imagen.forEach((img, index)=> { %>
-                                        <img src="/images/products/<%= img %>" alt="Imagen <%= index + 1 %>"
-                                            class="<%= index === 0 ? 'active-image' : '' %>">
-                                        <% }) %>
-                                </div>
-                                <button class="slider-btn next-btn">&gt;</button>
-                            </div>
-                            <h3>
-                                <%= prodi.nombre %>
-                            </h3>
-                            <p class="cartadescrip">
-                                <%= prodi.descripcion %>
-                            </p>
-                            <p class="cartaprecio">
-                                Precio: $<%= prodi.precio %>
-                            </p>
-                            <a href="/products/detalle/<%= prodi.id %>" class="btn-ver-detalles">Ver Detalles</a>
+                <div class="contenedor">
+                    <div class="filtro">
+                        <p>FILTROS</p>
+                        <div class="checkbox-group desktop-only">
+                            <label>
+                                <input type="checkbox" name="tipo" value="tipo1"> Lamparas Instrumentales
+                            </label>
+                            <label>
+                                <input type="checkbox" name="tipo" value="tipo2"> Lamparas Monumentos
+                            </label>
+                            <label>
+                                <input type="checkbox" name="tipo" value="tipo3"> Nuevos Modelos
+                            </label>
                         </div>
-                        <% }) %>
+
+                        <div class="select-container mobile-only-types">
+                            <select id="tipo-lampara-movil" name="tipo_lampara_movil">
+                                <option value="">-- Selecciona un tipo --</option>
+                                <option value="tipo1">Lamparas Instrumentales</option>
+                                <option value="tipo2">Lamparas Monumentos</option>
+                                <option value="tipo3">Nuevos Modelos</option>
+                            </select>
+                        </div>
+
+                        <div class="select-container order-by-select">
+                            <select id="tipo-lampara" name="tipo_lampara">
+                                <option value="">-- Ordenar por --</option>
+                                <option value="futurista">Precio Mayor a Menor</option>
+                                <option value="abstracta">Precio Menor a Mayor</option>
+                                <option value="monumento">Mas Vendidas</option>
+                                <option value="marca">A - Z</option>
+                            </select>
+                        </div>
+
+                        <button class="boton-aplicar" type="submit">Aplicar</button>
+
+                    </div>
+
+                    <div class="cartas">
+                        <% productosjs.forEach(prodi=> { %>
+                            <div class="card">
+                                <div class="product-image-slider">
+                                    <h3>
+                                        <%= prodi.nombre %>
+                                    </h3>
+                                    <div class="image-wrapper">
+                                        <!-- recorrer las imagenes de cada producto -->
+                                        <% prodi.imagen.forEach((img, index)=> { %>
+                                            <img src="/images/products/<%= img %>" alt="Imagen <%= index + 1 %>"
+                                                class="<%= index === 0 ? 'active-image' : '' %>">
+                                            <% }) %>
+                                    </div>
+                                    <!-- Botones debajo de la imagen -->
+                                    <div class="slider-controls">
+                                        <button class="slider-btn prev-btn"><i class="fa-solid fa-backward-step"></i></button>
+                                        <button class="slider-btn favorito">
+                                            <i class="far fa-heart"></i>
+                                        </button>
+                                        <button class="slider-btn next-btn"><i class="fa-solid fa-forward-step"></i></button>
+                                    </div>
+                                </div>
+
+                                <p class="cartaprecio">
+                                    Precio: $<%= prodi.precio %>
+                                </p>
+                                <a href="/products/detalle/<%= prodi.id %>" class="btn-ver-detalles">Ver Detalles</a>
+                            </div>
+                            <% }) %>
+                    </div>
 
                 </div>
 
-            </div>
-
-            <% if (userLogged.rol==="administrador" ) { %>
-                <div class="contenedor_boton_admin">
-                    <a class="botonadmin" href="/products/crearprod">AÑADIR UN PRODUCTO (ADMIN)</a>
-                    <a class="botonadmin" href="/products/editarPropiedad">EDITAR PROPIEDADES (ADMIN)</a>
-                </div>
-                <% } %>
-
-                    <%- include('../partials/footer.ejs') %>
-                        <%- include('../partials/scripts.ejs') %>
+                <% if (userLogged.rol==="administrador" ) { %>
+                    <div class="contenedor_boton_admin">
+                        <a class="botonadmin" href="/products/crearprod">AÑADIR UN PRODUCTO (ADMIN)</a>
+                        <a class="botonadmin" href="/products/editarPropiedad">EDITAR PROPIEDADES (ADMIN)</a>
+                    </div>
+                    <% } %>
+            </main>
+            <%- include('../partials/footer.ejs') %>
+                <%- include('../partials/scripts.ejs') %>
     </body>
 
 </html>

@@ -42,7 +42,7 @@
 }
 
 body.dark-mode .bloque {
-    background: #121212;
+    background: #1E1E1E;
 }
 
 .bloque h3 {
@@ -85,15 +85,14 @@ body.dark-mode .bloque h3 {
   text-align: center;
 }
 
-.mensaje h6 {
+.mensaje h4 {
   display: inline-block;
   position: relative;
-  font-size: 1rem;
   font-weight: bold;
   padding: 0 0.4em;
 }
 
-.mensaje h6::before {
+.mensaje h4::before {
   content: "";
   position: absolute;
   left: 0;

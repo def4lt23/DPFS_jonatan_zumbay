@@ -5,40 +5,49 @@
     <body>
         <%- include('../partials/header.ejs') %>
 
-            <body>
-                <h1>ACERCA DE NOSOTROS</h1>
-                <div class="contenedor">
-                    <div class="imagen">
-                        <img src="/images/portada1.png" alt="">
-                    </div>
-                    <div class="texto">
-                        <p>Somos una empresa dedicada a la venta de productos de iluminación LED, con el objetivo de
-                            ofrecer soluciones eficientes y sostenibles para el hogar y la industria. Nuestro compromiso
-                            es brindar productos de alta calidad que no solo iluminen, sino que también contribuyan al
-                            cuidado del medio ambiente.</p>
-                        <p>En LUZIFY, creemos en la innovación y la tecnología como pilares fundamentales para mejorar
-                            la calidad de vida de nuestros clientes. Nos esforzamos por ofrecer un servicio excepcional
-                            y asesoramiento personalizado para ayudar a nuestros clientes a encontrar las mejores
-                            soluciones de iluminación.</p>
-                    </div>
+            <main>
+                <div class="titulo">
+                    <h1>ACERCA DE NOSOTROS</h1>
                 </div>
+                <section class="bloques">
+                    <div class="contenedor">
+                        <div class="imagen">
+                            <img src="/images/portada1.png" alt="">
+                        </div>
+                        <div class="texto">
+                            <p>Somos una empresa dedicada a la venta de productos de iluminación LED, con el objetivo de
+                                ofrecer soluciones eficientes y sostenibles para el hogar y la industria. Nuestro
+                                compromiso
+                                es brindar productos de alta calidad que no solo iluminen, sino que también contribuyan
+                                al
+                                cuidado del medio ambiente.</p>
+                            <p>En LUZIFY, creemos en la innovación y la tecnología como pilares fundamentales para
+                                mejorar
+                                la calidad de vida de nuestros clientes. Nos esforzamos por ofrecer un servicio
+                                excepcional
+                                y asesoramiento personalizado para ayudar a nuestros clientes a encontrar las mejores
+                                soluciones de iluminación.</p>
+                        </div>
+                    </div>
 
-                <div class="contenedor2">
-                    <div class="textoubicacion">
-                        <p>Nuestro local esta ubicado en pleno centro de la ciudad de San Salvador de Jujuy, Frente la
-                            plaza central, sobre calle San Martin Nro. 450 (entre calles Sarmiento y Gorriti)</p>
+                    <div class="contenedor">
+                        <div class="textoubicacion">
+                            <p>Nuestro local esta ubicado en pleno centro de la ciudad de San Salvador de Jujuy, Frente
+                                la
+                                plaza central, sobre calle San Martin Nro. 450 (entre calles Sarmiento y Gorriti)</p>
+                        </div>
+                        <div class="mapa">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d765.1255162130434!2d-65.29940874651152!3d-24.186779624310404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941b0f436f4d8e83%3A0x8007c7e28ea5e82!2sPalacio%20de%20Gobierno%20de%20Jujuy!5e0!3m2!1ses!2sar!4v1753159778419!5m2!1ses!2sar"
+                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
                     </div>
-                    <div class="mapa">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d765.1255162130434!2d-65.29940874651152!3d-24.186779624310404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941b0f436f4d8e83%3A0x8007c7e28ea5e82!2sPalacio%20de%20Gobierno%20de%20Jujuy!5e0!3m2!1ses!2sar!4v1753159778419!5m2!1ses!2sar"
-                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div>
-            </body>
+                </section>
+            </main>
 
             <%- include('../partials/footer.ejs') %>
-            <%- include('../partials/scripts.ejs') %>
+                <%- include('../partials/scripts.ejs') %>
     </body>
 
 </html>

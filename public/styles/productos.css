@@ -1,177 +1,196 @@
-body h1, h6 {
-     text-align: center; 
-     margin-top: 20px;
-     font-size: 2rem;
- }  
+.contenedor_titulo {
+  text-align: center; /* centra todo lo inline o inline-block dentro */
+}
+
+.contenedor_titulo h1 {
+  display: inline-block; /* ancho solo del texto */
+  margin: 0;             /* eliminar margen predeterminado */
+  position: relative;
+  font-size: 2.5rem;
+}
+
+.contenedor_titulo h1::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.1em;
+  width: 100%;
+  height: 40%;
+  background: #2ECC71;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: resaltar 1s ease forwards;
+  animation-delay: 0.8s; /* empieza medio segundo despues */
+}
 
 /* Contenedor principal de filtros y productos */
 .contenedor {
-    display: flex; /* colocar filtros y cartas lado a lado */
-    justify-content: space-between; /* Distribuye el espacio entre los ítems (filtro y cartas) */
-    align-items: flex-start; /* Alinea los Items al inicio en el eje transversal (arriba) */
-    max-width: 1600px; 
-    margin: 10px auto; 
-    padding: 10px; 
-    gap: 30px; 
+  display: flex; /* colocar filtros y cartas lado a lado */
+  justify-content: space-between; /* Distribuye el espacio entre los ítems (filtro y cartas) */
+  align-items: flex-start; /* Alinea los Items al inicio en el eje transversal (arriba) */
+  max-width: 1600px;
+  margin: 10px auto;
+  padding: 10px;
+  gap: 30px;
 }
 
 body.dark-mode .contenedor {
-    background: #121212;
+  background: #121212;
 }
 
 body.dark-mode .contenedor_titulo {
-    background: #121212;
-    color: #E0E0E0;
+  background: #121212;
+  color: #e0e0e0;
 }
 
 body.dark-mode {
-    background: #121212;
+  background: #121212;
 }
 
 /* Control de visibilidad para elementos responsive */
 .mobile-only-types {
-    display: none; /* Oculto en pantallas grandes */
+  display: none; /* Oculto en pantallas grandes */
 }
-
 
 /* Estilos para el panel de filtros */
 .filtro {
-    flex: 0 0 250px; /* No crece, no se encoge, tiene un ancho base */
-    width: 20%; 
-    padding: 25px 20px; /* Padding interno para el contenido del filtro */
-    background-color: #f8f8f8; 
-    border-radius: 8px; 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); 
-    border-right: 1px solid #e0e0e0; /* LInea separadora a la derecha */
-    box-sizing: border-box; /* el padding no aumente el tamaño total */
-    min-width: 180px; /* para que los filtros no se compriman demasiado */
+  flex: 0 0 250px; /* No crece, no se encoge, tiene un ancho base */
+  width: 20%;
+  padding: 25px 20px; /* Padding interno para el contenido del filtro */
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-right: 1px solid #e0e0e0; /* LInea separadora a la derecha */
+  box-sizing: border-box; /* el padding no aumente el tamaño total */
+  min-width: 180px; /* para que los filtros no se compriman demasiado */
 }
 
 body.dark-mode .filtro p {
-    color: #E0E0E0;
+  color: #e0e0e0;
 }
 
 body.dark-mode .filtro {
-    background-color: #1E1E1E;
-    border-color: #333333;
-    color: #E0E0E0;
+  background-color: #1e1e1e;
+  border-color: #333333;
+  color: #e0e0e0;
 }
 
 .filtro p {
-    font-size: 1.3rem; 
-    font-weight: bold; 
-    color: #333; 
-    margin-bottom: 25px;
-    text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
 /* Estilo para el grupo de checkboxes */
 .checkbox-group {
-    display: flex; /* organizar los elementos internos */
-    flex-direction: column; /* Apila los checkboxes verticalmente */
-    gap: 15px; 
-    margin-bottom: 25px; 
+  display: flex; /* organizar los elementos internos */
+  flex-direction: column; /* Apila los checkboxes verticalmente */
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
 .checkbox-group label {
-    display: flex; /* alinear checkbox y texto */
-    align-items: center; 
-    font-size: 1rem; 
-    color: #555; 
-    cursor: pointer; 
+  display: flex; /* alinear checkbox y texto */
+  align-items: center;
+  font-size: 1rem;
+  color: #555;
+  cursor: pointer;
 }
 
 .checkbox-group input[type="checkbox"] {
-    margin-right: 8px; 
-    transform: scale(1.1); /* Agranda un poco el checkbox */
-    accent-color: #00BFFF; /* Color del checkbox cuando esta marcado */
+  margin-right: 8px;
+  transform: scale(1.1); /* Agranda un poco el checkbox */
+  accent-color: #00bfff; /* Color del checkbox cuando esta marcado */
 }
 
 /* contenedor del selector */
 .select-container {
-    margin-top: 25px; 
-    margin-bottom: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 .select-container label {
-    display: block; /* el label ocupe su propia linea */
-    margin-bottom: 8px; 
-    font-size: 1rem; 
-    color: #555; 
-    font-weight: bold; 
+  display: block; /* el label ocupe su propia linea */
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #555;
+  font-weight: bold;
 }
 
 .select-container select {
-    width: 100%; /* ocupa todo el ancho disponible */
-    padding: 10px; 
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-    font-size: 1rem; 
-    background-color: #fff; 
-    appearance: none; /* Quita el estilo por defecto del navegador */
-    -webkit-appearance: none; /* **AÑADIDO**: Para Safari */
-    -moz-appearance: none; /* **AÑADIDO**: Para Firefox */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.1%203.2-15.6%208.1-3.6%204.9-3.3%2011.8.8%2016.7l128%20140.1c4.5%205%2011.2%207.7%2018.3%207.7s13.8-2.7%2018.3-7.7l128-140.1c4.1-4.9%204.4-11.8.9-16.7z%22%2F%3E%3C%2Fsvg%3E'); /* Icono de flecha personalizado */
-    background-repeat: no-repeat; /* No repetir el icono */
-    background-position: right 10px top 50%; /* Posiciona el icono */
-    background-size: 12px auto; /* Tamaño del icono */
-    cursor: pointer; 
+  width: 100%; /* ocupa todo el ancho disponible */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #fff;
+  appearance: none; /* Quita el estilo por defecto del navegador */
+  -webkit-appearance: none; /* **AÑADIDO**: Para Safari */
+  -moz-appearance: none; /* **AÑADIDO**: Para Firefox */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.1%203.2-15.6%208.1-3.6%204.9-3.3%2011.8.8%2016.7l128%20140.1c4.5%205%2011.2%207.7%2018.3%207.7s13.8-2.7%2018.3-7.7l128-140.1c4.1-4.9%204.4-11.8.9-16.7z%22%2F%3E%3C%2Fsvg%3E"); /* Icono de flecha personalizado */
+  background-repeat: no-repeat; /* No repetir el icono */
+  background-position: right 10px top 50%; /* Posiciona el icono */
+  background-size: 12px auto; /* Tamaño del icono */
+  cursor: pointer;
 }
 
 body.dark-mode .select-container select {
-    background-color: #2E2E2E;
-    border-color: #555;
-    color: #E0E0E0;
+  background-color: #2e2e2e;
+  border-color: #555;
+  color: #e0e0e0;
 }
 
 /* boton aplicar */
 .boton-aplicar {
-    display: block; /* Ocupa todo el ancho disponible */
-    width: 100%; 
-    padding: 12px 20px; 
-    background-color: #2ECC71; 
-    color: white; 
-    border: none; 
-    border-radius: 5px; 
-    font-size: 1.1rem; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease; /* Transicion suave al pasar el cursor */
+  display: block; /* Ocupa todo el ancho disponible */
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transicion suave al pasar el cursor */
 }
 
 .boton-aplicar:hover {
-    background-color: #27AE60;
+  background-color: #27ae60;
 }
 
 /* cartas */
 .cartas {
-    display: flex; /* Usa Flexbox para organizar las cartas */
-    flex-wrap: wrap; /* Permite que las cartas salten a la siguiente linea en pantallas pequeñas */
-    justify-content: center; 
-    gap: 20px; 
-    max-width: 1200px; 
-    margin: 40px auto; /* Centra el contenedor de cartas en la pagina y le da margen para separarlo de otras secciones */
-    padding: 20px; 
-    margin-top: 0px;
+  display: flex; /* Usa Flexbox para organizar las cartas */
+  flex-wrap: wrap; /* Permite que las cartas salten a la siguiente linea en pantallas pequeñas */
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 40px auto; /* Centra el contenedor de cartas en la pagina y le da margen para separarlo de otras secciones */
+  padding: 20px;
+  margin-top: 0px;
 }
 
 /* Estilos para cada carta indivudual */
 .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 
-    min-height: 400px;
-    border: 1px solid #dee2e6; 
-    border-radius: 8px; 
-    padding: 20px; 
-    background-color: #ffffff; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    flex: 1 1 300px; /*  Permite que las cartas crezcan, se encojan y tengan una base de 300px */
-    max-width: 350px; 
-    text-align: center; 
-    box-sizing: border-box; /* Asegura que el padding y el border no aumenten el tamaño total */
-    position: relative; 
-    overflow: hidden; /* Asegura que las imagenes fuera de vista esten ocultas */
+  min-height: 400px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1 1 300px; /*  Permite que las cartas crezcan, se encojan y tengan una base de 300px */
+  max-width: 350px;
+  text-align: center;
+  box-sizing: border-box; /* Asegura que el padding y el border no aumenten el tamaño total */
+  position: relative;
+  overflow: hidden; /* Asegura que las imagenes fuera de vista esten ocultas */
 }
 
 .card:hover {
@@ -179,293 +198,331 @@ body.dark-mode .select-container select {
 }
 
 body.dark-mode .card {
-    background-color: #1E1E1E;
-    border-color: #333333;
-    color: #E0E0E0;
+  background-color: #1e1e1e;
+  border-color: #333333;
+  color: #e0e0e0;
 }
 
-body.dark-mode .card h3  {
-    color: #E0E0E0;
+body.dark-mode .card h3 {
+  color: #e0e0e0;
 }
 
 body.dark-mode .cartaprecio {
-    color: #E0E0E0;
+  color: #e0e0e0;
 }
 
 .card a {
-    text-decoration: none; /* Quita el subrayado de los enlaces */
+  text-decoration: none; /* Quita el subrayado de los enlaces */
 }
 
 /* mini-carrusel de img dentro de la carta */
 .product-image-slider {
-    position: relative;
-    width: 100%;
-    height: 200px; 
-    overflow: hidden; /* Oculta las img que no esten visibles */
-    margin-bottom: 15px; 
-    aspect-ratio: 1 / 1;
+  position: relative;
+  width: 100%;
+  /* height: 250px; */ /* <-- comentamos o eliminamos */
+  overflow: hidden; /* <-- antes estaba hidden */
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column; /* apila imagen + botones */
+  align-items: center;
 }
 
 /* Contenedor interno para las img */
 .product-image-slider .image-wrapper {
-    display: flex; 
-    width: 100%; 
-    height: 100%;
-    transition: transform 0.5s ease-in-out; /* Animacion de desplazamiento suave */
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out; /* Animacion de desplazamiento suave */
 }
 
 /* Estilos para las img individuales dentro del slider */
 .product-image-slider img {
-    min-width: 100%;
-    height: 200px;
-    object-fit: contain; /* Recorta la imagen para que cubra el espacio sin deformarse */
-    border-radius: 4px;
-    display: block; /* Elimina espacios extra que pueden aparecer con img */
+  min-width: 100%;
+  height: 200px;
+  object-fit: contain; /* Recorta la imagen para que cubra el espacio sin deformarse */
+  border-radius: 4px;
+  display: block; /* Elimina espacios extra que pueden aparecer con img */
+}
+
+.slider-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px; /* separa los botones del slider */
+  position: relative; /* los hace visibles fuera del overflow */
+  z-index: 10;
 }
 
 /* botones de navegacion del slider */
+.slider-controls {
+  display: flex;
+  justify-content: center; /* centra los botones horizontalmente */
+  gap: 15px; /* espacio entre los botones */
+  margin: 10px 0; /* espacio arriba y abajo */
+}
+
+/* Botones del slider */
 .slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 1.2em;
-    z-index: 2; /* Asegura que los botones estén por encima de las img */
-    border-radius: 50%; /* Botones redondos */
-    transition: background-color 0.3s ease; /* Transicion suave para el hover */
+  position: static; /* ya no absoluto */
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .slider-btn:hover {
-    background-color: rgba(0, 0, 0, 0.7); /* Oscurece al pasar el cursor */
+  background-color: #27ae60;
+  transform: translateY(-2px);
 }
 
-/* Posicionamiento del botón "anterior" */
-.prev-btn {
-    left: 10px;
-}
-
-/* Posicionamiento del botón "siguiente" */
+/* Eliminamos left y right porque ya no es absoluto */
+.prev-btn,
 .next-btn {
-    right: 10px;
+  left: unset;
+  right: unset;
 }
 
 /* titulos de las cartas */
 .card h3 {
-    font-size: 1.5rem; 
-    color: #343a40; 
-    margin-bottom: 10px; 
+  font-size: 1.5rem;
+  color: #343a40;
+  margin-bottom: 10px;
 }
 
 /* Parrafos de las cartas */
 .card p {
-    font-size: 1rem; 
-    color: #6c757d; 
-    line-height: 1.5; /* Espacio entre lineas para mejor lectura */
-    margin-bottom: 15px; 
-}
-
-/* descripcion de las cartas*/
-.cartadescrip {
-  min-height: 100px; /* ajustá para que todas las descripciones ocupen el mismo alto */
+  font-size: 1rem;
+  color: #6c757d;
+  line-height: 1.5; /* Espacio entre lineas para mejor lectura */
 }
 
 .cartaprecio {
-    min-height: 50px;
-    font-weight: bold;
+  font-weight: bold;
 }
 
 /* Boton opcional de "Ver Detalles" dentro de la carta */
 .btn-ver-detalles {
-    background-color: #2ECC71;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    
-    margin-top: auto;        /* empuja al fondo */
-    margin-bottom: 10px;     /* separa del borde inferior */
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  margin-top: auto; /* empuja al fondo */
+  margin-bottom: 10px; /* separa del borde inferior */
 }
 
 .btn-ver-detalles:hover {
-    background-color: #27AE60;
-    transform: translateY(-2px); /* Pequeño efecto al pasar el cursor */
+  background-color: #27ae60;
+  transform: translateY(-2px); /* Pequeño efecto al pasar el cursor */
 }
 
 .contenedor_boton_admin {
-    text-align: center; /* Centra el botón horizontalmente */
-    margin: 20px auto; /* Espacio arriba y abajo del botón */
-    max-width: 800px; /* Limita el ancho máximo del contenedor */
-    display: flex;
-    justify-content: center;
+  text-align: center; /* Centra el botón horizontalmente */
+  margin: 20px auto; /* Espacio arriba y abajo del botón */
+  max-width: 800px; /* Limita el ancho máximo del contenedor */
+  display: flex;
+  justify-content: center;
 }
 
 .botonadmin {
-    background-color: #cc462e; 
-    color: white;
-    padding: 10px;
-    border: none; 
-    border-radius: 25px; 
-    cursor: pointer; 
-    font-size: 1rem; 
-    transition: background-color 0.3s ease; /* transicion al pasar el mouse */
-    width: 100%; 
-    max-width: 200px; 
-    box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
-    align-self: center;
-    margin: 5px;
-    text-decoration: none; /* Quita el subrayado del enlace */
+  background-color: #cc462e;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease; /* transicion al pasar el mouse */
+  width: 100%;
+  max-width: 200px;
+  box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
+  align-self: center;
+  margin: 5px;
+  text-decoration: none; /* Quita el subrayado del enlace */
 }
 
 .botonadmin:hover {
-    background-color: #802c1d;
+  background-color: #802c1d;
+}
+
+@keyframes resaltar {
+  to {
+    transform: scaleX(1);
+  }
 }
 
 /* responsive ajustes de cartas */
 @media (max-width: 992px) {
+  .contenedor {
+    flex-direction: column; /* Apila el filtro y las cartas verticalmente */
+    align-items: center;
+    padding: 15px;
+    gap: 25px;
+  }
 
-    .contenedor {
-        flex-direction: column; /* Apila el filtro y las cartas verticalmente */
-        align-items: center; 
-        padding: 15px; 
-        gap: 25px; 
-    }
+  .filtro {
+    width: 100%; /* ahora ocupa todo el ancho disponible */
+    max-width: 600px; /* Limita su ancho para que no se vea demasiado estirado en tablets */
+    border-right: none; /* Quita la línea separadora vertical de escritorio */
+    border-bottom: 1px solid #e0e0e0; /* Añade una línea horizontal como separador */
+    padding: 20px;
+    order: 1; /* Asegura que el filtro aparezca primero arriba */
 
-    .filtro {
-        width: 100%; /* ahora ocupa todo el ancho disponible */
-        max-width: 600px; /* Limita su ancho para que no se vea demasiado estirado en tablets */
-        border-right: none; /* Quita la línea separadora vertical de escritorio */
-        border-bottom: 1px solid #e0e0e0; /* Añade una línea horizontal como separador */
-        padding: 20px; 
-        order: 1; /* Asegura que el filtro aparezca primero arriba */
-        
-        display: flex; 
-        flex-wrap: wrap; /* elementos internos salten de linea */
-        justify-content: center; 
-        gap: 15px; 
-    }
+    display: flex;
+    flex-wrap: wrap; /* elementos internos salten de linea */
+    justify-content: center;
+    gap: 15px;
+  }
 
-    .filtro p {
-        width: 100%; 
-        margin-bottom: 15px;
-    }
+  .filtro p {
+    width: 100%;
+    margin-bottom: 15px;
+  }
 
-    /* Oculta los checkboxes en tablet y celualres */
-    .checkbox-group.desktop-only {
-        display: none;
-    }
+  /* Oculta los checkboxes en tablet y celualres */
+  .checkbox-group.desktop-only {
+    display: none;
+  }
 
-    /* Muestra el select de tipos de lamparas en tablet y celulares */
-    .mobile-only-types {
-        display: block; /* Muestra el select que estaba oculto */
-        flex: 1 1 45%; /* Permite que ocupe casi la mitad del ancho del filtro */
-        max-width: 250px; 
-        margin-bottom: 0; 
-    }
-    
-    /* Ajusta el select de ordenar por, para que este al lado del de tipos */
-    .select-container.order-by-select {
-        flex: 1 1 45%; /* Permite que ocupe casi la mitad del ancho del filtro */
-        max-width: 250px; 
-        margin-bottom: 0;
-    }
+  /* Muestra el select de tipos de lamparas en tablet y celulares */
+  .mobile-only-types {
+    display: block; /* Muestra el select que estaba oculto */
+    flex: 1 1 45%; /* Permite que ocupe casi la mitad del ancho del filtro */
+    max-width: 250px;
+    margin-bottom: 0;
+  }
 
-    /* Ajusta el boton */
-    .boton-aplicar {
-        width: 100%; 
-        max-width: 300px; 
-        margin-top: 15px; 
-    }
+  /* Ajusta el select de ordenar por, para que este al lado del de tipos */
+  .select-container.order-by-select {
+    flex: 1 1 45%; /* Permite que ocupe casi la mitad del ancho del filtro */
+    max-width: 250px;
+    margin-bottom: 0;
+  }
 
-    .cartas {
-        width: 100%; 
-        padding-left: 0;
-        order: 2; /* Asegura que las cartas aparezcan despues del filtro */
-    }
+  /* Ajusta el boton */
+  .boton-aplicar {
+    width: 100%;
+    max-width: 300px;
+    margin-top: 15px;
+  }
 
-    .card {
-        flex: 1 1 45%; /* Para que en tablets se muestren dos cartas por fila */
-        max-width: 400px; 
-    }
+  .cartas {
+    width: 100%;
+    padding-left: 0;
+    order: 2; /* Asegura que las cartas aparezcan despues del filtro */
+  }
 
-    .product-image-slider {
-        height: 200px; /* Ajusta la altura del slider en celulares si es necesario */
-    }
+  .card {
+    flex: 1 1 45%; /* Para que en tablets se muestren dos cartas por fila */
+    max-width: 400px;
+  }
 
-    .slider-btn {
-        padding: 6px 10px; /* Botones mas pequeños en celulares */
-        font-size: 1em;
-    }
+  .product-image-slider {
+    height: auto; /* Ajusta la altura del slider en celulares si es necesario */
+  }
+
+  .image-wrapper {
+    height: auto; /* deja que las imágenes definan la altura */
+  }
+
+  .product-image-slider img {
+    height: auto; /* no forzar el 100%, mantiene proporción */
+    max-height: 250px; /* evita que crezcan demasiado */
+    width: 100%; /* ocupa todo el ancho */
+  }
+
+  .slider-controls {
+    margin-top: 5px; /* separa los botones de la imagen */
+  }
+
+  .slider-btn {
+    padding: 6px 10px; /* Botones mas pequeños en celulares */
+    font-size: 1em;
+  }
 }
 
 /* responsive celulares */
 @media (max-width: 576px) {
-    .contenedor {
-        padding: 10px; 
-        gap: 20px;
-    }
+  .contenedor {
+    padding: 10px;
+    gap: 20px;
+  }
 
-    .filtro {
-        padding: 15px; 
-        flex: auto;
-        flex-direction: column; /* Apila los selects y el boton verticalmente */
-        align-items: center; 
-        gap: 10px; 
-        width: 100%; 
-        height: auto; 
-        box-sizing: border-box; /* Incluye padding y borde en el ancho/alto total del elemento */
-        min-width: unset; /* esto quita el min-width */
-    }
+  .filtro {
+    padding: 15px;
+    flex: auto;
+    flex-direction: column; /* Apila los selects y el boton verticalmente */
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box; /* Incluye padding y borde en el ancho/alto total del elemento */
+    min-width: unset; /* esto quita el min-width */
+  }
 
-    .filtro p {
-        font-size: 1.2rem; 
-        margin-bottom: 10px;
-    }
+  .filtro p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
 
-    .select-container.mobile-only-types,
-    .select-container.order-by-select,
-    .boton-aplicar {
-        width: 90%; 
-        max-width: 300px; 
-        margin: 0 auto; 
-    }
+  .select-container.mobile-only-types,
+  .select-container.order-by-select,
+  .boton-aplicar {
+    width: 90%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
 
-    
-    .mobile-only-types select,
-    .select-container.order-by-select select {
-        width: 100%;
-        box-sizing: border-box;
-    }
+  .mobile-only-types select,
+  .select-container.order-by-select select {
+    width: 100%;
+    box-sizing: border-box;
+  }
 
-    .cartas {
-        /* ajustamos el padding y margin para el contenedor de cartas en celulares */
-        padding: 15px; 
-        margin: 20px auto; 
-    }
+  .cartas {
+    /* ajustamos el padding y margin para el contenedor de cartas en celulares */
+    padding: 15px;
+    margin: 20px auto;
+  }
 
-    .card {
-        flex: 1 1 100%; /* ocupa todo el ancho de la pantalla */
-        max-width: 350px;
-        padding: 15px;
+  .card {
+    flex: 1 1 100%; /* ocupa todo el ancho de la pantalla */
+    max-width: 350px;
+    padding: 15px;
+  }
 
-    }
+  .card h3 {
+    font-size: 1.3rem;
+  }
 
-    .card h3 {
-        font-size: 1.3rem; 
-    }
+  .card p {
+    font-size: 0.9rem;
+  }
 
-    .card p {
-        font-size: 0.9rem; 
-    }
+  .product-image-slider {
+    height: auto;
+  }
 
-    .btn-ver-detalles {
-        font-size: 0.85rem; 
-        padding: 8px 12px;
-    }
+  .image-wrapper {
+    height: auto;
+  }
+
+  .product-image-slider img {
+    height: auto;
+    max-height: 200px; /* menor altura para móviles */
+    width: 100%;
+  }
+
+  .btn-ver-detalles {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
 }
