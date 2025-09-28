@@ -32,6 +32,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//mandar mensaje vacio al cargar por primera vez
+app.use((req, res, next) => {
+  res.locals.mensaje = req.session.mensaje || ''; // si existe, lo toma
+  delete req.session.mensaje; // lo borramos para que no aparezca otra vez
+  next();
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);

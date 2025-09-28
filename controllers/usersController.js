@@ -107,7 +107,8 @@ const userController = {
       usuariosjs.push(nuevoUsuario);
       const usuariosJson = JSON.stringify(usuariosjs, null, 2);
       fs.writeFileSync(usersPath, usuariosJson, "utf-8");
-      return res.redirect("/"); //redirecciono al home
+      req.session.mensaje = ' --> Cuenta creada exitosamente, intenta ingresar ahora'; //mostrar mensaje en el index
+      return res.redirect("/",); 
     } else {
       return res.render("users/registro.ejs", {
         //si las contraseñas no coinciden
