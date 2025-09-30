@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    userid: {
+    userId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       references: {
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     date: {
       type: DataTypes.DATE,
-      toDefaultValue: DataTypes.NOW, //se crea solo
+      defaultValue: DataTypes.NOW, //se crea solo
     },
     total: {
       type: DataTypes.DECIMAL(10, 2).UNSIGNED,
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     status: {
       type: DataTypes.STRING(50),
-      DefaultValue: false,
+      defaultValue: "pending",
     },
   };
 
@@ -36,5 +36,11 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   const Order = sequelize.define(alias, cols, config);
+
+  Order.associate = (models) => {
+    Order.belongsTo(models.User, { foreignKey: "userId", as: "user" });
+    Order.hasMany(models.OrderDetail, { foreignKey: "orderId", as: "items" });
+  };
+
   return Order;
 };

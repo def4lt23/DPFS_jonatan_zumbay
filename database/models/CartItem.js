@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    cartid: {
+    cartId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       references: {
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         key: "id",
       },
     },
-    productid: {
+    productId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       references: {
@@ -23,7 +23,9 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     quantity: {
-      type: DataTypes.INTEGER.UNSIGNED
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      defaultValue: 1,
     },
   };
 
@@ -33,5 +35,14 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   const CartItem = sequelize.define(alias, cols, config);
+
+  CartItem.associate = (models) => {
+    CartItem.belongsTo(models.Cart, { foreignKey: "cartId", as: "cart" });
+    CartItem.belongsTo(models.Product, {
+      foreignKey: "productId",
+      as: "product",
+    });
+  };
+
   return CartItem;
 };

@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    userid: {
+    userId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       references: {
@@ -18,11 +18,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     date: {
       type: DataTypes.DATE,
-      toDefaultValue: DataTypes.NOW, //se crea solo
+      defaultValue: DataTypes.NOW, //se crea solo
     },
     active: {
       type: DataTypes.BOOLEAN,
-      toDefaultValue: false,
+      defaultValue: false,
     },
   };
 
@@ -32,5 +32,11 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   const Cart = sequelize.define(alias, cols, config);
+
+  Cart.associate = (models) => {
+    Cart.belongsTo(models.User, { foreignKey: "userId", as: "user" });
+    Cart.hasMany(models.CartItem, { foreignKey: "cartId", as: "items" });
+  };
+
   return Cart;
 };

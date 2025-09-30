@@ -1,32 +1,39 @@
 const { FOREIGNKEYS } = require("sequelize/lib/query-types");
 
 module.exports = (sequelize, DataTypes) => {
-    const alias = "ProdImage";
-    const cols = {
-        id: {
-            type: DataTypes.INTEGER.UNSIGNED,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        product_id: {
-            type: DataTypes.INTEGER.UNSIGNED,
-            allowNull: false,
-            references: {
-                model: "products", // nombre de la tabla de productos
-                key: "id"
-            }
-        },
-        url: {
-            type: DataTypes.STRING(255),
-        }
-    }
+  const alias = "ProdImage";
+  const cols = {
+    id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    productId: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      references: {
+        model: "products", // nombre de la tabla de productos
+        key: "id",
+      },
+    },
+    url: {
+      type: DataTypes.STRING(255),
+    },
+  };
 
-    const config = {
-        tableName: "prodimages",
-        timestamps: false
-    }
+  const config = {
+    tableName: "prodimages",
+    timestamps: false,
+  };
 
-    const ProdImage = sequelize.define(alias, cols, config);
-    return ProdImage;
+  const ProdImage = sequelize.define(alias, cols, config);
 
-}
+  ProdImage.associate = (models) => {
+    ProdImage.belongsTo(models.Product, {
+      foreignKey: "productId",
+      as: "product",
+    });
+  };
+
+  return ProdImage;
+};

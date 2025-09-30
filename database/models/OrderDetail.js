@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    orderid: {
+    orderId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       references: {
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         key: "id",
       },
     },
-    productid: {
+    productId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       references: {
@@ -23,12 +23,15 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     quantity: {
-      type: DataTypes.INTEGER.UNSIGNED
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      defaultValue: 1,
     },
     price: {
-      type: DataTypes.DECIMAL(10, 2).UNSIGNED,
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
-    }
+      validate: { min: 0 },
+    },
   };
 
   const config = {
@@ -37,5 +40,14 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   const OrderDetail = sequelize.define(alias, cols, config);
+
+  OrderDetail.associate = (models) => {
+    OrderDetail.belongsTo(models.Order, { foreignKey: "orderId", as: "order" });
+    OrderDetail.belongsTo(models.Product, {
+      foreignKey: "productId",
+      as: "product",
+    });
+  };
+
   return OrderDetail;
 };

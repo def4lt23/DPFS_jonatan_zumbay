@@ -1,24 +1,29 @@
 module.exports = (sequelize, DataTypes) => {
-    const alias = "Color";
-    const cols = {
-        id: {
-            type: DataTypes.INTEGER.UNSIGNED,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        name: {
-            type: DataTypes.STRING(20),
-            allowNull: false
-        }
+  const alias = "Color";
+  const cols = {
+    id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: {
+      type: DataTypes.STRING(20),
+      allowNull: false,
+      unique: true, //evito colores repetidos en nombre
+    },
+  };
 
-    }
+  const config = {
+    tableName: "colors",
+    timestamps: false,
+    indexes: [{ fields: ["name"] }],
+  };
 
-    const config = {
-        tableName: "colors",
-        timestamps: false
-    }
+  const Color = sequelize.define(alias, cols, config);
 
-    const Color = sequelize.define(alias, cols, config);
-    return Color;
+  Color.associate = (models) => {
+    Color.hasMany(models.Product, { foreignKey: "colorId", as: "products" });
+  };
 
-}
+  return Color;
+};
