@@ -48,16 +48,16 @@
                     </div>
 
                     <div class="cartas">
-                        <% productosjs.forEach(prodi=> { %>
+                        <% productsdb.forEach(prodi=> { %>
                             <div class="card">
                                 <div class="product-image-slider">
                                     <h3>
-                                        <%= prodi.nombre %>
+                                        <%= prodi.name %>
                                     </h3>
                                     <div class="image-wrapper">
                                         <!-- recorrer las imagenes de cada producto -->
-                                        <% prodi.imagen.forEach((img, index)=> { %>
-                                            <img src="/images/products/<%= img %>" alt="Imagen <%= index + 1 %>"
+                                        <% prodi.images.forEach((imgObj, index)=> { %>
+                                            <img src="/images/products/<%= imgObj.url %>" alt="Imagen <%= index + 1 %>"
                                                 class="<%= index === 0 ? 'active-image' : '' %>">
                                             <% }) %>
                                     </div>
@@ -72,7 +72,7 @@
                                 </div>
 
                                 <p class="cartaprecio">
-                                    Precio: $<%= prodi.precio %>
+                                    Precio: $<%= prodi.price %>
                                 </p>
                                 <a href="/products/detalle/<%= prodi.id %>" class="btn-ver-detalles">Ver Detalles</a>
                             </div>

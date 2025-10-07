@@ -1,16 +1,30 @@
 const fs = require("fs"); //file system
 const path = require("path"); // manejar las rutas
-const {v4: uudi} = require("uuid"); // generar ids unicos
+const { v4: uudi } = require("uuid"); // generar ids unicos
 
 const productsPath = path.join(__dirname, "../data/products.json"); // ruta al archivo de productos
 const colorsPath = path.join(__dirname, "../data/colors.json"); // ruta al archivo de colores
 const modelsPath = path.join(__dirname, "../data/models.json"); // ruta a los modelos
 
-const productsController = {
-  productos: function (req, res, next) {
-    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); // leer el archivo y convertirlo a un objeto js
+const db = require("../database/models/index.js"); // Base de datos (sequelize)
 
-    res.render("products/productos", { productosjs });
+const productsController = {
+  //:::::VER PRODUCTOS:::::
+  productos: async function (req, res) { //async porque usa await
+    try {
+      const productsdb = await db.Product.findAll({ //trae todos los productos de la base de datos
+        include: [ //alias dentro de los asocciate en Product.js
+          { association: "model" },
+          { association: "colors" }, 
+          { association: "images" }, 
+        ],
+      });
+
+      return res.render("products/productos", { productsdb }); 
+    } catch (error) { //manejo de errores
+      console.error(error);
+      return res.status(500).send("Error al traer los productos");
+    }
   },
 
   //:::::VER PRODUCTOS POR DETALLE (ID):::::
