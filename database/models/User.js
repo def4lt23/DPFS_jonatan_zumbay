@@ -5,6 +5,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
+      validate: {
+        notEmpty: true,
+      },
     },
     name: {
       type: DataTypes.STRING(100),
@@ -18,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(100),
       allowNull: false,
       unique: true,
+      validate: {
+        isEmail: true,
+      },
     },
     username: {
       type: DataTypes.STRING(100),
@@ -29,6 +35,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     numberphone: {
       type: DataTypes.STRING(20),
+      validate: {
+        isNumeric: true,
+      },
     },
     address: {
       type: DataTypes.TEXT,
@@ -54,7 +63,8 @@ module.exports = (sequelize, DataTypes) => {
 
   const User = sequelize.define(alias, cols, config);
 
-  User.associate = (models) => { //relaciones
+  User.associate = (models) => {
+    //relaciones
     User.hasOne(models.Cart, { foreignKey: "userId", as: "cart" });
     //tabla origen.tipo de relacion. tabla destino {id de la tabla destino que relaciona, alias}
     User.hasMany(models.Order, { foreignKey: "userId", as: "orders" });

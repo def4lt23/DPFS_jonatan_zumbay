@@ -5,6 +5,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
+      validate: {
+        notEmpty: true,
+      },
     },
     name: {
       type: DataTypes.STRING(100),
@@ -30,16 +33,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         min: 0,
       },
-    },
-    colorId: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: true,
-      references: {
-        model: "colors",
-        key: "id",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "SET NULL",
     },
     size: {
       type: DataTypes.ENUM("Mediana", "Grande"),
@@ -74,7 +67,8 @@ module.exports = (sequelize, DataTypes) => {
 
   const Product = sequelize.define(alias, cols, config);
 
-  Product.associate = (models) => { //relaciones
+  Product.associate = (models) => {
+    //relaciones
     Product.belongsTo(models.Model, { foreignKey: "modelId", as: "model" });
     Product.belongsTo(models.Color, { foreignKey: "colorId", as: "color" });
     Product.hasMany(models.ProdImage, {

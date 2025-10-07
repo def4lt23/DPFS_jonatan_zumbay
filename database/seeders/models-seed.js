@@ -3,12 +3,12 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('models', [
-      { name: 'Sin Modelo' },
-      { name: 'Instrumentos Musicales' },
-      { name: 'Monumentos Historicos' },
-      { name: 'Kids' },
-      { name: 'Logos' },
-      { name: 'Bebidas' },
+      { id: 1, name: 'Sin Modelo' },
+      { id: 2, name: 'Instrumentos Musicales' },
+      { id: 3, name: 'Monumentos Historicos' },
+      { id: 4, name: 'Kids' },
+      { id: 5, name: 'Logos' },
+      { id: 6, name: 'Bebidas' },
     ], {});
   },
 
