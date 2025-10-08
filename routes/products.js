@@ -12,16 +12,16 @@ router.get('/detalle/:id', productsController.enviarProductos);
 
 /* GET CREAR PRODUCTOS NUEVOS */
 router.get('/crearprod', admin, productsController.crearProductosVista);
-router.post('/crearprod', admin, upload.array('imagen', 5), productsController.crearProductosjson); //enviar informacion del formulario
+router.post('/crearprod', admin, upload.array('imagen', 5), productsController.crearProductosBD); //enviar informacion del formulario
 
 /*GET EDITAR UN PRODUCTO NUEVO*/
 router.get('/editarprod/:id', admin, productsController.editarProductosVista);
-router.put('/editarprod/:id', admin, upload.array('imagen', 5), productsController.editarProductosjson); //recibe la informacion del formulario
+router.put('/editarprod/:id', admin, upload.array('imagen', 5), productsController.editarProductosBD); //recibe la informacion del formulario
 
 /*GET ELIMINAR UN PRODUCTO*/
-router.delete('/eliminarprod/:id', admin, productsController.eliminarProductos); //recibe la informacion del formulario
+router.delete('/eliminarprod/:id', admin, productsController.eliminarProductosBD); //recibe la informacion del formulario
 
 /* GET EDITAR PROPIEDADES DE PRODUCTOS */
 router.get('/editarPropiedad', admin, productsController.editarPropiedadesVista);
-router.post('/editarPropiedad', admin, productsController.editarPropiedadesjson); //recibe la informacion del formulario
+router.post('/editarPropiedad', admin, productsController.editarPropiedadesBD); //recibe la informacion del formulario
 module.exports = router;

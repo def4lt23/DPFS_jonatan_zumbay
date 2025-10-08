@@ -2,15 +2,17 @@
   {
     "id": 1,
     "nombre": "Lampara Guitarra",
-    "descripcion": "Lampara LED con forma de guitarra, ideal para amantes de la musica.",
-    "modeloId": 1,
+    "descripcion": "Lampara LED con forma de guitarra, ideal para amantes de la musica. AHORA EDITO LA DESCRIPCION",
+    "modeloId": 2,
     "precio": 50001,
     "colorIds": [
       2,
-      3
+      3,
+      5,
+      7
     ],
-    "tamano": "Mediana",
-    "stock": 10,
+    "tamano": "Grande",
+    "stock": 15,
     "imagen": [
       "lamp1a.png",
       "lamp1b.png",

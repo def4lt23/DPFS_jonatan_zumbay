@@ -23,9 +23,9 @@
                     <div class="clasep">
                         <label for="opciones">3️⃣➡️TIPO DE LAMPARA:</label>
                         <select id="opciones" name="modeloId">
-                            <% modelsjs.forEach(function(tipo, index) { %>
+                            <% modelsdb.forEach(function(tipo, index) { %>
                                 <option value="<%= tipo.id %>">
-                                    <%= tipo.nombre %>
+                                    <%= tipo.name %>
                                 </option>
                                 <% }) %>
                         </select>
@@ -37,10 +37,10 @@
                     </div>
                     <fieldset class="claser">
                         <legend>5️⃣➡️COLOR:</legend>
-                        <% colors.forEach(function(color) { %>
+                        <% colorsdb.forEach(function(color) { %>
                             <label>
                                 <input type="checkbox" id="color-<%= color.id %>" name="color" value="<%= color.id %>">
-                                <%= color.nombre %>
+                                <%= color.name %>
                             </label>
                             <% }) %>
                                 <br>

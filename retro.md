@@ -81,3 +81,11 @@ Excelente avance del proyecto, en el metodo de enviarProductos vi que tenes un c
     NOTA: la contraseña de las 3 cuentas creadas es: "holahola" (sin comillas).
 
 **DEVOLUCION**
+npx sequelize db:seed --seed colors-seed.js
+
+colors-seed.js
+models-seed.js
+products-seed.js
+prodcolors-seed.js
+prodimages-seed.js
+users-seed.js

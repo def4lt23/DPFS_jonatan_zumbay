@@ -1,7 +1,6 @@
-const { FOREIGNKEYS } = require("sequelize/lib/query-types");
-
 module.exports = (sequelize, DataTypes) => {
   const alias = "ProdImage";
+
   const cols = {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -12,12 +11,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       references: {
-        model: "products", // nombre de la tabla de productos
+        model: "products", // nombre exacto de la tabla
         key: "id",
       },
+      onUpdate: "CASCADE",
+      onDelete: "CASCADE", // si se borra el producto, borra sus imagenes
     },
-    url: {
+    name: {
       type: DataTypes.STRING(255),
+      allowNull: false,
     },
   };
 

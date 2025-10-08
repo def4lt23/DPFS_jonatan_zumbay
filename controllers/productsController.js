@@ -8,283 +8,299 @@ const modelsPath = path.join(__dirname, "../data/models.json"); // ruta a los mo
 
 const db = require("../database/models/index.js"); // Base de datos (sequelize)
 
+// funcion utilitaria para capitalizar strings
+function capitalizar(str) {
+  if (!str) return "";
+  str = str.trim();
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
 const productsController = {
-  //:::::VER PRODUCTOS:::::
-  productos: async function (req, res) { //async porque usa await
+  //:::::VER PRODUCTOS::::: con base de datos
+  productos: async function (req, res) {
+    //async porque usa await
     try {
-      const productsdb = await db.Product.findAll({ //trae todos los productos de la base de datos
-        include: [ //alias dentro de los asocciate en Product.js
+      const productsdb = await db.Product.findAll({
+        //trae todos los productos de la base de datos
+        include: [
+          //alias dentro de los asocciate en Product.js
           { association: "model" },
-          { association: "colors" }, 
-          { association: "images" }, 
+          { association: "colors" },
+          { association: "images" },
         ],
       });
 
-      return res.render("products/productos", { productsdb }); 
-    } catch (error) { //manejo de errores
+      return res.render("products/productos", { productsdb });
+    } catch (error) {
+      //manejo de errores
       console.error(error);
       return res.status(500).send("Error al traer los productos");
     }
   },
 
-  //:::::VER PRODUCTOS POR DETALLE (ID):::::
-  enviarProductos: function (req, res, next) {
-    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
-    const colors = JSON.parse(fs.readFileSync(colorsPath, "utf-8")); //colores a js
-
-    const idProducto = req.params.id; // <-- el id que viene desde la URL
-    const productoEncontrado = productosjs.find((p) => p.id == idProducto); // busca por id
-
-    if (!productoEncontrado) {
-      //si no lo encuentra
-      return res.render("products/detalle", { miProducto: productoEncontrado }); //de momento funciona. Corregir despues, porque si elimino esto da error en colorid abajo
+  //:::::VER PRODUCTOS EN DETALLE::::: con base de datos
+  enviarProductos: async function (req, res) {
+    try {
+      const idProducto = req.params.id;
+      const productodb = await db.Product.findByPk(idProducto, {
+        //busca el producto por su id
+        include: [
+          //alias dentro de los asocciate en Product.js
+          { association: "model" },
+          { association: "colors" },
+          { association: "images" },
+        ],
+      });
+      if (!productodb) {
+        return res.status(404).send("Producto no encontrado");
+      }
+      return res.render("products/detalle", { productodb });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send("Error al traer el producto");
     }
-
-    // Mapear los colorIds del producto a los nombres de colores
-    const colorNombres = productoEncontrado.colorIds.map((id) => {
-      const color = colors.find((c) => c.id === id);
-      return color ? color.nombre : "Color desconocido";
-    });
-
-    res.render("products/detalle", {
-      miProducto: productoEncontrado, //si lo encuentra se lo envia a detalle con el nombre miProducto
-      miColor: colorNombres, //y los nombres de colores
-    });
   },
 
-  //:::::VER VISTA DE CREAR PRODUCTOS:::::
-  crearProductosVista: function (req, res, next) {
-    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
-    const colors = JSON.parse(fs.readFileSync(colorsPath, "utf-8")); //colores a js
-    const modelsjs = JSON.parse(fs.readFileSync(modelsPath, "utf-8")); //colores a js
+  //:::::VER VISTA DE CREAR PRODUCTOS::::: con base de datos
+  crearProductosVista: async function (req, res, next) {
+    try {
+      const colorsdb = await db.Color.findAll({
+        order: [["id", "ASC"]], // ordena por id ascendente (de menor a mayor)
+      });
+      const modelsdb = await db.Model.findAll({
+        order: [["id", "ASC"]],
+      });
 
-    res.render("products/crearprod", { colors, modelsjs }); //envia los colores y modelos a la vista de crear productos
+      return res.render("products/crearprod", { colorsdb, modelsdb });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send("Error al traer los colores o modelos");
+    }
   },
 
-  //:::::LOGICA PARA CREAR PRODUCTOS NUEVOS:::::
-  crearProductosjson: function (req, res) {
-    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
-    //console.log(req.body); //verifica que se envian los datos del formulario
-
-    const nuevoProducto = {
-      id: uudi(), // genera un id unico
-      nombre: req.body.nombre,
-      descripcion: req.body.descripcion,
-      modeloId: parseInt(req.body.modeloId), // convierte el id del modelo a entero
-      precio: parseFloat(req.body.precio),
-      colorIds: req.body.color ? req.body.color.map((c) => parseInt(c)) : [0], // verifica si hay color elegido, sino asigna el primer color
-      tamano: req.body.tamano,
-      stock: parseInt(req.body.stock),
-      imagen:
-        req.files && req.files.length > 0
-          ? req.files.map((f) => f.filename)
-          : ["lamperror.png"], // verifica si hay archivo, si no, asigna una imagen por defecto
-      destacado: req.body.destacado === "SI", // verifica si el producto es destacado
-    };
-
-    //console.log(nuevoProducto); //verifica que se crea el nuevo producto
-    productosjs.push(nuevoProducto); // agrega el nuevo producto al array de productos
-    const productosJson = JSON.stringify(productosjs, null, 2); // convierte el array de productos a json
-    fs.writeFileSync(productsPath, productosJson, "utf-8"); // escribe el archivo de productos
-    res.redirect("/products/productos"); // redirige a la lista de productos
+  //:::::LOGICA PARA CREAR PRODUCTOS NUEVOS::::: con base de datos
+  crearProductosBD: async function (req, res) {
+    try {
+      const nuevoProducto = {
+        name: req.body.nombre,
+        description: req.body.descripcion,
+        modelId: parseInt(req.body.modeloId), // convierte el id del modelo a entero
+        price: parseFloat(req.body.precio),
+        size: req.body.tamano,
+        stock: parseInt(req.body.stock),
+        featured: req.body.destacado === "SI", // verifica si el producto es destacado
+      };
+      const productoCreado = await db.Product.create(nuevoProducto); // crea el nuevo producto en la base de datos
+      if (req.body.color) {
+        const colorIds = Array.isArray(req.body.color) // si selecciono varios colores
+          ? req.body.color.map((c) => parseInt(c))
+          : [parseInt(req.body.color)]; // si selecciono un solo color
+        await productoCreado.setColors(colorIds); // asocia los colores al producto con la asociacion belongsToMany en Product.js
+      }
+      if (req.files && req.files.length > 0) {
+        // si se subieron imagenes
+        const imagenes = req.files.map((f) => ({
+          // mapea las imagenes subidas
+          productId: productoCreado.id,
+          name: f.filename,
+        }));
+        await db.ProdImage.bulkCreate(imagenes); // crea las imagenes en la base de datos
+      } else {
+        await db.ProdImage.create({
+          // si no se subieron imagenes asignar la imagen por defecto
+          productId: productoCreado.id,
+          name: "lamperror.png",
+        });
+      }
+      res.redirect("/products/productos"); // redirige a la lista de productos
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send("Error al crear el producto");
+    }
   },
 
-  //:::::VER VISTA DE EDITAR PRODUCTOS:::::
-  editarProductosVista: function (req, res, next) {
-    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
-    const colors = JSON.parse(fs.readFileSync(colorsPath, "utf-8")); //colores a js
-    const modelsjs = JSON.parse(fs.readFileSync(modelsPath, "utf-8")); //colores a js
-
-    const idProducto = req.params.id; // <-- el id que viene desde la URL
-    const productoEncontrado = productosjs.find((p) => p.id == idProducto); // busca por id
-
-    if (!productoEncontrado) {
-      //si no lo encuentra
+  //:::::VER VISTA DE EDITAR PRODUCTOS::::: con base de datos
+  editarProductosVista: async function (req, res, next) {
+    try {
+      const colorsdb = await db.Color.findAll({
+        order: [["id", "ASC"]], // ordena por id ascendente (de menor a mayor)
+      });
+      const modelsdb = await db.Model.findAll({
+        order: [["id", "ASC"]],
+      });
+      const idProducto = req.params.id; // <-- el id que viene desde la URL
+      const productodb = await db.Product.findByPk(idProducto, {
+        include: [
+          { association: "model" },
+          { association: "colors" },
+          { association: "images" },
+        ],
+      });
+      if (!productodb) {
+        return res.status(404).send("Producto no encontrado");
+      }
       return res.render("products/editarprod", {
-        miProducto: productoEncontrado,
-      }); //de momento funciona. Corregir despues
+        productodb,
+        colorsdb,
+        modelsdb,
+      });
+    } catch (error) {
+      console.error(error);
+      return res
+        .status(500)
+        .send("Error al traer el producto, colores o modelos");
     }
-
-    res.render("products/editarprod", {
-      miProducto: productoEncontrado, //si lo encuentra se lo envia a editar con el nombre miProducto
-      colors, //colores
-      modelsjs,
-    });
   },
 
-  //:::::LOGICA PARA EDITAR PRODUCTOS:::::
-  editarProductosjson: function (req, res) {
-    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
-    productosjs.forEach((produtemp) => {
-      if (produtemp.id == req.params.id) {
-        //console.log(`Se actualizo el producto con id ${req.params.id} y es el ${produ.nombre}`);
-        produtemp.nombre = req.body.nombre;
-        produtemp.descripcion = req.body.descripcion;
-        produtemp.modeloId = parseInt(req.body.modeloId);
-        produtemp.precio = parseInt(req.body.precio); // de momento lo dejo en entero
-        // Manejo de colores
+  //:::::LOGICA PARA EDITAR PRODUCTOS::::: con base de datos
+  editarProductosBD: async function (req, res) {
+    try {
+      const idProducto = req.params.id;
+      const producto = await db.Product.findByPk(idProducto);
+      if (!producto) {
+        return res.status(404).send("Producto no encontrado");
+      }
+
+      // actualizar los campos principales
+      producto.name = req.body.nombre;
+      producto.description = req.body.descripcion;
+      producto.modelId = parseInt(req.body.modeloId);
+      producto.price = parseFloat(req.body.precio);
+      producto.size = req.body.tamano;
+      producto.stock = parseInt(req.body.stock);
+      producto.featured = req.body.destacado === "SI";
+      await producto.save();
+
+      let colorIds;
+      if (req.body.colorIdVista) {
+        // si selecciono colores
+        colorIds = Array.isArray(req.body.colorIdVista) // si selecciono varios colores
+          ? req.body.colorIdVista.map((c) => parseInt(c)) // convierte a enteros
+          : [parseInt(req.body.colorIdVista)]; // si selecciono un solo color
+      } else {
+        // si no selecciono ningun color
+        colorIds = [1]; // id del color "ninguno"
+      }
+      await producto.setColors(colorIds); // actualiza la asociacion belongsToMany en Product.js
+
+      if (req.files && req.files.length > 0) {
+        // si se subieron nuevas imagenes
+        await db.ProdImage.destroy({ where: { productId: producto.id } }); // elimina las imagenes existentes
+        const imagenes = req.files.map((f) => ({
+          // mapea las nuevas imagenes
+          productId: producto.id,
+          name: f.filename,
+        }));
+        await db.ProdImage.bulkCreate(imagenes); // crea las nuevas imagenes
+      }
+
+      res.redirect(`/products/detalle/${producto.id}`);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send("Error al actualizar el producto");
+    }
+  },
+
+  //:::::LOGICA PARA ELIMINAR PRODUCTOS::::: con base de datos
+  eliminarProductosBD: async function (req, res) {
+    try {
+      const idProducto = req.params.id;
+      const producto = await db.Product.findByPk(idProducto);
+      if (!producto) {
+        return res.status(404).send("Producto no encontrado");
+      }
+      await db.ProdImage.destroy({ where: { productId: producto.id } }); // elimina las imagenes asociadas
+      await producto.setColors([]); // elimina las asociaciones con colores
+      await producto.destroy(); // elimina el producto
+      res.redirect("/products/productos"); // redirige a la lista de productos
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send("Error al eliminar el producto");
+    }
+  },
+
+  //:::::VER VISTA DE EDITAR PROPIEDADES DE PRODUCTOS::::: con base de datos
+  editarPropiedadesVista: async function (req, res, next) {
+    try {
+      const colorsdb = await db.Color.findAll({
+        order: [["id", "ASC"]], // ordena por id ascendente (de menor a mayor)
+      });
+      const modelsdb = await db.Model.findAll({
+        order: [["id", "ASC"]],
+      });
+      return res.render("products/editarPropiedad", { colorsdb, modelsdb });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send("Error al traer los colores o modelos");
+    }
+  },
+
+  //:::::LOGICA PARA EDITAR PROPIEDADES DE PRODUCTOS::::: con base de datos
+  editarPropiedadesBD: async function (req, res) {
+    try {
+      //AGREGAR MODELO
+      if (req.body.nombreModelo && req.body.nombreModelo.trim() !== "") {
+        // si se envio un nuevo modelo y no esta vacio
+        const nuevoModelo = {
+          name: capitalizar(req.body.nombreModelo),
+        };
+        await db.Model.create(nuevoModelo); // crea el nuevo modelo en la base de datos
+      }
+      //AGREGAR COLOR
+      if (req.body.nombreColor && req.body.nombreColor.trim() !== "") {
+        // si se envio un nuevo color y no esta vacio
+        const nuevoColor = {
+          name: capitalizar(req.body.nombreColor),
+        };
+        await db.Color.create(nuevoColor); // crea el nuevo color en la base de datos
+      }
+      //ELIMINAR MODELO
+      if (req.body.modeloIds) {
+        let modeloSeleccionados = req.body.modeloIds;
+        if (!Array.isArray(modeloSeleccionados)) {
+          modeloSeleccionados = [modeloSeleccionados];
+        }
+        modeloSeleccionados = modeloSeleccionados.map((c) => parseInt(c));
+        // Recorrer todos los productos y reemplazar los modelos eliminados con 1 (solo se puede elegir un modelo)
+        const productos = await db.Product.findAll();
+        for (const producto of productos) {
+          if (modeloSeleccionados.includes(producto.modelId)) {
+            producto.modelId = 1; // id del modelo "ninguno"
+            await producto.save();
+          }
+        }
+        await db.Model.destroy({ where: { id: modeloSeleccionados } }); // elimina los modelos seleccionados
+      }
+      // ELIMINAR COLOR
+      if (req.body.colorIds) {
         let coloresSeleccionados = req.body.colorIds;
-
-        if (!coloresSeleccionados) {
-          coloresSeleccionados = [0]; // se asigna el color por defecto si no se selecciona ninguno
-        } else if (!Array.isArray(coloresSeleccionados)) {
-          //si eligio solo un color se debe convertir a array
-          coloresSeleccionados = [coloresSeleccionados];
+        if (!Array.isArray(coloresSeleccionados)) {
+          coloresSeleccionados = [coloresSeleccionados]; // convertir a array si solo selecciono uno
         }
-        // Convertir todos los ids a enteros
-        produtemp.colorIds = coloresSeleccionados.map((c) => parseInt(c));
-
-        produtemp.tamano = req.body.tamano;
-        produtemp.stock = parseInt(req.body.stock);
-        if (req.files && req.files.length > 0) {
-          //si se subieron nuevas imagenes
-          produtemp.imagen = req.files.map((file) => file.filename); // reemplaza las img existentes con las nuevas
-        } //si no se subieron nuevas imagenes, mantiene las existentes
-        produtemp.destacado = req.body.destacado === "SI";
-      }
-    });
-
-    const productosJson = JSON.stringify(productosjs, null, 2); // convierte el array de productos a json
-    fs.writeFileSync(productsPath, productosJson, "utf-8"); // escribe el archivo de productos
-    res.redirect(`/products/detalle/${req.params.id}`); // redirige a la lista de productos
-    //console.log(req.body); //verifica que se envian los datos del formulario
-    //console.log("Se actualizo el producto: ", req.params.id); //verifica que se envian los datos del formulario
-  },
-
-  //:::::LOGICA PARA ELIMINAR PRODUCTOS:::::
-  eliminarProductos: function (req, res) {
-    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
-    const productosFiltrados = productosjs.filter(
-      (product) => product.id != req.params.id
-    ); // filtra los productos que no son el que se quiere eliminar
-    //recordar que anteriormente se uso una comparacion simple (!=)
-    const productosJson = JSON.stringify(productosFiltrados, null, 2); // convierte el array de productos a json
-    fs.writeFileSync(productsPath, productosJson, "utf-8"); // escribe el archivo de productos
-    res.redirect("/products/productos"); // redirige a la lista de productos
-    //console.log("Se elimino el producto: ", req.params.id); //verifica que se envian los datos del formulario
-  },
-
-  //:::::VER VISTA DE EDITAR PROPIEDADES DE PRODUCTOS:::::
-  editarPropiedadesVista: function (req, res, next) {
-    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
-    const colors = JSON.parse(fs.readFileSync(colorsPath, "utf-8")); //colores a js
-    const modelsjs = JSON.parse(fs.readFileSync(modelsPath, "utf-8")); //colores a js
-
-    res.render("products/editarPropiedad", {
-      miColor: colors, //colores
-      miModelo: modelsjs, //modelos
-    });
-  },
-
-  //:::::LOGICA PARA EDITAR PROPIEDADES DE PRODUCTOS:::::
-  editarPropiedadesjson: function (req, res) {
-    const productosjs = JSON.parse(fs.readFileSync(productsPath, "utf-8")); //productos a js
-    const colors = JSON.parse(fs.readFileSync(colorsPath, "utf-8")); //colores a js
-    const modelsjs = JSON.parse(fs.readFileSync(modelsPath, "utf-8")); //modelos a js
-
-    //AGREGAR MODELO
-    if (req.body.nombreModelo && req.body.nombreModelo.trim() !== "") {
-      // si se envio un nuevo modelo y no esta vacio
-      const nuevoModelo = {
-        id: uudi(), // genera un id unico
-        nombre: req.body.nombreModelo,
-      };
-
-      modelsjs.push(nuevoModelo); // agrega el nuevo modelo al array de modelos
-      const modelsJson = JSON.stringify(modelsjs, null, 2); // convierte el array de modelos a json
-      fs.writeFileSync(modelsPath, modelsJson, "utf-8"); // escribe el archivo de modelos
-    }
-
-    //AGREGAR COLOR
-    if (req.body.nombreColor && req.body.nombreColor.trim() !== "") {
-      // si se envio un nuevo color y no esta vacio
-      const nuevoColor = {
-        id: uudi(), // genera un id unico
-        nombre: req.body.nombreColor,
-      };
-
-      colors.push(nuevoColor); // agrega el nuevo color al array de colores
-      const colorJson = JSON.stringify(colors, null, 2); // convierte el array de colores a json
-      fs.writeFileSync(colorsPath, colorJson, "utf-8"); // escribe el archivo de colores
-    }
-
-    //ELIMINAR MODELO
-    if (req.body.modeloIds) {
-      let modeloSeleccionados = req.body.modeloIds;
-
-      if (!Array.isArray(modeloSeleccionados)) {
-        modeloSeleccionados = [modeloSeleccionados];
-      }
-
-      modeloSeleccionados = modeloSeleccionados.map((c) => parseInt(c));
-
-      // Recorrer todos los productos y reemplazar los modelos eliminados con 0 (solo se puede elegir un modelo)
-      productosjs.forEach((producto) => {
-        if (modeloSeleccionados.includes(producto.modeloId)) {
-          producto.modeloId = 0;
+        coloresSeleccionados = coloresSeleccionados.map((c) => parseInt(c)); // convertir a enteros
+        // Recorrer todos los productos y limpiar los colores eliminados
+        const productos = await db.Product.findAll({
+          include: [{ association: "colors" }],
+        });
+        for (const producto of productos) {
+          const coloresActuales = producto.colors.map((c) => c.id);
+          const nuevosColores = coloresActuales.filter(
+            (id) => !coloresSeleccionados.includes(id) // quitar los eliminados
+          );
+          // Si queda vacio, asignar id 1 (ninguno)
+          if (nuevosColores.length === 0) {
+            await producto.setColors([1]); // id del color "ninguno"
+          } else {
+            await producto.setColors(nuevosColores);
+          }
         }
-      });
-
-      // Guardar los productos actualizados
-      fs.writeFileSync(
-        productsPath,
-        JSON.stringify(productosjs, null, 2),
-        "utf-8"
-      );
-
-      const modelosFiltrados = modelsjs.filter(
-        (modelo) => !modeloSeleccionados.includes(modelo.id)
-      );
-      fs.writeFileSync(
-        modelsPath,
-        JSON.stringify(modelosFiltrados, null, 2),
-        "utf-8"
-      );
-    }
-
-    // ELIMINAR COLOR
-    if (req.body.colorIds) {
-      let coloresSeleccionados = req.body.colorIds;
-
-      if (!Array.isArray(coloresSeleccionados)) {
-        coloresSeleccionados = [coloresSeleccionados]; // convertir a array si solo selecciono uno
+        await db.Color.destroy({ where: { id: coloresSeleccionados } }); // elimina los colores seleccionados
       }
-
-      coloresSeleccionados = coloresSeleccionados.map((c) => parseInt(c)); // convertir a enteros
-
-      // Recorrer todos los productos y limpiar los colores eliminados
-      productosjs.forEach((producto) => {
-        producto.colorIds = producto.colorIds.filter(
-          (id) => !coloresSeleccionados.includes(id) // quitar los eliminados
-        );
-
-        // Si queda vacio, asignar id 0 (ninguno)
-        if (producto.colorIds.length === 0) {
-          producto.colorIds = [0];
-        }
-      });
-
-      // Guardar los productos actualizados
-      fs.writeFileSync(
-        productsPath,
-        JSON.stringify(productosjs, null, 2),
-        "utf-8"
-      );
-
-      // Filtrar los colores eliminados del archivo de colores
-      const coloresFiltrados = colors.filter(
-        (color) => !coloresSeleccionados.includes(color.id)
-      );
-      fs.writeFileSync(
-        colorsPath,
-        JSON.stringify(coloresFiltrados, null, 2),
-        "utf-8"
-      );
+      res.redirect("/products/productos"); // redirige a la lista de productos
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send("Error al editar las propiedades");
     }
-
-    //console.log(req.body);
-
-    res.redirect("/products/productos"); // redirige a la lista de productos
   },
 };
 

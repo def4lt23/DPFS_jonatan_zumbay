@@ -1,76 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head.ejs', {estilod:'detalle.css'}) %>
+  <%- include('../partials/head.ejs', { estilod: 'detalle.css' }) %>
 
-    <body>
-        <%- include('../partials/header.ejs') %>
-            <% if (miProducto) { %>
-                <section>
-                    <h1>Conoce mas sobre este producto</h1>
-                    <h1>
-                        <%= miProducto.nombre %>
-                    </h1>
+  <body>
+    <%- include('../partials/header.ejs') %>
 
-                    <div class="contenedor">
-                        <div class="imagen">
-                            <div class="fade-slider">
-                                <% miProducto.imagen.forEach(function(img, index) { %>
-                                    <img src="/images/products/<%= img %>" alt="Imagen <%= index + 1 %>"
-                                        class="<%= index === 0 ? 'active-image' : '' %>">
-                                    <% }); %>
-                            </div>
-                        </div>
-                        <div class="texto">
-                            <p><strong>Descripcion:</strong>
-                                <%= miProducto.descripcion %>
-                            </p>
-                            <p><strong>Precio:</strong> $<%= miProducto.precio %>
-                            </p>
-                            <p><strong>Tamaño:</strong>
-                                <%= miProducto.tamano %>
-                            </p>
-                            <p><strong>Colores:</strong>
-                                <% miColor.forEach(function(color, index) { %>
-                                    <label>
-                                        <input type="radio" name="coloresSeleccionados" value="<%= color %>">
-                                        <%= color %>
-                                    </label><br>
-                                    <% }); %>
-                                        <p><strong>Stock:</strong>
-                                            <%= miProducto.stock %> unidades
-                                        </p>
-                        </div>
+    <% if (productodb) { %>
+      <section>
+        <h1>Conoce más sobre este producto</h1>
+        <h1><%= productodb.name %></h1>
 
-                        <div class="botones">
-                            <button class="botonagregar">AGREGAR AL CARRITO</button>
-                            <a class="botonagregar" href="/products/productos">Volver</a>
-                            <% if (userLogged.rol === "administrador") { %>
-                                <a class="botonadmin" href="/products/editarprod/<%= miProducto.id %>">EDITAR PRODUCTO
-                                    (ADMIN)</a>
-                                <form action="/products/eliminarprod/<%= miProducto.id %>?_method=DELETE" method="post">
-                                    <button class="botonadmin">ELIMINAR (ADMIN)</button>
-                                </form>
-                                <% } %>
-                        </div>
+        <div class="contenedor">
+          <div class="imagen">
+            <div class="fade-slider">
+              <% productodb.images.forEach(function (imgObj, index) { %>
+                <img
+                  src="/images/products/<%= imgObj.name %>"
+                  alt="Imagen <%= index + 1 %>"
+                  class="<%= index === 0 ? 'active-image' : '' %>"
+                >
+              <% }) %>
+            </div>
+          </div>
 
-                    </div>
-                    <p>💲Valor de los precios en Pesos Argentinos💲|| 📐Tamaños: Mediano (20 a 30cm) - Grande (40 a
-                        50cm)📐
-                    </p>
+          <div class="texto">
+            <p>
+              <strong>Descripción:</strong>
+              <%= productodb.description %>
+            </p>
 
-                </section>
-                <% } else { %>
-                    <div class="error">
-                        <h1>Lampara o Producto no encontrado en DETALLES</h1>
-                        <img src="/images/lamperror.png" alt="">
-                        <div class="conterror">
-                            <a class="botonerror" href="/">Volver a Home</a>
-                        </div>
-                    </div>
-                    <% } %>
-                        <%- include('../partials/footer.ejs') %>
-                            <%- include('../partials/scripts.ejs') %>
-    </body>
+            <p>
+              <strong>Precio:</strong>
+              $<%= productodb.price %>
+            </p>
 
+            <p>
+              <strong>Tamaño:</strong>
+              <%= productodb.size %>
+            </p>
 
+            <p>
+              <strong>Colores:</strong>
+              <% productodb.colors.forEach(function (colorObj) { %>
+                <label>
+                  <input
+                    type="radio"
+                    name="coloresSeleccionados"
+                    value="<%= colorObj.name %>"
+                  >
+                  <%= colorObj.name %>
+                </label><br>
+              <% }) %>
+            </p>
+
+            <p>
+              <strong>Stock:</strong>
+              <%= productodb.stock %> unidades
+            </p>
+          </div>
+
+          <div class="botones">
+            <button class="botonagregar">AGREGAR AL CARRITO</button>
+            <a class="botonagregar" href="/products/productos">Volver</a>
+
+            <% if (userLogged.rol === "administrador") { %>
+              <a
+                class="botonadmin"
+                href="/products/editarprod/<%= productodb.id %>"
+              >
+                EDITAR PRODUCTO (ADMIN)
+              </a>
+
+              <form
+                action="/products/eliminarprod/<%= productodb.id %>?_method=DELETE"
+                method="post"
+              >
+                <button class="botonadmin">ELIMINAR (ADMIN)</button>
+              </form>
+            <% } %>
+          </div>
+        </div>
+
+        <p>
+          💲Valor de los precios en Pesos Argentinos💲 ||
+          📐Tamaños: Mediano (20 a 30cm) - Grande (40 a 50cm)📐
+        </p>
+      </section>
+    <% } else { %>
+      <div class="error">
+        <h1>Lampara o Producto no encontrado en DETALLES</h1>
+        <img src="/images/lamperror.png" alt="">
+        <div class="conterror">
+          <a class="botonerror" href="/">Volver a Home</a>
+        </div>
+      </div>
+    <% } %>
+
+    <%- include('../partials/footer.ejs') %>
+    <%- include('../partials/scripts.ejs') %>
+  </body>
 </html>

@@ -1,6 +1,5 @@
-//VOLVER A GENERAR TABLAS
-// Este script borra todas las tablas existentes y las vuelve a crear según los modelos definidos en Sequelize
-//usar en consola node sync.js
+//VOLVER A GENERAR TABLAS | node sync.js
+// Este script borra todas las tablas existentes y las vuelve a crear con los modelos definidos en sequelize
 const db = require('./database/models');
 
 (async () => {
@@ -9,7 +8,7 @@ const db = require('./database/models');
     await db.sequelize.drop(); // Borra todas las tablas existentes
 
     console.log('✅ Tablas borradas. Creando tablas desde los modelos...');
-    await db.sequelize.sync({ force: true }); // Crea todas las tablas según tus modelos
+    await db.sequelize.sync({ force: true }); // Crea todas las tablas segun los modelos
 
     console.log('🎉 Tablas creadas correctamente!');
     process.exit();

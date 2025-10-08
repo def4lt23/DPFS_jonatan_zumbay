@@ -57,7 +57,7 @@
                                     <div class="image-wrapper">
                                         <!-- recorrer las imagenes de cada producto -->
                                         <% prodi.images.forEach((imgObj, index)=> { %>
-                                            <img src="/images/products/<%= imgObj.url %>" alt="Imagen <%= index + 1 %>"
+                                            <img src="/images/products/<%= imgObj.name %>" alt="Imagen <%= index + 1 %>"
                                                 class="<%= index === 0 ? 'active-image' : '' %>">
                                             <% }) %>
                                     </div>
