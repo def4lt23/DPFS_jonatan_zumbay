@@ -13,11 +13,11 @@
                     enctype="multipart/form-data">
                     <div class="clasep">
                         <label for="nombre">1️⃣➡️NOMBRE</label>
-                        <input type="text" id="nombre" name="nombre" value="<%= userLogged.nombre %>" required>
+                        <input type="text" id="nombre" name="nombre" value="<%= userLogged.name %>" required>
                     </div>
                     <div class="clasep">
                         <label for="apellido">2️⃣➡️APELLIDO</label>
-                        <input type="text" id="apellido" name="apellido" value="<%= userLogged.apellido %>" required>
+                        <input type="text" id="apellido" name="apellido" value="<%= userLogged.lastname %>" required>
                     </div>
                     <div class="clasep">
                         <label for="email">3️⃣➡️EMAIL (Solo lectura)</label>
@@ -25,15 +25,15 @@
                     </div>
                     <div class="clasep">
                         <label for="telefono">4️⃣➡️TELEFONO</label>
-                        <input type="text" id="telefono" name="telefono" value="<%= userLogged.telefono %>" required>
+                        <input type="text" id="telefono" name="telefono" value="<%= userLogged.numberphone %>" required>
                     </div>
                     <div class="clasep">
                         <label for="direccion">5️⃣➡️DIRECCION</label>
-                        <input type="text" id="direccion" name="direccion" value="<%= userLogged.direccion %>" required>
+                        <input type="text" id="direccion" name="direccion" value="<%= userLogged.address %>" required>
                     </div>
                     <div class="clasep">
                         <label for="usuario">6️⃣➡️NOMBRE DE USUARIO</label>
-                        <input type="text" id="usuario" name="usuario" value="<%= userLogged.usuario %>" required>
+                        <input type="text" id="usuario" name="usuario" value="<%= userLogged.username %>" required>
                     </div>
                     <div class="clasep">
                         <label for="imagen">7️⃣➡️AVATAR (⚠️SI CARGA UNO NUEVO SE BORRARA EL ANTERIOR⚠️)</label>
@@ -57,7 +57,7 @@
                             placeholder="Confirme nueva contraseña">
                     </div>
 
-                    <% if (userLogged.rol==="administrador" ) { %>
+                    <% if (userLogged.role==="admin" ) { %>
                         <div class="clasep" style="border: 2px solid gold; padding: 10px; margin-top: 20px;">
                             <label>🫰💥Volver Dios a otro</label>
                             <label for="usergod">➡️Escribe nombre de usuario</label>

@@ -5,30 +5,30 @@
     <body>
         <%- include('../partials/header.ejs') %>
             <div class="contenedor">
-                <h1>PERFIL DE USUARIO: <%= usuario.usuario %>
+                <h1>PERFIL DE USUARIO: <%= usuario.username %>
                 </h1>
                 <div class="perfil">
                     <div class="foto">
-                        <img src="/images/users/<%= usuario.avatar %>" alt="Foto de perfil de <%= usuario.usuario %>">
+                        <img src="/images/users/<%= usuario.avatar %>" alt="Foto de perfil de <%= usuario.username %>">
                     </div>
                     <div class="info">
                         <p><strong>Nombre:</strong>
-                            <%= usuario.nombre %>
+                            <%= usuario.name %>
                         </p>
                         <p><strong>Apellido:</strong>
-                            <%= usuario.apellido %>
+                            <%= usuario.lastname %>
                         </p>
                         <p><strong>Email:</strong>
                             <%= usuario.email %>
                         </p>
                         <p><strong>Usuario:</strong>
-                            <%= usuario.usuario %>
+                            <%= usuario.username %>
                         </p>
                         <p><strong>Direccion:</strong>
-                            <%= usuario.direccion %>
+                            <%= usuario.address %>
                         </p>
                         <p><strong>Telefono:</strong>
-                            <%= usuario.telefono %>
+                            <%= usuario.numberphone %>
                         </p>
                         <div class="botones">
                             <div>

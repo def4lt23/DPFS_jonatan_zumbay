@@ -1,0 +1,65 @@
+Relaciones del Diagrama
+
+*** Users → Carts : 1:1
+
+Un usuario puede tener un carrito.
+
+Cada carrito pertenece a un solo usuario.
+
+
+*** Users → Orders : 1:N
+
+Un usuario puede tener muchas ordenes.
+
+Cada orden pertenece a un solo usuario.
+
+
+*** Carts → CartItems : 1:N
+
+Un carrito puede tener muchos items.
+
+Cada item pertenece a un solo carrito.
+
+
+*** Products → CartItems : 1:N
+
+Un producto puede aparecer en muchos items de carrito.
+
+Cada item de carrito hace referencia a un solo producto.
+
+
+*** Products → ProdImages : 1:N
+
+Un producto puede tener muchas imagenes.
+
+Cada imagen pertenece a un solo producto.
+
+
+*** Models → Products : 1:N
+
+Un modelo puede tener muchos productos.
+
+Cada producto pertenece a un solo modelo.
+
+
+*** Products → ProdColors → Colors : N:M
+
+Un producto puede tener muchos colores.
+
+Un color puede aplicarse a muchos productos.
+
+La relacion se maneja mediante la tabla intermedia prodcolors.
+
+
+*** Orders → OrderDetails : 1:N
+
+Una orden puede tener muchos detalles de productos.
+
+Cada detalle pertenece a una sola orden.
+
+
+*** Products → OrderDetails : 1:N
+
+Un producto puede aparecer en muchos detalles de orden.
+
+Cada detalle de orden hace referencia a un solo producto.

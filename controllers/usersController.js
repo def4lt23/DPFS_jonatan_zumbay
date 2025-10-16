@@ -5,6 +5,15 @@ const { v4: uudi } = require("uuid"); // generar ids unicos
 
 const usersPath = path.join(__dirname, "../data/users.json"); // ruta al archivo de usuarios
 
+const db = require("../database/models/index.js"); // Base de datos (sequelize)
+
+// funcion utilitaria para capitalizar strings
+function capitalizar(str) {
+  if (!str) return "";
+  str = str.trim();
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
 const userController = {
   //:::: VISTAS ::::
   carrito: function (req, res, next) {
@@ -22,99 +31,82 @@ const userController = {
     });
   },
 
-  //::::: ACCEDER A LA CUENTA || LOGIN :::::
-  procesarLogin: function (req, res, next) {
-    const usuariosjs = JSON.parse(fs.readFileSync(usersPath, "utf-8"));
-    const usuarioEncontrado = usuariosjs.find(
-      (usuario) => usuario.email === req.body.usuario //busco el usuario por email
-    );
-    if (!usuarioEncontrado) {
-      //si no lo encuentra
-      return res.render("users/registro.ejs", {
-        title: "Registro",
-        mensaje: "El correo no esta registrado",
-      });
-    } else {
-      const contraseñaCorrecta = bycripts.compareSync(
-        //comparo contraseñas
-        req.body.contrasena, //la que escribe en el form
-        usuarioEncontrado.contrasena //la que esta en la base de datos
+  //::::: ACCEDER A LA CUENTA || LOGIN ::::: con base de datos
+  procesarLogin: async function (req, res, next) {
+    try {
+      const usuarioEncontrado = await db.User.findOne({ where: { email: req.body.usuario },}); //busco el usuario por su email
+      if (!usuarioEncontrado) { //si no lo encuentra
+        return res.render("users/registro.ejs", {
+          title: "Registro",
+          mensaje: "El correo no esta registrado",
+        });
+      }
+      const contraseñaCorrecta = bycripts.compareSync( //comparo las contraseñas
+        req.body.contrasena,
+        usuarioEncontrado.password //la que esta en la base de datos
       );
-      if (!contraseñaCorrecta) {
-        //si no coinciden
+
+      if (!contraseñaCorrecta) { //si la contraseña es incorrecta
         return res.render("users/registro.ejs", {
           title: "Registro",
           mensaje: "La contraseña es incorrecta",
         });
-      } else {
-        //si todo ok
-        const { contrasena, ...usuarioSinPassword } = usuarioEncontrado; //destructuring para no guardar la contraseña en la session
-        req.session.usuarioLogueado = usuarioSinPassword; //creo la session sin la contraseña
-
-        if (req.body.recordar) {
-          //si tildo el checkbox de recordar
-          res.cookie("usuarioEmail", usuarioEncontrado.email, {
-            //creo la cookie
-            maxAge: 3600000,
-          });
-        }
-        res.redirect("/users/perfil");
       }
+      const { contrasena, ...usuarioSinPassword } = usuarioEncontrado.toJSON(); //elimino la contraseñs del objeto usuario
+      req.session.usuarioLogueado = usuarioSinPassword; //creo la session sin la contraseña
+      if (req.body.recordar) { //si marco casilla recordar
+        res.cookie("usuarioEmail", usuarioEncontrado.email, { //creo la cookie
+          maxAge: 3600000,
+        });
+      }
+      res.redirect("/users/perfil");
+    } catch (error) {
+      return res.status(500).send("Error al procesar el login"); //error servidor
     }
   },
 
-  //::::: REGISTRARSE || USUARIO NUEVO :::::
-  procesarRegistro: function (req, res, next) {
-    const usuariosjs = JSON.parse(fs.readFileSync(usersPath, "utf-8"));
-
-    const emailExiste = usuariosjs.some(
-      (usuario) => usuario.email === req.body.correo //verifico si el email ya esta registrado
-    );
-    if (emailExiste) {
-      //si ya existe
-      return res.render("users/registro.ejs", {
-        title: "Registro",
-        mensaje: "El correo ya esta registrado",
-      });
-    }
-
-    const nombreUsuarioExiste = usuariosjs.some(
-      (usuario) => usuario.usuario === req.body.usuario //verifico si el nombre de usuario ya esta registrado
-    );
-    if (nombreUsuarioExiste) {
-      //si ya existe
-      return res.render("users/registro.ejs", {
-        title: "Registro",
-        mensaje: "El nombre de usuario ya existe, elija otro por favor",
-      });
-    }
-
-    if (req.body.contrasena1 == req.body.contrasena2) {
-      //verifico que las contraseñas coincidan
-      const nuevoUsuario = {
-        id: uudi(), //genero un id unico
-        nombre: req.body.nombre,
-        apellido: req.body.apellido,
-        email: req.body.correo,
-        usuario: req.body.usuario,
-        contrasena: bycripts.hashSync(req.body.contrasena1, 10), //encripto la contraseña
-        telefono: req.body.telefono,
-        direccion: req.body.direccion,
-        rol: "cliente", //por defecto todos son clientes
-        avatar: req.file ? req.file.filename : "sinavatar.png", //si sube avatar lo guardo, sino le asigno uno por defecto
-        fechaRegistro: new Date().toISOString(),
-      };
-      usuariosjs.push(nuevoUsuario);
-      const usuariosJson = JSON.stringify(usuariosjs, null, 2);
-      fs.writeFileSync(usersPath, usuariosJson, "utf-8");
-      req.session.mensaje = ' --> Cuenta creada exitosamente, intenta ingresar ahora'; //mostrar mensaje en el index
-      return res.redirect("/",); 
-    } else {
-      return res.render("users/registro.ejs", {
-        //si las contraseñas no coinciden
-        title: "Registro",
-        mensaje: "Las contraseñas no coinciden",
-      });
+  //::::: REGISTRARSE || USUARIO NUEVO ::::: con base de datos
+  procesarRegistro: async function (req, res, next) {
+    try {
+      const usuarioExistente = await db.User.findOne({where: { email: req.body.correo },}); //busco el usuario por su email
+      if (usuarioExistente) { //si ya existe
+        return res.render("users/registro.ejs", {
+          title: "Registro",
+          mensaje: "El correo ya esta registrado",
+        });
+      }
+      const nombreUsuarioExiste = await db.User.findOne({where: { username: req.body.usuario },}); //busco por nombre de usuario
+      if (nombreUsuarioExiste) { //si ya existe
+        return res.render("users/registro.ejs", {
+          title: "Registro",
+          mensaje: "El nombre de usuario ya existe, elija otro por favor",
+        });
+      }
+      if (req.body.contrasena1 !== req.body.contrasena2) { //si las contraseñas no coinciden
+        return res.render("users/registro.ejs", {
+          title: "Registro",
+          mensaje: "Las contraseñas no coinciden",
+        });
+      } else { //si todo esta bien, creo el nuevo usuario
+        const nuevoUsuario = {
+          name: capitalizar(req.body.nombre), //capitalizo nombre y apellido
+          lastname: capitalizar(req.body.apellido),
+          email: req.body.correo,
+          username: req.body.usuario,
+          password: bycripts.hashSync(req.body.contrasena1, 10), //encripto la contraseña
+          numberphone: req.body.telefono,
+          address: capitalizar(req.body.direccion),
+          role: "client", //por defecto todos son clientes
+          avatar: req.file ? req.file.filename : "sinavatar.png", //si subio foto uso su nombre, sino el defaul
+          registerday: new Date(),
+        };
+        await db.User.create(nuevoUsuario); //creo el usuario en la base de datos
+        req.session.mensaje =
+          " --> Cuenta creada exitosamente, intenta ingresar ahora"; //mensaje de exito y mando al home
+        return res.redirect("/");
+      }
+    } catch (error) {
+      return res.status(500).send("Error al procesar el registro"); //error servidor
     }
   },
 
@@ -135,47 +127,44 @@ const userController = {
     });
   },
 
-  //::::: EDITAR USUARIO LOGICA :::::
-  editarUsuariojson: function (req, res, next) {
-    const usuariosjs = JSON.parse(fs.readFileSync(usersPath, "utf-8"));
-
-    const nombreExiste = usuariosjs.find( //verifico si el nombre de usuario ya esta en uso (no dejo editar email)
-      (u) =>
-        u.usuario === req.body.usuario &&
-        u.id !== req.session.usuarioLogueado.id
-    );
-    if (nombreExiste) { //si ya existe
-      return res.render("users/editarusuario", {
-        title: "Editar Usuario",
-        mensaje: "El nombre de usuario ya está en uso",
-        userLogged: req.session.usuarioLogueado, //mantengo los datos del usuario logueado en la vista
-      });
-    }
-
-    const usuariotemp = usuariosjs.find( //busco el usuario que esta logueado
-      (u) => u.id == req.session.usuarioLogueado.id
-    );
-
-    if (usuariotemp) { //si lo encuentra
-      if (req.body.nuevacontrasena || req.body.confirmarcontrasena) { //si quiere cambiar la contraseña
-        if (!req.body.contrasena) { //si no escribe la actual
+  //::::: EDITAR USUARIO LOGICA ::::: con base de datos
+  editarUsuarioDB: async function (req, res, next) {
+    try {
+      const usuarioLogueado = await db.User.findByPk(req.session.usuarioLogueado.id); //busco el usuario por su id
+      if (!usuarioLogueado) { //si no lo encuentra
+        return res.status(404).send("Usuario no encontrado");
+      }
+      if (req.body.usuario && req.body.usuario !== usuarioLogueado.username) { //si completo y es diferente al actual
+        const nombreExiste = await db.User.findOne({where: { username: req.body.usuario },}); //busco por nombre de usuario
+        if (nombreExiste) {
+          return res.render("users/editarusuario", {
+            title: "Editar Usuario",
+            mensaje: "El nombre de usuario ya esta en uso",
+            userLogged: req.session.usuarioLogueado, //mantengo los datos en la vista
+          });
+        }
+        // si todo esta bien, actualizo el nombre de usuario
+        usuarioLogueado.username = req.body.usuario;
+      }
+      if (req.body.nuevacontrasena || req.body.confirmarcontrasena) { //si completo alguno de los dos campos
+        if (!req.body.contrasena) { //si no completo la actual
           return res.render("users/editarusuario", {
             title: "Editar Usuario",
             mensaje: "Escriba su contraseña actual para cambiarla",
             userLogged: req.session.usuarioLogueado,
           });
         }
-
-        if (
-          !bycripts.compareSync(req.body.contrasena, usuariotemp.contrasena) //me fijo si esta mal la clave actual
-        ) {
+        const contraseñaCorrecta = bycripts.compareSync( //valido la contraseña actual
+          req.body.contrasena,
+          usuarioLogueado.password
+        );
+        if (!contraseñaCorrecta) { //si es incorrecta
           return res.render("users/editarusuario", {
             title: "Editar Usuario",
             mensaje: "La contraseña actual es incorrecta",
             userLogged: req.session.usuarioLogueado,
           });
         }
-
         if (req.body.nuevacontrasena !== req.body.confirmarcontrasena) { //si las nuevas no coinciden
           return res.render("users/editarusuario", {
             title: "Editar Usuario",
@@ -183,74 +172,75 @@ const userController = {
             userLogged: req.session.usuarioLogueado,
           });
         }
+        //si todo esta bien, actualizo la contraseña
+        usuarioLogueado.password = bycripts.hashSync(req.body.nuevacontrasena,10);
+      }
 
-        usuariotemp.contrasena = bycripts.hashSync( //si todo ok, encripto y actualizo la nueva
-          req.body.nuevacontrasena,
-          10
+      //edito los demas campos, controlo que no esten vacios los que capitalizan sino da error
+      const nombre = req.body.nombre?.trim();
+      const apellido = req.body.apellido?.trim();
+      const direccion = req.body.direccion?.trim();
+
+      if (!nombre || !apellido || !direccion) { //si alguno esta vacio o solo espacios
+        return res.render("users/editarusuario", {
+          title: "Editar Usuario",
+          mensaje: "No dejar campos vacios o solamente con espacios",
+          userLogged: req.session.usuarioLogueado,
+        });
+      }
+      usuarioLogueado.name = capitalizar(req.body.nombre);
+      usuarioLogueado.lastname = capitalizar(req.body.apellido);
+      usuarioLogueado.numberphone = req.body.telefono;
+      usuarioLogueado.address = capitalizar(req.body.direccion);
+      if (req.file) { //si subio un nuevo avatar
+        usuarioLogueado.avatar = req.file.filename;
+      }
+      await usuarioLogueado.save(); //guardo los cambios en la base de datos
+      req.session.usuarioLogueado = {
+        //actualizo la session sin la contraseña
+        ...usuarioLogueado.toJSON(),
+        password: undefined,
+      };
+
+      //HACER ADMIN A OTRO USUARIO :::: con base de datos
+      //no controlo que esten vacios porque son campos opcionales (trim)
+      if (req.body.usergod && req.body.emailgod && req.body.divinepass) {
+        //si completo los 3 campos
+        const dios = await db.User.findOne({where: { username: req.body.usergod, email: req.body.emailgod },}); //busco el usuario por nombre y email
+        if (!dios) { //si no lo encuentra
+          return res.render("users/editarusuario", {
+            title: "Editar Usuario",
+            mensaje: "El usuario o email del futuro Dios no existen",
+            userLogged: req.session.usuarioLogueado,
+          });
+        }
+        if (usuarioLogueado.role !== "admin") { //si no es admin (por si acaso, porque en realidad no ve el form)
+          return res.render("users/editarusuario", {
+            title: "Editar Usuario",
+            mensaje: "Accion no permitida",
+            userLogged: req.session.usuarioLogueado,
+          });
+        }
+        // Validar contraseña del administrador
+        const contrasenaDivinaCorrecta = bycripts.compareSync(
+          req.body.divinepass,
+          usuarioLogueado.password
         );
+        if (!contrasenaDivinaCorrecta) { //si la clave divina es incorrecta
+          return res.render("users/editarusuario", {
+            title: "Editar Usuario",
+            mensaje: "Contraseña Divina incorrecta",
+            userLogged: req.session.usuarioLogueado,
+          });
+        }
+        // Si todo es correcto, hacer admin al usuario
+        dios.role = "admin";
+        await dios.save(); //guardo el cambio en la base de datos
       }
-      // Actualizo otros campos
-      usuariotemp.nombre = req.body.nombre;
-      usuariotemp.apellido = req.body.apellido;
-      usuariotemp.telefono = req.body.telefono;
-      usuariotemp.direccion = req.body.direccion;
-      usuariotemp.usuario = req.body.usuario;
-
-      if (req.file) { //si sube nuevo avatar
-        usuariotemp.avatar = req.file.filename;
-      }
-      // Actualizo la session
-      req.session.usuarioLogueado = { ...usuariotemp, contrasena: undefined }; //no guardo la contraseña en la session
+      res.redirect("/users/perfil");
+    } catch (error) {
+      return res.status(500).send("Error al actualizar el usuario"); //error servidor
     }
-
-    //::::: HACER ADMIN A OTRO USUARIO :::::
-    if (req.body.usergod && req.body.emailgod && req.body.divinepass) { //si completo los 3 campos
-      const dios = usuariosjs.find(
-        (u) => u.usuario === req.body.usergod && u.email === req.body.emailgod //busco el usuario por nombre y email
-      );
-
-      if (!dios) { //si no lo encuentra
-        return res.render("users/editarusuario", {
-          title: "Editar Usuario",
-          mensaje: "El usuario o email del futuro Dios no existen",
-          userLogged: req.session.usuarioLogueado,
-        });
-      }
-
-      const adminEncontrado = usuariosjs.find( //busco que el que hace la peticion sea admin
-        (u) =>
-          u.rol === "administrador" && u.id === req.session.usuarioLogueado.id
-      );
-
-      if (!adminEncontrado) { //si no es admin (por si acaso, porque en realidad no ve el form)
-        return res.render("users/editarusuario", {
-          title: "Editar Usuario",
-          mensaje: "Accion no permitida",
-          userLogged: req.session.usuarioLogueado,
-        });
-      }
-
-      // Validar contraseña del administrador
-      const contrasenaDivinaCorrecta = bycripts.compareSync(
-        req.body.divinepass,
-        adminEncontrado.contrasena
-      );
-
-      if (!contrasenaDivinaCorrecta) { //si la clave divina es incorrecta
-        return res.render("users/editarusuario", {
-          title: "Editar Usuario",
-          mensaje: "Contraseña Divina incorrecta",
-          userLogged: req.session.usuarioLogueado,
-        });
-      }
-      // Si todo es correcto, hacer admin al usuario
-      dios.rol = "administrador"; //use find para no tener que recorrer todo el array
-    }
-
-    const usuariosJson = JSON.stringify(usuariosjs, null, 2);
-    fs.writeFileSync(usersPath, usuariosJson, "utf-8");
-
-    res.redirect("/users/perfil");
   },
 
   //::::: CERRAR SESION :::::
@@ -264,61 +254,49 @@ const userController = {
   eliminarUsuarioVista: function (req, res, next) {
     res.render("users/eliminarusuario.ejs", {
       title: "Eliminar Usuario",
-      mensaje:
-        "¿Estás seguro que deseas eliminar tu cuenta? Esta acción es irreversible.",
-    });
+      mensaje:"¿Estás seguro que deseas eliminar tu cuenta? Esta acción es irreversible.",});
   },
 
-  //::::: ELIMINAR USUARIO LOGICA :::::
-  eliminarUsuariojson: function (req, res, next) {
-    const usuariosjs = JSON.parse(fs.readFileSync(usersPath, "utf-8"));
-    const usuarioDelete = usuariosjs.find(
-      (u) => u.id === req.session.usuarioLogueado.id //busco el usuario que hizo la peticion
-    );
-
-    // Validar que existe y que coincidan email y contraseña, aun no borro
-    if (
-      !usuarioDelete || //no encuentra usuario con ese id
-      usuarioDelete.email !== req.body.email || //el email no coincide
-      !bycripts.compareSync(req.body.contrasena, usuarioDelete.contrasena) || //la contraseña no coincide
-      req.body.seguro !== "on" //no marco la casilla de seguro
-    ) {
+  //::::: ELIMINAR USUARIO LOGICA ::::: con base de datos
+  eliminarUsuarioDB: async function (req, res, next) {
+    try {
+      const usuarioLogueado = await db.User.findByPk(req.session.usuarioLogueado.id); //busco el usuario por su id
+      if (!usuarioLogueado) {
+        return res.status(404).send("Usuario no encontrado");
+      } 
+      // Validar las 3 condiciones
+      if (usuarioLogueado.email !== req.body.email || //el email no coincide
+        !bycripts.compareSync(req.body.contrasena, usuarioLogueado.password) || //la contraseña no coincide
+        req.body.seguro !== "on" //no marco la casilla de seguro
+      ) {
+        return res.render("users/eliminarusuario", {
+          //cualquiera que falle de esas 3 condiciones manda mensaje de error
+          title: "Eliminar Usuario",
+          mensaje:
+            "Debe completar los datos correctamente para eliminar su cuenta",
+        });
+      }
+      // si todo esta bien, elimino primero el avatar si no es el por defecto
+      if (usuarioLogueado.avatar &&usuarioLogueado.avatar !== "sinavatar.png") {
+        const avatarPath = path.join(__dirname,"../public/images/users",usuarioLogueado.avatar); //ruta del avatar
+        if (fs.existsSync(avatarPath)) { // Verificar que el archivo existe
+          fs.unlinkSync(avatarPath); // Eliminar el archivo
+        }
+      }
+      await usuarioLogueado.destroy(); // Eliminar el usuario de la base de datos
+      // Cerrar sesion y limpiar cookie
+      req.session.destroy(() => {
+        //destruyo la session y espero a que termine
+        res.clearCookie("usuarioEmail");
+        res.redirect("/");
+      });
+    } catch (error) {
       return res.render("users/eliminarusuario", {
-        //cualquiera que falle de esas 4 condiciones manda mensaje de error
         title: "Eliminar Usuario",
         mensaje:
-          "Debe completar los datos correctamente para eliminar su cuenta",
+          "Ocurrio un error al intentar eliminar la cuenta. Intente nuevamente.",
       });
     }
-
-    // Borrar avatar si no es el default
-    if (usuarioDelete.avatar && usuarioDelete.avatar !== "sinavatar.png") {
-      const avatarPath = path.join(
-        __dirname,
-        "../public/images/users",
-        usuarioDelete.avatar
-      );
-      if (fs.existsSync(avatarPath)) {
-        // Verificar que el archivo existe
-        fs.unlinkSync(avatarPath); // Eliminar el archivo
-      }
-    }
-
-    // Filtrar al usuario borrado
-    const usuariosFiltrados = usuariosjs.filter(
-      (u) => u.id !== usuarioDelete.id
-    );
-    fs.writeFileSync(
-      usersPath,
-      JSON.stringify(usuariosFiltrados, null, 2),
-      "utf-8"
-    ); // Guardar los cambios
-
-    // Cerrar sesión y limpiar cookie
-    req.session.destroy();
-    res.clearCookie("usuarioEmail");
-
-    res.redirect("/");
   },
 };
 
