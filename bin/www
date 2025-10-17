@@ -28,7 +28,7 @@ const db = require('../database/models/index.js')
 
 server.listen(port, ()=>{
   console.log("⏩⏩⏩ SERVIDOR CORRIENDO EN http://localhost: 🟢 " + port + " 🟢 ⏪⏪⏪");
-  db.sequelize.sync({alter: true})
+  //db.sequelize.sync({alter: true}) //comento porque ya tengo las migraciones hechas
   });
 server.on('error', onError);
 server.on('listening', onListening);

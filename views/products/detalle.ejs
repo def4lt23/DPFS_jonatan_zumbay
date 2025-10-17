@@ -63,7 +63,7 @@
             <button class="botonagregar">AGREGAR AL CARRITO</button>
             <a class="botonagregar" href="/products/productos">Volver</a>
 
-            <% if (userLogged.rol === "administrador") { %>
+            <% if (userLogged.role === "admin") { %>
               <a
                 class="botonadmin"
                 href="/products/editarprod/<%= productodb.id %>"

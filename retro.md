@@ -81,11 +81,42 @@ Excelente avance del proyecto, en el metodo de enviarProductos vi que tenes un c
     NOTA: la contraseña de las 3 cuentas creadas es: "holahola" (sin comillas).
 
 **DEVOLUCION**
-npx sequelize db:seed --seed colors-seed.js
+Excelente trabajo! Funciona todo perfectamente! vamos por los siguientes sprints Jonatan! 🙌
 
-colors-seed.js
-models-seed.js
-products-seed.js
-prodcolors-seed.js
-prodimages-seed.js
-users-seed.js
+============================================================================================
+>>>**SPRINT 6**
+**INSTALACION**
+* Se instalo MYSQL con usuario y cuenta para vincular la DB.
+* Se instalo sequelize, mysql2 y babel_register para lograr migrar y manipular los datos.
+* Se creo el archivo .sequelizerc y configuro para crear la carpeta database
+* En el archivo config.js de database se seteo los valores para la base de datos que se utilizara.
+* Se agrego en database la carpeta de diagramas donde es muestran las tablas y relaciones que se eligieron para trabajar con el proyecto.
+
+**MODELS**
+* Se crearon los archivos models de cada una de las tablas del proyecto, esto ayuda a sequelize a ver como estan configuradas las tablas del proyecto.
+
+**MIGRATIONS**
+* Se crearon los archivos migrations de cada una de las tablas del proyecto, esto hace que sequelize pueda crear las tablas del proyecto. Se los enumero para cuando se larguen con el comando se ejecuten en ese orden para no causar algun error (la tabla de products depende de valores en tabla models por ejemplo)
+
+**SEEDS**
+* Se crearon archivos seeds para algunas tablas y poder realizar pruebas correspondientes. Se los enumero para cuando se larguen con el comando se ejecuten en ese orden para no causar algun error (la tabla de products depende de valores en tabla models por ejemplo)
+
+**VISTAS**
+* Se modifico las propiedades para que sean de forma correcta acorde a los señalados en la base de datos.
+
+**MIDDLEWARES**
+* Se modifico tambien las propiedades para que sean de forma correcta acorde a los señalados en la base de datos.
+
+**CONTROLLERS**
+* Se modificaron todos los metodos usados en las funciones, usando async, promesas y manejo de errores que podria causar sequelize. Ahora no se utilizan los archivos json de la carpeta data.
+
+||| EN RESUMEN |||
+* Todos los metodos fueron migrados al uso con base de datos, al menos en mi caso he controlado todos y funcionan correctamente. Tanto en el CRUD de productos, las propiedades como colores y modelos; como asi tambien los usuarios.
+* Al usar los archivos de migratrions y seeds se puede hacer todas las pruebas correspondientes.
+
+||| NOTA |||
+* La contraseña de las 3 cuentas creadas es: "holahola" (sin comillas).
+* Soy conciente que debo mejorar algunos aspectos esteticos (colores, el darkmode, espacios, etc) como asi tambien aspectos funcionales (por ejemplo el filtro de los productos a mostrar o el carrito). Eso lo hare mas adelante, estoy algo a contrareloj pero quise al menos por ahora asegurar que el proyecto esta funcional con base de datos. 
+* Personalmente este fue el sprint que mas me costo por el tema de aprender el uso de migrations y models, ademas de saber adaptar las funciones de los controladores que son muchas.
+
+**DEVOLUCION**

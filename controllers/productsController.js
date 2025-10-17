@@ -17,11 +17,9 @@ function capitalizar(str) {
 
 const productsController = {
   //:::::VER PRODUCTOS::::: con base de datos
-  productos: async function (req, res) {
-    //async porque usa await
+    productos: async function (req, res) {//async porque usa await
     try {
-      const productsdb = await db.Product.findAll({
-        //trae todos los productos de la base de datos
+      const productsdb = await db.Product.findAll({//trae todos los productos de la base de datos
         include: [
           //alias dentro de los asocciate en Product.js
           { association: "model" },
@@ -31,8 +29,7 @@ const productsController = {
       });
 
       return res.render("products/productos", { productsdb });
-    } catch (error) {
-      //manejo de errores
+    } catch (error) {//manejo de errores
       console.error(error);
       return res.status(500).send("Error al traer los productos");
     }
