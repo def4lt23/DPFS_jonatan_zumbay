@@ -4,7 +4,9 @@
 
     <body>
         <%- include('../partials/header.ejs') %>
+            <div class="titulo">
             <h1>EDITAR USUARIO</h1>
+            </div>
             <h6>
                 <%= mensaje %>
             </h6>
@@ -44,40 +46,21 @@
                         </div>
                     </div>
 
-                    <div class="clasep">
-                        <label for="contrasena">8️⃣➡️EDITAR CONTRASEÑA (⚠️en caso de no cambiar dejar los campos en
-                            blanco⚠️)</label>
-                        <input type="password" id="contrasena" name="contrasena"
-                            placeholder="Ingrese contraseña actual">
-                        <br>
-                        <input type="password" id="nuevacontrasena" name="nuevacontrasena"
-                            placeholder="Ingrese nueva contraseña">
-                        <br>
-                        <input type="password" id="confirmarcontrasena" name="confirmarcontrasena"
-                            placeholder="Confirme nueva contraseña">
+                    <div class="contenedor_botones">
+                        <a class="boton_base" href="/users/cambiarclave">Cambiar Contraseña</a>
+                        <% if (userLogged.role==="admin" ) { %>
+                            <a class="boton_base" href="/users/hacerAdmin">Asignar Nuevo Administrador</a>
+                            <% } %>
                     </div>
-
-                    <% if (userLogged.role==="admin" ) { %>
-                        <div class="clasep" style="border: 2px solid gold; padding: 10px; margin-top: 20px;">
-                            <label>🫰💥Volver Dios a otro</label>
-                            <label for="usergod">➡️Escribe nombre de usuario</label>
-                            <input type="text" id="udergod" name="usergod" placeholder="Nombre de usuario a iluminar">
-                            <label for="emailgod">➡️Escribe email</label>
-                            <input type="text" id="emailgod" name="emailgod" placeholder="Email a iluminar">
-                            <label for="divinepass">➡️Escribe TU contraseña</label>
-                            <input type="password" id="divinepass" name="divinepass"
-                                placeholder="Tu contraseña para corroborar tu divinidad">
+                    <hr>
+                    <div class="botones">
+                        <div>
+                            <button class="boton_base" type="submit">Guardar Cambios</button>
                         </div>
-                        <% } %>
-
-                            <div class="botones">
-                                <div>
-                                    <button class="boton" type="submit">Guardar Cambios</button>
-                                </div>
-                                <div>
-                                    <a class="boton" href="/users/perfil">Cancelar</a>
-                                </div>
-                            </div>
+                        <div>
+                            <a class="boton_cancelar" href="/users/perfil">Cancelar</a>
+                        </div>
+                    </div>
                 </form>
 
             </div>

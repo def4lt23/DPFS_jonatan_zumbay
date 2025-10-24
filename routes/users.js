@@ -3,7 +3,7 @@ const logged = require('../middlewares/logged');
 const guestOnly = require('../middlewares/guestOnly');
 const {uploadUser} = require('../middlewares/multer'); // Importar multer para manejar archivos, va con llaves porque son dos uploads
 const {carrito, quienessomos, registro, procesarLogin, procesarRegistro, vistaPerfil, editarUsuarioVista, editarUsuarioDB, 
-    cerrarsesion, eliminarUsuarioVista, eliminarUsuarioDB} 
+    cerrarsesion, eliminarUsuarioVista, eliminarUsuarioDB, cambiarClaveVista, cambiarClaveDB, hacerAdminVista, hacerAdminDB} 
 = require('../controllers/usersController');
 var router = express.Router();
 
@@ -31,5 +31,13 @@ router.get('/logout', logged, cerrarsesion); /* Logica para cerrar sesion */
 /*ELIMINAR USUARIO*/
 router.get('/eliminarUsuario', logged, eliminarUsuarioVista); /* Vista para eliminar usuario */
 router.delete('/eliminarUsuario/:id', logged, eliminarUsuarioDB); /* Logica para eliminar usuario */
+
+/*CAMBIAR CONTRASEÑA*/
+router.get('/cambiarclave', logged, cambiarClaveVista); /* Vista para cambiar contraseña */
+router.put('/cambiarclave/:id', logged, cambiarClaveDB); /* Logica para cambiar contraseña */
+
+/*VOLVER ADMIN A USUARIO*/
+router.get('/hacerAdmin', logged, hacerAdminVista); /* Vista para hacer admin a un usuario */
+router.put('/hacerAdmin/:id', logged, hacerAdminDB); /* Logica para hacer admin a un usuario */
 
 module.exports = router;

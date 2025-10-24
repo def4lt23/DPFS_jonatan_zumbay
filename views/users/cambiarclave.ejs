@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs', {estilod:'cambiarclave.css'}) %>
+
+    <body>
+        <%- include('../partials/header.ejs') %>
+
+            <main>
+                <div class="titulo">
+                    <h1>CAMBIO DE CONTRASEÑA</h1>
+                    <h6><%= mensaje %></h6>
+                    
+                </div>
+                <section class="bloques">
+                    <div class="contenedor">
+                        <div class="imagen">
+                            <img src="/images/lamppass.png" alt="">
+                        </div>
+                        <div class="formulario">
+                            <form action="/users/cambiarclave/<%= userLogged.id %>?_method=PUT" method="POST">
+                                <div class="input-contenedor">
+                                    <label for="claveactual">Contraseña Actual</label>
+                                    <input type="password" name="claveactual" placeholder="Ingrese su contraseña actual"
+                                        required>
+                                </div>
+                                <div class="input-contenedor">
+                                    <label for="nuevaclave">Nueva Contraseña</label>
+                                    <input type="password" name="nuevaclave" placeholder="Ingrese su nueva contraseña"
+                                        required>
+                                </div>
+                                <div class="input-contenedor">
+                                    <label for="confirmarnuevaclave">Confirmar Nueva Contraseña</label>
+                                    <input type="password" name="confirmarclave"
+                                        placeholder="Confirme su nueva contraseña" required>
+                                </div>
+                                <div class="botonera">
+                                    <button class="boton_base botoneditar" type="submit">Cambiar Contraseña</button>
+                                    <a class="boton_base botoncancelar" href="/users/editarusuario/:id">Cancelar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </section>
+            </main>
+
+            <%- include('../partials/footer.ejs') %>
+                <%- include('../partials/scripts.ejs') %>
+    </body>
+
+</html>

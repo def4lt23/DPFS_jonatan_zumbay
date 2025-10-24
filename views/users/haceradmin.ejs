@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs', {estilod:'haceradmin.css'}) %>
+
+    <body>
+        <%- include('../partials/header.ejs') %>
+
+            <main>
+                <div class="titulo">
+                    <h1>VOLVER ADMINISTRADOR A USUARIO</h1>
+                    <h6>
+                        <%= mensaje %>
+                    </h6>
+
+                </div>
+                <section class="bloques">
+                    <div class="contenedor">
+
+                        <div class="formulario">
+                            <form action="/users/hacerAdmin/<%= userLogged.id %>?_method=PUT" method="POST">
+                                <div class="input-contenedor">
+                                    <label for="usuario">Escribe nombre de Usuario</label>
+                                    <input type="text" id="usuario" name="usergod"
+                                        placeholder="Nombre de Usuario a Iluminar" required>
+                                </div>
+
+                                <div class="input-contenedor">
+                                    <label for="email">Escribe email de Usuario</label>
+                                    <input type="text" id="email" name="emailgod"
+                                        placeholder="Email de Usuario a Iluminar" required>
+                                </div>
+
+                                <div class="input-contenedor">
+                                    <label for="clavedivina">Confirmar tu Contraseña</label>
+                                    <input type="password" id="clavedivina" name="divinepass"
+                                        placeholder="Tu contraseña para corroborar tu divinidad" required>
+                                </div>
+                                <div class="botonera">
+                                <input class="botoneditar boton_base" type="submit" value="Hacer Administrador" >
+                                <a class="botoncancelar boton_base" href="/users/editarusuario/<%= userLogged.id %>">Cancelar</a>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="imagen">
+                            <img src="/images/lampcrown.png" alt="">
+                        </div>
+                    </div>
+
+                </section>
+            </main>
+
+            <%- include('../partials/footer.ejs') %>
+                <%- include('../partials/scripts.ejs') %>
+    </body>
+
+</html>

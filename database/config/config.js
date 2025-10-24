@@ -1,8 +1,9 @@
+require('dotenv').config(); //cargar variables de entorno desde un archivo .env
 module.exports = {
   "development": {
-    "username": "root",
-    "password": "Holahola1234*",
-    "database": "luzify_db",
+    "username": process.env.DB_USER,
+    "password": process.env.DB_PASS,
+    "database": process.env.DB_NAME,
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

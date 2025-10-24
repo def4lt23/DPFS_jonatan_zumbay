@@ -146,35 +146,6 @@ const userController = {
         // si todo esta bien, actualizo el nombre de usuario
         usuarioLogueado.username = req.body.usuario;
       }
-      if (req.body.nuevacontrasena || req.body.confirmarcontrasena) { //si completo alguno de los dos campos
-        if (!req.body.contrasena) { //si no completo la actual
-          return res.render("users/editarusuario", {
-            title: "Editar Usuario",
-            mensaje: "Escriba su contraseña actual para cambiarla",
-            userLogged: req.session.usuarioLogueado,
-          });
-        }
-        const contraseñaCorrecta = bycripts.compareSync( //valido la contraseña actual
-          req.body.contrasena,
-          usuarioLogueado.password
-        );
-        if (!contraseñaCorrecta) { //si es incorrecta
-          return res.render("users/editarusuario", {
-            title: "Editar Usuario",
-            mensaje: "La contraseña actual es incorrecta",
-            userLogged: req.session.usuarioLogueado,
-          });
-        }
-        if (req.body.nuevacontrasena !== req.body.confirmarcontrasena) { //si las nuevas no coinciden
-          return res.render("users/editarusuario", {
-            title: "Editar Usuario",
-            mensaje: "Las nuevas contraseñas no coinciden",
-            userLogged: req.session.usuarioLogueado,
-          });
-        }
-        //si todo esta bien, actualizo la contraseña
-        usuarioLogueado.password = bycripts.hashSync(req.body.nuevacontrasena,10);
-      }
 
       //edito los demas campos, controlo que no esten vacios los que capitalizan sino da error
       const nombre = req.body.nombre?.trim();
@@ -201,43 +172,8 @@ const userController = {
         ...usuarioLogueado.toJSON(),
         password: undefined,
       };
-
-      //HACER ADMIN A OTRO USUARIO :::: con base de datos
-      //no controlo que esten vacios porque son campos opcionales (trim)
-      if (req.body.usergod && req.body.emailgod && req.body.divinepass) {
-        //si completo los 3 campos
-        const dios = await db.User.findOne({where: { username: req.body.usergod, email: req.body.emailgod },}); //busco el usuario por nombre y email
-        if (!dios) { //si no lo encuentra
-          return res.render("users/editarusuario", {
-            title: "Editar Usuario",
-            mensaje: "El usuario o email del futuro Dios no existen",
-            userLogged: req.session.usuarioLogueado,
-          });
-        }
-        if (usuarioLogueado.role !== "admin") { //si no es admin (por si acaso, porque en realidad no ve el form)
-          return res.render("users/editarusuario", {
-            title: "Editar Usuario",
-            mensaje: "Accion no permitida",
-            userLogged: req.session.usuarioLogueado,
-          });
-        }
-        // Validar contraseña del administrador
-        const contrasenaDivinaCorrecta = bycripts.compareSync(
-          req.body.divinepass,
-          usuarioLogueado.password
-        );
-        if (!contrasenaDivinaCorrecta) { //si la clave divina es incorrecta
-          return res.render("users/editarusuario", {
-            title: "Editar Usuario",
-            mensaje: "Contraseña Divina incorrecta",
-            userLogged: req.session.usuarioLogueado,
-          });
-        }
-        // Si todo es correcto, hacer admin al usuario
-        dios.role = "admin";
-        await dios.save(); //guardo el cambio en la base de datos
-      }
       res.redirect("/users/perfil");
+      
     } catch (error) {
       return res.status(500).send("Error al actualizar el usuario"); //error servidor
     }
@@ -298,6 +234,104 @@ const userController = {
       });
     }
   },
+
+  //::::: CAMBIAR CONTRASEÑA VISTA :::::
+  cambiarClaveVista: function (req, res, next) {
+    res.render("users/cambiarclave.ejs", {
+      title: "Cambiar Contraseña",
+      mensaje: "", //mensaje vacio al cargar la vista por navegacion
+    });
+  },
+
+  //::::: CAMBIAR CONTRASEÑA LOGICA ::::: con base de datos
+  cambiarClaveDB: async function (req, res, next) {
+    try {
+      const usuarioLogueado = await db.User.findByPk(req.session.usuarioLogueado.id); //busco el usuario por su id
+      if (!usuarioLogueado) {
+        return res.status(404).send("Usuario no encontrado");
+      } 
+      const contraseñaCorrecta = bycripts.compareSync( //valido la contraseña actual
+        req.body.claveactual,
+        usuarioLogueado.password
+      );
+      console.log('decencripto la clave actual');
+      if (!contraseñaCorrecta) { //si es incorrecta
+        return res.render("users/cambiarclave.ejs", {
+          title: "Cambiar Contraseña",
+          mensaje: "La contraseña actual es incorrecta",
+        });
+      }
+      if (req.body.nuevaclave !== req.body.confirmarclave) { //si las nuevas no coinciden
+        return res.render("users/cambiarclave", {
+          title: "Cambiar Contraseña",
+          mensaje: "La nueva contraseña no coincide con su confirmacion",
+        });
+      }
+      //si todo esta bien, actualizo la contraseña
+      usuarioLogueado.password = bycripts.hashSync(req.body.nuevaclave,10);
+      await usuarioLogueado.save(); //guardo los cambios en la base de datos
+      res.redirect("/users/perfil");
+    } catch (error) {
+      return res.status(500).send("Error al cambiar la contraseña"); //error servidor
+    }
+  },
+
+  //::::: VOLVER ADMIN A USUARIO VISTA ::::: con base de datos
+  hacerAdminVista: async function (req, res, next) {
+    try {
+      res.render("users/haceradmin.ejs", {
+        title: "Hacer Admin a un Usuario",
+        mensaje: "", //mensaje vacio al cargar la vista por navegacion
+      });
+    } catch (error) {
+      return res.status(500).send("Error al cargar la vista"); //error servidor
+    }
+  },
+
+  //::::: VOLVER ADMIN A USUARIO LOGICA ::::: con base de datos
+  hacerAdminDB: async function (req, res, next) {
+    try {
+      const usuarioLogueado = await db.User.findByPk(req.session.usuarioLogueado.id); //busco el usuario por su id
+      if (!usuarioLogueado) {
+        return res.status(404).send("Usuario no encontrado");
+      }
+      // Validar las 3 condiciones
+      if (usuarioLogueado.role !== "admin") { //si no es admin (por si acaso, porque en realidad no ve el form)
+        return res.render("users/haceradmin", {
+          title: "Hacer Admin a un Usuario",
+          mensaje: "Accion no permitida",
+          userLogged: req.session.usuarioLogueado, //mantengo los datos en la vista
+        });
+      }
+      const dios = await db.User.findOne({where: { username: req.body.usergod, email: req.body.emailgod },}); //busco el usuario por nombre y email
+      if (!dios) { //si no lo encuentra
+        return res.render("users/haceradmin", {
+          title: "Hacer Admin a un Usuario",
+          mensaje: "El usuario o email del futuro Dios no existen",
+          userLogged: req.session.usuarioLogueado, //mantengo los datos en la vista
+        });
+      }
+      // Validar contraseña del administrador
+      const contrasenaDivinaCorrecta = bycripts.compareSync(
+        req.body.divinepass,
+        usuarioLogueado.password
+      );
+      if (!contrasenaDivinaCorrecta) { //si la clave divina es incorrecta
+        return res.render("users/haceradmin", {
+          title: "Hacer Admin a un Usuario",
+          mensaje: "Contraseña Divina incorrecta",
+          userLogged: req.session.usuarioLogueado, //mantengo los datos en la vista
+        });
+      }
+      // Si todo es correcto, hacer admin al usuario
+      dios.role = "admin";
+      await dios.save(); //guardo el cambio en la base de datos
+      res.redirect("/users/perfil");
+    } catch (error) {
+      return res.status(500).send("Error al procesar la solicitud"); //error servidor
+    }
+  },
+
 };
 
 module.exports = userController;

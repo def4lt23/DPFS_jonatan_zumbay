@@ -17,6 +17,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+require('dotenv').config(); // para usar variables de entorno
 //session
 app.use(session({
 secret: 'Top_Secret',
