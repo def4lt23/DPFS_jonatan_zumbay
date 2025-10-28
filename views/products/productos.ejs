@@ -11,41 +11,56 @@
                 </div>
                 <div class="contenedor">
                     <div class="filtro">
-                        <p>FILTROS</p>
-                        <div class="checkbox-group desktop-only">
-                            <label>
-                                <input type="checkbox" name="tipo" value="tipo1"> Lamparas Instrumentales
-                            </label>
-                            <label>
-                                <input type="checkbox" name="tipo" value="tipo2"> Lamparas Monumentos
-                            </label>
-                            <label>
-                                <input type="checkbox" name="tipo" value="tipo3"> Nuevos Modelos
-                            </label>
-                        </div>
+                        <p>FILTROS DE LAMPARAS</p>
 
-                        <div class="select-container mobile-only-types">
-                            <select id="tipo-lampara-movil" name="tipo_lampara_movil">
-                                <option value="">-- Selecciona un tipo --</option>
-                                <option value="tipo1">Lamparas Instrumentales</option>
-                                <option value="tipo2">Lamparas Monumentos</option>
-                                <option value="tipo3">Nuevos Modelos</option>
-                            </select>
-                        </div>
+                        <form method="GET" action="/products/productos">
 
-                        <div class="select-container order-by-select">
-                            <select id="tipo-lampara" name="tipo_lampara">
-                                <option value="">-- Ordenar por --</option>
-                                <option value="futurista">Precio Mayor a Menor</option>
-                                <option value="abstracta">Precio Menor a Mayor</option>
-                                <option value="monumento">Mas Vendidas</option>
-                                <option value="marca">A - Z</option>
-                            </select>
-                        </div>
+                            <!-- Desktop: checkboxes -->
+                            <div class="checkbox-group desktop-only">
+                                <% models.forEach(m=> { %>
+                                    <label>
+                                        <input type="checkbox" name="modelos" value="<%= m.name %>" <%=filtros.modelos
+                                            && (Array.isArray(filtros.modelos) ? filtros.modelos.includes(m.name) :
+                                            filtros.modelos===m.name) ? 'checked' : '' %>>
+                                        <%= m.name %>
+                                    </label>
+                                    <% }) %>
+                            </div>
 
-                        <button class="boton-aplicar" type="submit">Aplicar</button>
+                            <!-- Mobile: select simple -->
+                            <div class="select-container mobile-only">
+                                <select name="modelos">
+                                    <option value="">Selecciona un modelo</option>
+                                    <% models.forEach(m=> { %>
+                                        <option value="<%= m.name %>" <%=filtros.modelos===m.name ? 'selected' : '' %>>
+                                            <%= m.name %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+
+                            <!-- Ordenamiento -->
+                            <div class="select-container order-by-select">
+                                <select name="orden">
+                                    <option value="">Ordenar por</option>
+                                    <option value="precio-asc" <%=filtros.orden==='precio-asc' ? 'selected' : '' %>
+                                        >Precio: Menor a Mayor</option>
+                                    <option value="precio-desc" <%=filtros.orden==='precio-desc' ? 'selected' : '' %>
+                                        >Precio: Mayor a Menor</option>
+                                </select>
+                            </div>
+
+                            <!-- Botones -->
+                            <div class="botones-filtros">
+                                <button class="botonbase" type="submit">Aplicar</button>
+                                <a href="/products/productos" class="botonbase">Limpiar filtros</a>
+                            </div>
+
+                        </form>
+
 
                     </div>
+
 
                     <div class="cartas">
                         <% productsdb.forEach(prodi=> { %>
@@ -63,11 +78,13 @@
                                     </div>
                                     <!-- Botones debajo de la imagen -->
                                     <div class="slider-controls">
-                                        <button class="slider-btn prev-btn"><i class="fa-solid fa-backward-step"></i></button>
+                                        <button class="slider-btn prev-btn"><i
+                                                class="fa-solid fa-backward-step"></i></button>
                                         <button class="slider-btn favorito">
                                             <i class="far fa-heart"></i>
                                         </button>
-                                        <button class="slider-btn next-btn"><i class="fa-solid fa-forward-step"></i></button>
+                                        <button class="slider-btn next-btn"><i
+                                                class="fa-solid fa-forward-step"></i></button>
                                     </div>
                                 </div>
 

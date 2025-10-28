@@ -24,4 +24,5 @@ router.delete('/eliminarprod/:id', admin, productsController.eliminarProductosBD
 /* GET EDITAR PROPIEDADES DE PRODUCTOS */
 router.get('/editarPropiedad', admin, productsController.editarPropiedadesVista);
 router.post('/editarPropiedad', admin, productsController.editarPropiedadesBD); //recibe la informacion del formulario
+
 module.exports = router;

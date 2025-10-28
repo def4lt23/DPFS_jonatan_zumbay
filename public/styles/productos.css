@@ -49,8 +49,13 @@ body.dark-mode {
 }
 
 /* Control de visibilidad para elementos responsive */
-.mobile-only-types {
+.mobile-only {
   display: none; /* Oculto en pantallas grandes */
+}
+
+/* Desktop */
+.desktop-only {
+  display: block;
 }
 
 /* Estilos para el panel de filtros */
@@ -144,7 +149,7 @@ body.dark-mode .select-container select {
 }
 
 /* boton aplicar */
-.boton-aplicar {
+.botonbase {
   display: block; /* Ocupa todo el ancho disponible */
   width: 100%;
   padding: 12px 20px;
@@ -155,9 +160,12 @@ body.dark-mode .select-container select {
   font-size: 1.1rem;
   cursor: pointer;
   transition: background-color 0.3s ease; /* Transicion suave al pasar el cursor */
+  margin-bottom: 12px;
+  text-decoration: none;
+  text-align: center;
 }
 
-.boton-aplicar:hover {
+.botonbase:hover {
   background-color: #27ae60;
 }
 
@@ -388,27 +396,27 @@ body.dark-mode .cartaprecio {
   }
 
   /* Oculta los checkboxes en tablet y celualres */
-  .checkbox-group.desktop-only {
+  .desktop-only {
     display: none;
   }
 
   /* Muestra el select de tipos de lamparas en tablet y celulares */
-  .mobile-only-types {
+  .mobile-only {
     display: block; /* Muestra el select que estaba oculto */
     flex: 1 1 45%; /* Permite que ocupe casi la mitad del ancho del filtro */
     max-width: 250px;
-    margin-bottom: 0;
+    margin-bottom: 10px;
   }
 
   /* Ajusta el select de ordenar por, para que este al lado del de tipos */
   .select-container.order-by-select {
     flex: 1 1 45%; /* Permite que ocupe casi la mitad del ancho del filtro */
     max-width: 250px;
-    margin-bottom: 0;
+    margin-bottom: 10;
   }
 
   /* Ajusta el boton */
-  .boton-aplicar {
+  .botonbase {
     width: 100%;
     max-width: 300px;
     margin-top: 15px;

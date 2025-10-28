@@ -7,6 +7,7 @@ const colorsPath = path.join(__dirname, "../data/colors.json"); // ruta al archi
 const modelsPath = path.join(__dirname, "../data/models.json"); // ruta a los modelos
 
 const db = require("../database/models/index.js"); // Base de datos (sequelize)
+const { Op } = require('sequelize'); // Operadores de Sequelize
 
 // funcion para capitalizar strings
 function capitalizar(str) {
@@ -17,23 +18,51 @@ function capitalizar(str) {
 
 const productsController = {
   //:::::VER PRODUCTOS::::: con base de datos
-    productos: async function (req, res) {//async porque usa await
-    try {
-      const productsdb = await db.Product.findAll({//trae todos los productos de la base de datos
-        include: [
-          //alias dentro de los asocciate en Product.js
-          { association: "model" },
-          { association: "colors" },
-          { association: "images" },
-        ],
-      });
+  productos: async function (req, res) {
+  try {
+    const { modelos } = req.query; 
+    const includeOptions = [
+      { association: "colors" },
+      { association: "images" },
+    ];
 
-      return res.render("products/productos", { productsdb });
-    } catch (error) {//manejo de errores
-      console.error(error);
-      return res.status(500).send("Error al traer los productos");
+    if (modelos) {
+      const { Op } = require("sequelize");
+      const modelosArray = Array.isArray(modelos) ? modelos : [modelos];
+      includeOptions.unshift({
+        association: "model",
+        where: { name: { [Op.in]: modelosArray } }
+      });
+    } else {
+      includeOptions.unshift({ association: "model" });
     }
-  },
+
+    // Ordenamiento por precio
+    let orderOption = [];
+    if (req.query.orden === 'precio-asc') {
+      orderOption = [['price', 'ASC']];
+    } else if (req.query.orden === 'precio-desc') {
+      orderOption = [['price', 'DESC']];
+    }
+
+    const productsdb = await db.Product.findAll({ 
+      include: includeOptions,
+      order: orderOption
+    });
+
+    // Traemos todos los modelos **excepto "SIN MODELO"**
+    const { Op } = require("sequelize");
+    const models = await db.Model.findAll({
+      attributes: ["name"],
+      where: { name: { [Op.ne]: "SIN MODELO" } }
+    });
+
+    return res.render("products/productos", { productsdb, models, filtros: req.query });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Error al traer los productos");
+  }
+},
 
   //:::::VER PRODUCTOS EN DETALLE::::: con base de datos
   enviarProductos: async function (req, res) {
@@ -276,6 +305,7 @@ const productsController = {
       return res.status(500).send("Error al editar las propiedades");
     }
   },
+
 };
 
 module.exports = productsController;
