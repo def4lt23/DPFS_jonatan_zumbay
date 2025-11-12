@@ -50,17 +50,17 @@
                                 </select>
                             </div>
 
-                            <!-- Botones -->
                             <div class="botones-filtros">
                                 <button class="botonbase" type="submit">Aplicar</button>
                                 <a href="/products/productos" class="botonbase">Limpiar filtros</a>
+                                <% if (userLogged.role==="admin" ) { %>
+                                        <a class="botonbase" href="/products/crearprod">AÑADIR UN PRODUCTO (ADMIN)</a>
+                                        <a class="botonbase" href="/products/editarPropiedad">EDITAR PROPIEDADES (ADMIN)</a>
+                                    <% } %>
                             </div>
-
                         </form>
 
-
                     </div>
-
 
                     <div class="cartas">
                         <% productsdb.forEach(prodi=> { %>
@@ -98,12 +98,6 @@
 
                 </div>
 
-                <% if (userLogged.role==="admin" ) { %>
-                    <div class="contenedor_boton_admin">
-                        <a class="botonadmin" href="/products/crearprod">AÑADIR UN PRODUCTO (ADMIN)</a>
-                        <a class="botonadmin" href="/products/editarPropiedad">EDITAR PROPIEDADES (ADMIN)</a>
-                    </div>
-                    <% } %>
             </main>
             <%- include('../partials/footer.ejs') %>
                 <%- include('../partials/scripts.ejs') %>
