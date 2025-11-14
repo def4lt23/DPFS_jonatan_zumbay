@@ -1,0 +1,17 @@
+.navbar {
+    align-items: center;
+    justify-content: center;
+    background-color:mediumpurple;
+}
+.navbar img {
+    width: 250px;
+}
+
+.navbar-link {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: 1.5rem;
+}

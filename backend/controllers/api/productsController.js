@@ -307,62 +307,111 @@ const productsController = {
   // },
 
   // PRODUCTO POR PK
-  productDetail: async function (req, res, next) {
-    try {
-      let response;
-      const productId = req.params.id; //id del producto a buscar
-      const productoEncontrado = await db.Product.findByPk(productId); //busco el producto por su id
-      console.log(productoEncontrado);
-      if (!productoEncontrado) {
-        //si no lo encuentra
-        response = {
-          meta: {
-            status: 404,
-            path: `/api/products/${productId}`,
-          },
-          message: `Error al buscar el producto con id ${productId}`,
-        };
-        console: console.log(response)
-      }
-      response = {
-        //armo la respuesta
-        meta: {
-          status: 200, //estado ok
-          path: `/api/products/${productId}`, //ruta del endpoint
-        },
-        data: productoEncontrado,
-      };
+productDetail: async function (req, res, next) {
+  try {
+    const productId = req.params.id;
 
-      res.json(response); //envio la respuesta en formato json
-    } catch (error) {
-      return res.status(500).json({
-        //error servidor
+    const productoEncontrado = await db.Product.findByPk(productId, {
+      include: [
+        { association: "images" },
+        { association: "colors" },
+        { association: "model" },
+      ],
+    });
+
+    if (!productoEncontrado) {
+      return res.status(404).json({
         meta: {
-          status: 500,
+          status: 404,
           path: `/api/products/${productId}`,
         },
-        message: "Error al procesar la solicitud",
+        message: `No se encontró el producto con id ${productId}`,
       });
     }
-  },
+
+    // FORMATEO → SOLO PRIMERA IMAGEN
+    const productFormatted = {
+      id: productoEncontrado.id,
+      name: productoEncontrado.name,
+      description: productoEncontrado.description,
+      price: productoEncontrado.price,
+      size: productoEncontrado.size,
+      stock: productoEncontrado.stock,
+      featured: productoEncontrado.featured,
+
+      // ⬇️ Primera imagen o fallback
+      image:
+        productoEncontrado.images?.length > 0
+          ? `/images/products/${productoEncontrado.images[0].name}`
+          : "/images/products/default.png",
+
+      // ⬇️ Mantengo colores y modelo
+      colors: productoEncontrado.colors,
+      model: productoEncontrado.model,
+    };
+
+    return res.json({
+      meta: {
+        status: 200,
+        path: `/api/products/${productId}`,
+      },
+      data: productFormatted,
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      meta: {
+        status: 500,
+        path: `/api/products/${productId}`,
+      },
+      message: "Error al procesar la solicitud",
+    });
+  }
+},
+
 
   // OBTENER TODOS LOS PRODUCTOS
   allProducts: async function (req, res, next) {
     try {
-      const products = await db.Product.findAll(); //busco todos los productos
-      const response = {
-        //armo la respuesta
-        meta: {
-          status: 200, //estado ok
-          count: products.length, //cantidad de productos
-          path: "/api/products", //ruta del endpoint
-        },
-        data: products,
-      };
+      const products = await db.Product.findAll({
+        include: [
+          { association: "images" },
+          { association: "colors" },
+          { association: "model" },
+        ],
+      });
 
-      res.json(response); //envio la respuesta en formato json
+      // Convertimos los productos para dejar SOLO la primera imagen
+      const productsFormatted = products.map((p) => ({
+        id: p.id,
+        name: p.name,
+        description: p.description,
+        price: p.price,
+        size: p.size,
+        stock: p.stock,
+        featured: p.featured,
+
+        // ▶️ SOLO LA PRIMERA IMAGEN
+        image:
+          p.images && p.images.length > 0
+            ? `/images/products/${p.images[0].name}`
+            : "/images/products/default.png", // opcional
+
+        // si querés conservar el resto de datos:
+        colors: p.colors,
+        model: p.model,
+      }));
+
+      return res.json({
+        meta: {
+          status: 200,
+          count: products.length,
+          path: "/api/products",
+        },
+        data: productsFormatted,
+      });
     } catch (error) {
-      return res.status(500).send("Error al procesar la solicitud"); //error servidor
+      return res.status(500).send("Error al procesar la solicitud");
     }
   },
 };
