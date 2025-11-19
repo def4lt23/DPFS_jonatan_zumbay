@@ -279,6 +279,38 @@ const userController = {
       return res.status(500).send("Error al procesar la solicitud"); //error servidor
     }
   },
+
+// OBTENER ULTIMO USUARIO
+lastUser: async function (req, res) {
+  try {
+    const ultimoUsuario = await db.User.findOne({
+      attributes: { exclude: ["password"] },
+      order: [["id", "DESC"]],   // ordenamos por id descendente (ultimo primero)
+    });
+
+    if (!ultimoUsuario) {
+      return res.status(404).json({
+        meta: { status: 404 },
+        message: "No hay usuarios en la base de datos"
+      });
+    }
+
+    return res.json({
+      meta: { status: 200,
+        path: "/api/users/last"
+      },
+      data: ultimoUsuario,
+    });
+
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({
+      meta: { status: 500 },
+      message: "Error al procesar la solicitud",
+    });
+  }
+},
+
 };
 
 module.exports = userController;

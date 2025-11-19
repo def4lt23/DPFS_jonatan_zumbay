@@ -7,8 +7,10 @@ export const Card = ({product}) => { // desestructuramos el prop product
         src={`${URL_BASE}${product.image}`}
         alt={product.name}
       />
-      <h3>{product.name}</h3>
-      <p>${product.price}</p>
+      <div className='text-card'>
+        <h3>{product.name}</h3>
+        <p>${product.price}</p>
+      </div>
     </div>
   )
 }

@@ -1,39 +1,54 @@
 import React, { useEffect, useState } from 'react'
 import './detail.css'
+import { useParams } from 'react-router-dom'
+import { Card } from '../Catalog/card' // Importar el componente Card desde catalogo
 
 export const Detail = () => {
-  const [product, setProduct] = useState(null) // estado para almacenar los productos
-  const [loading, setLoading] = useState(true) // estado para manejar la carga
+  const [product, setProduct] = useState(null) // Producto inicial es null
+  const [loading, setLoading] = useState(true) // Estado de carga
+  const [notFound, setNotFound] = useState(false) // Estado de no encontrado
+
   const URL_BASE = 'http://localhost:3000'
+  const { id } = useParams() // Obtener el ID del producto desde la URL
 
   useEffect(() => { 
-    // Simular una llamada a una API para obtener los productos
-    fetch(`${URL_BASE}/api/products/9`)
-    .then(response => response.json())
-    .then(result => {
-      //console.log(result.data)
-      setProduct(result.data) // actualizar el estado con los productos obtenidos
-      setLoading(false) // actualizar el estado de carga
-      console.log(result.data);
-    })
-  },[])
-  return (
-    <div>
-      <h2>DETALLE DEL PRODUCTO: {product ? product.name : "Cargando..."}</h2>
-      <div className='product-list'>
-        {product ? (
-        <div className="card">
-            <img 
-                src={`${URL_BASE}${product.image}`}
-                alt={product.name}
-            />
-            <h3>{product.name}</h3>
-            <p>${product.price}</p>
-        </div>
-        ) : (
-          <p>Cargando productos...</p>
-        )}
+    fetch(`${URL_BASE}/api/products/${id}`)
+      .then(response => response.json())
+      .then(result => {
+        // SI NO EXISTE (meta.status === 404)
+        if (!result.data) {
+          setNotFound(true) // Marcar como no encontrado
+          setLoading(false) // Terminar carga
+          return
+        }
+
+        setProduct(result.data) // Guardar el producto en el estado
+        setLoading(false) // Terminar carga
+      })
+      .catch(() => {
+        setNotFound(true) // En caso de error marcar como no encontrado
+        setLoading(false) // Terminar carga
+      })
+
+  }, [id]) // Ejecutar cuando el ID cambie
+
+  if (loading) {
+    return <h2>Cargando producto...</h2>
+  }
+
+  if (notFound) { // si produco no encontrado
+    return (
+      <div className="not-found">
+        <h1>Producto no encontrado</h1>
+        <img 
+          src="/lamperror.png"
+          alt="Producto no encontrado"
+          style={{ width: "250px" }}
+        />
       </div>
-    </div>
+    )
+  }
+  return ( // Mostrar detalle del producto encontrado
+    <Card product={product} />
   )
 }

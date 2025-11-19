@@ -1,16 +1,21 @@
 import './Navbar.css'
+import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
   return (
     <div className='navbar'>
-        <a href="/"><img src="/logo_blancov3.png" alt="" /></a>
         <ul className='navbar-link'>
-            <li><a href="">TOTAL DE PRODUCTOS</a></li>
-            <li><a href="">TOTAL DE USUARIOS</a></li>
-            <li><a href="">TOTAL DE CATEGORIAS</a></li>
-            <li><a href="">ULTIMO PRODUCTO AGREGADO</a></li>
-            <li><a href="">ULTIMO USUARIO AGREGADO</a></li>
-            <li><a href="">PRODUCTO POR CATEGORIAS</a></li>
+            <li><Link to="/">TOTAL DE PRODUCTOS</Link></li>
+            <li><Link to="/users">TOTAL DE USUARIOS</Link></li>
+            <li><Link to="/utils">TOTAL DE CATEGORIAS</Link></li>
+        </ul>
+
+        <Link to="/"><img src="/logo_verdev3.png" alt="" /></Link>
+        
+        <ul className='navbar-link'>
+            <li><Link to="">ULTIMO PRODUCTO AGREGADO</Link></li>
+            <li><Link to="/last-user">ULTIMO USUARIO AGREGADO</Link></li>
+            <li><Link to="">PRODUCTO POR CATEGORIAS</Link></li>
         </ul>
     </div>
   )

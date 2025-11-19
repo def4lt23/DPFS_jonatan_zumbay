@@ -307,68 +307,66 @@ const productsController = {
   // },
 
   // PRODUCTO POR PK
-productDetail: async function (req, res, next) {
-  try {
-    const productId = req.params.id;
+  productDetail: async function (req, res, next) {
+    try {
+      const productId = req.params.id;
 
-    const productoEncontrado = await db.Product.findByPk(productId, {
-      include: [
-        { association: "images" },
-        { association: "colors" },
-        { association: "model" },
-      ],
-    });
+      const productoEncontrado = await db.Product.findByPk(productId, {
+        include: [
+          { association: "images" },
+          { association: "colors" },
+          { association: "model" },
+        ],
+      });
 
-    if (!productoEncontrado) {
-      return res.status(404).json({
+      if (!productoEncontrado) {
+        return res.status(404).json({
+          meta: {
+            status: 404,
+            path: `/api/products/${productId}`,
+          },
+          message: `No se encontró el producto con id ${productId}`,
+        });
+      }
+
+      // FORMATEO → SOLO PRIMERA IMAGEN
+      const productFormatted = {
+        id: productoEncontrado.id,
+        name: productoEncontrado.name,
+        description: productoEncontrado.description,
+        price: productoEncontrado.price,
+        size: productoEncontrado.size,
+        stock: productoEncontrado.stock,
+        featured: productoEncontrado.featured,
+
+        // ⬇️ Primera imagen o fallback
+        image:
+          productoEncontrado.images?.length > 0
+            ? `/images/products/${productoEncontrado.images[0].name}`
+            : "/images/products/default.png",
+
+        // ⬇️ Mantengo colores y modelo
+        colors: productoEncontrado.colors,
+        model: productoEncontrado.model,
+      };
+
+      return res.json({
         meta: {
-          status: 404,
+          status: 200,
           path: `/api/products/${productId}`,
         },
-        message: `No se encontró el producto con id ${productId}`,
+        data: productFormatted,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        meta: {
+          status: 500,
+          path: `/api/products/${productId}`,
+        },
+        message: "Error al procesar la solicitud",
       });
     }
-
-    // FORMATEO → SOLO PRIMERA IMAGEN
-    const productFormatted = {
-      id: productoEncontrado.id,
-      name: productoEncontrado.name,
-      description: productoEncontrado.description,
-      price: productoEncontrado.price,
-      size: productoEncontrado.size,
-      stock: productoEncontrado.stock,
-      featured: productoEncontrado.featured,
-
-      // ⬇️ Primera imagen o fallback
-      image:
-        productoEncontrado.images?.length > 0
-          ? `/images/products/${productoEncontrado.images[0].name}`
-          : "/images/products/default.png",
-
-      // ⬇️ Mantengo colores y modelo
-      colors: productoEncontrado.colors,
-      model: productoEncontrado.model,
-    };
-
-    return res.json({
-      meta: {
-        status: 200,
-        path: `/api/products/${productId}`,
-      },
-      data: productFormatted,
-    });
-
-  } catch (error) {
-    return res.status(500).json({
-      meta: {
-        status: 500,
-        path: `/api/products/${productId}`,
-      },
-      message: "Error al procesar la solicitud",
-    });
-  }
-},
-
+  },
 
   // OBTENER TODOS LOS PRODUCTOS
   allProducts: async function (req, res, next) {
@@ -412,6 +410,72 @@ productDetail: async function (req, res, next) {
       });
     } catch (error) {
       return res.status(500).send("Error al procesar la solicitud");
+    }
+  },
+
+  // OBTENER MODELOS Y COLORES
+  modelsAndColors: async (req, res) => {
+    try {
+      const colors = await db.Color.findAll({ order: [["id", "ASC"]] });
+      const models = await db.Model.findAll({ order: [["id", "ASC"]] });
+      return res.status(200).json({
+        ok: true,
+        data: { colors, models },
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        ok: false,
+        msg: "Error al obtener los modelos y colores",
+      });
+    }
+  },
+
+  // AGREGAR COLOR
+  addColor: async (req, res) => {
+    try {
+      const { name } = req.body;
+      if (!name || name.trim() === "") {
+        return res.status(400).json({
+          ok: false,
+          msg: "El nombre del color es obligatorio",
+        });
+      }
+      const newColor = await db.Color.create({ name: capitalizar(name) });
+      return res.status(201).json({
+        ok: true,
+        data: newColor,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        ok: false,
+        msg: "Error al agregar el color",
+      });
+    }
+  },
+
+  // AGREGAR MODELO
+  addModel: async (req, res) => {
+    try {
+      const { name } = req.body;
+      if (!name || name.trim() === "") {
+        return res.status(400).json({
+          ok: false,
+          msg: "El nombre del modelo es obligatorio",
+        });
+      }
+      const newModel = await db.Model.create({ name: capitalizar(name) });
+      return res.status(201).json({
+        ok: true,
+        data: newModel,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        ok: false,
+        msg: "Error al agregar el modelo",
+      });
     }
   },
 };

@@ -1,28 +1,29 @@
-.product-list {
+.user-list {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-.product-card {
+.user-card {
   border: 3px solid #2ECC71;
   border-radius: 8px;
   /* padding: 16px; */
   width: 500px;
   height: 500px;
   text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
   /* background-color: #fafafa */
 }
 
-.product-card img {
+.user-card img {
   padding-top: 5px;
   max-width: 80%;
   height: auto;
-  border-radius: 25px;
+  border-radius: 500px;
 }
 
 .text-card {
-  margin-top: 15px;
   font-size: 1.1rem;
   font-weight: bold;
 }
