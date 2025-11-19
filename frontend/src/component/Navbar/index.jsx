@@ -13,7 +13,7 @@ export const Navbar = () => {
         <Link to="/"><img src="/logo_verdev3.png" alt="" /></Link>
         
         <ul className='navbar-link'>
-            <li><Link to="">ULTIMO PRODUCTO AGREGADO</Link></li>
+            <li><Link to="/last-product">ULTIMO PRODUCTO AGREGADO</Link></li>
             <li><Link to="/last-user">ULTIMO USUARIO AGREGADO</Link></li>
             <li><Link to="">PRODUCTO POR CATEGORIAS</Link></li>
         </ul>
