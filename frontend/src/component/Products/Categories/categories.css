@@ -1,0 +1,23 @@
+.categories-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 0 20px 40px 20px;
+}
+
+.category-block .titulo {
+  background-color: #2ECC71;
+  text-align: center;
+  padding: 10px;
+  color: #FAFAFA;
+  margin-bottom: 15px;
+}
+
+.category-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}

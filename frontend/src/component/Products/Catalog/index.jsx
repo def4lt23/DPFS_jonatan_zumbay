@@ -1,66 +1,63 @@
-import React, { useEffect, useState } from 'react'
-import './catalog.css'
-import { Card } from './card.jsx'
+import React, { useEffect, useState } from "react";
+import "./catalog.css";
+import { Card } from "./card.jsx";
 
 export const Catalog = () => {
+  const [products, setProducts] = useState([]); // almacena los productos obtenidos
+  const [loading, setLoading] = useState(true); //carga inicial
+  const [page, setPage] = useState(1); // pagina actual
+  const [totalPages, setTotalPages] = useState(1); // total de paginas
+  const URL_BASE = "http://localhost:3000";
 
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [page, setPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(1)
-  const URL_BASE = 'http://localhost:3000'
+  useEffect(() => {setLoading(true); // inicia la carga de productos
 
-  useEffect(() => {
-    setLoading(true)
-
-    fetch(`${URL_BASE}/api/products?page=${page}&limit=6`)
-      .then(response => response.json())
-      .then(result => {
-        setProducts(result.data || [])
-        setTotalPages(result.meta.pages || 1)
-        setLoading(false)
+    fetch(`${URL_BASE}/api/products?page=${page}&limit=6`) // llama a la API para obtener los productos
+      .then((response) => response.json()) // convierte la respuesta a JSON
+      .then((result) => {
+        setProducts(result.data || []); // actualiza el estado con los productos obtenidos
+        setTotalPages(result.meta.pages || 1); // actualiza el total de paginas
+        setLoading(false); // finaliza la carga
       })
-      .catch(err => {
-        console.log("Error cargando productos", err)
-        setLoading(false)
-      })
-  }, [page])
+      .catch((err) => {
+        console.log("Error cargando productos", err);
+        setLoading(false);
+      });
+  }, [page]); // se ejecuta cada vez que cambia la pagina
 
   return (
     <div>
-      <h2>Listado de productos</h2>
-
-      <div className='product-list'>
-        {loading ? (
+      <div className="titulo">
+        <h2>Listado de productos</h2>
+      </div>
+      <div className="product-list">
+        {loading ? ( // muestra un mensaje de carga mientras se obtienen los productos
           <p>Cargando productos...</p>
-        ) : products.length > 0 ? (
-          products.map(item => (
-            <Card key={item.id} product={item} />
-          ))
-        ) : (
+        ) : products.length > 0 ? ( // muestra los productos si hay alguno
+          products.map((item) => <Card key={item.id} product={item} />) // mapea los productos y los muestra en tarjetas
+        ) : ( // si no 
           <p>No hay productos para mostrar</p>
         )}
       </div>
 
-      <div style={{ marginTop: "20px", display: "flex", gap: "10px" }}>
-        <button 
-          disabled={page === 1} 
-          onClick={() => setPage(page - 1)}
-        >
-          ◀ Anterior
+      <div className="cont-btn-pag">
+        <button
+          className="btn-paginado"
+          disabled={page === 1} // deshabilita el boton si esta en la primera pagina
+          onClick={() => setPage(page - 1)} // cambia a la pagina anterior
+        > ◀ Anterior
         </button>
 
-        <span>Página {page} de {totalPages}</span>
+        <span>
+          Pagina {page} de {totalPages} 
+        </span>
 
-        <button 
-          disabled={page === totalPages} 
-          onClick={() => setPage(page + 1)}
-        >
-          Siguiente ▶
+        <button
+          className="btn-paginado"
+          disabled={page === totalPages} // deshabilita el boton si esta en la ultima pagina
+          onClick={() => setPage(page + 1)} // cambia a la pagina siguiente
+        > Siguiente ▶
         </button>
       </div>
     </div>
-  )
-}
-
-
+  );
+};

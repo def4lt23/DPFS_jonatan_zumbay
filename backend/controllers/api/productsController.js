@@ -200,35 +200,60 @@ allProducts: async function (req, res) {
     }
   },
 
-  // OBTENER ULTIMO PRODUCTO
-  lastProduct: async function (req, res) {
-    try {
-      const ultimoproducto = await db.Product.findOne({
-        order: [["id", "DESC"]],   // ordenamos por id descendente (ultimo primero)
-      });
-  
-      if (!ultimoproducto) {
-        return res.status(404).json({
-          meta: { status: 404 },
-          message: "No hay productos en la base de datos"
-        });
-      }
-  
-      return res.json({
-        meta: { status: 200,
-          path: "/api/products/last"
-        },
-        data: ultimoproducto,
-      });
-  
-    } catch (error) {
-      console.log(error)
-      return res.status(500).json({
-        meta: { status: 500 },
-        message: "Error al procesar la solicitud",
+// OBTENER ULTIMO PRODUCTO
+lastProduct: async function (req, res) {
+  try {
+    const ultimoproducto = await db.Product.findOne({
+      order: [["id", "DESC"]],
+      include: [
+        { association: "images" },
+        { association: "colors" },
+        { association: "model" },
+      ],
+    });
+
+    if (!ultimoproducto) {
+      return res.status(404).json({
+        meta: { status: 404 },
+        message: "No hay productos en la base de datos",
       });
     }
-  },
+
+    // Formatear igual que en productDetail y allProducts
+    const productFormatted = {
+      id: ultimoproducto.id,
+      name: ultimoproducto.name,
+      description: ultimoproducto.description,
+      price: ultimoproducto.price,
+      size: ultimoproducto.size,
+      stock: ultimoproducto.stock,
+      featured: ultimoproducto.featured,
+
+      image:
+        ultimoproducto.images?.length > 0
+          ? `/images/products/${ultimoproducto.images[0].name}`
+          : "/images/products/default.png",
+
+      colors: ultimoproducto.colors,
+      model: ultimoproducto.model,
+    };
+
+    return res.json({
+      meta: {
+        status: 200,
+        path: "/api/products/last",
+      },
+      data: productFormatted,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      meta: { status: 500 },
+      message: "Error al procesar la solicitud",
+    });
+  }
+},
+
 };
 
 module.exports = productsController;

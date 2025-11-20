@@ -1,5 +1,5 @@
 import './Navbar.css'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom' /*porque uso los links*/
 
 export const Navbar = () => {
   return (
@@ -15,7 +15,7 @@ export const Navbar = () => {
         <ul className='navbar-link'>
             <li><Link to="/last-product">ULTIMO PRODUCTO AGREGADO</Link></li>
             <li><Link to="/last-user">ULTIMO USUARIO AGREGADO</Link></li>
-            <li><Link to="">PRODUCTO POR CATEGORIAS</Link></li>
+            <li><Link to="/categories">PRODUCTO POR CATEGORIAS</Link></li>
         </ul>
     </div>
   )

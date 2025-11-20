@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from "react";
+import { ProductDetailCard } from "../Detail/ProductDetailCard";
+import './lastproduct.css';
 
 export const LastProduct = () => {
-  const [product, setProduct] = useState([]); // Estado para almacenar el Ultimo producto
-  const [loading, setLoading] = useState(true); // Estado para manejar la carga
+  const [product, setProduct] = useState([]); //guardar el producto
+  const [loading, setLoading] = useState(true); //estado de carga 
   const URL_BASE = "http://localhost:3000";
 
   useEffect(() => {
-    fetch(`${URL_BASE}/api/products/last`)
-      .then((response) => response.json())
-      .then((result) => {
-        let ultimo = result;
-        setProduct(result.data);
-        setLoading(false);
+    fetch(`${URL_BASE}/api/products/last`) 
+      .then((response) => response.json()) //convierte la respuesta en json
+      .then((result) => { 
+        setProduct(result.data); //guarda el producto en el estado
+        setLoading(false); //cambia el estado de carga
       })
       .catch((error) => console.log("error", error));
   }, []);
 
   return (
-    <div>
+    <div className="last-product-wrapper">
+      <div className="titulo">
       <h2>Ultimo producto</h2>
-      {loading ? (
+      </div>
+
+      {loading ? ( //muestra cargando mientras se obtiene el producto
         <p>Cargando...</p>
       ) : (
-        <pre>{JSON.stringify(product, null, 2)}</pre> // Muestra el producto en formato JSON
+        <div className="last-product-card-center"> 
+          <ProductDetailCard product={product} />
+        </div>
       )}
     </div>
   );

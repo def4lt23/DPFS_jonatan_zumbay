@@ -1,0 +1,19 @@
+.last-product-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* contenido centrado */
+  padding: 0 20px 20px 20px; 
+}
+
+.titulo {
+  background-color: #2ECC71;
+  text-align: center;
+  padding: 10px;
+  color: #FAFAFA;
+
+  width: 100vw;                 
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);    /* lo centra correctamente */
+  box-sizing: border-box;
+}

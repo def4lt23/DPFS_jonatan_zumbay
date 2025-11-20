@@ -1,0 +1,17 @@
+.contenedor-lastuser {
+  width: 100%;
+  text-align: center;
+}
+
+.contenedor-card-user {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.titulo {
+    background-color: #2ECC71;
+    text-align: center;
+    padding: 10px;
+    color: #FAFAFA;
+}

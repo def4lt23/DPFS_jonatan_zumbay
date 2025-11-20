@@ -1,5 +1,54 @@
+.vista_error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh; 
+  text-align: center;
+  gap: 30px;
+  padding: 20px;
+}
+
+.vista_error h1 {
+  font-size: 3rem;
+  color: #2ECC71;
+  margin-bottom: 10px;
+}
+
 .vista_error img {
-    width: 400px;
-    height: auto;
-    margin-bottom: 20px;
+  max-width: 500px;
+  width: 60%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 15px; 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.vista_error a {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #2ECC71;
+  color: #FAFAFA;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.vista_error a:hover {
+  background-color: #27AE60;
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .vista_error h1 {
+    font-size: 2rem;
+  }
+  .vista_error img {
+    max-width: 200px;
+  }
+  .vista_error a {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
 }

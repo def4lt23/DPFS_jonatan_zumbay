@@ -257,28 +257,38 @@ const userController = {
     }
   },
 
-  // OBTENER TODOS LOS USUARIOS
-  allUsers: async function (req, res, next) {
-    try {
-      const users = await db.User.findAll(
-        //busco todos los usuarios
-        { attributes: { exclude: ["password"] } }
-      ); //excluyo la contraseña
-      const response = {
-        //armo la respuesta
-        meta: {
-          status: 200, //estado ok
-          count: users.length, //cantidad de usuarios
-          path: "/api/users", //ruta del endpoint
-        },
-        data: users,
-      };
+// OBTENER USUARIOS CON PAGINACION
+allUsers: async function (req, res, next) {
+  try {
+    const page = parseInt(req.query.page) || 1;      // Página actual
+    const limit = parseInt(req.query.limit) || 3;    // Usuarios por página
+    const offset = (page - 1) * limit;
 
-      res.json(response); //envio la respuesta en formato json
-    } catch (error) {
-      return res.status(500).send("Error al procesar la solicitud"); //error servidor
-    }
-  },
+    const { rows: users, count } = await db.User.findAndCountAll({
+      attributes: { exclude: ["password"] },
+      limit: limit,
+      offset: offset,
+      order: [["id", "ASC"]] // opcional, ordenar por id
+    });
+
+    const totalPages = Math.ceil(count / limit);
+
+    res.json({
+      meta: {
+        status: 200,
+        total: count,
+        page: page,
+        limit: limit,
+        pages: totalPages,
+        path: "/api/users"
+      },
+      data: users
+    });
+  } catch (error) {
+    return res.status(500).send("Error al procesar la solicitud");
+  }
+},
+
 
 // OBTENER ULTIMO USUARIO
 lastUser: async function (req, res) {

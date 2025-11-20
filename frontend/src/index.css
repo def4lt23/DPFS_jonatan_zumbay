@@ -5,8 +5,13 @@
     font-family: "Montserrat", sans-serif;
 }
 
-body {
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
     background: radial-gradient(circle at top left, #F8F8F8, #E0E0E0);
+    background-attachment: fixed;   /* evita que parezca cortado */
+    min-height: 100vh;
 }
 
 a {
@@ -22,10 +27,28 @@ a {
 
 a:hover {
     color: #fafafa;
-    
 }
 
 li:hover {
     background-color: #2ECC71;
     border-radius: 999px;
+}
+
+#root {
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+    background: transparent;
+}
+
+.app, 
+.app-container, 
+.page-wrapper, 
+.content-wrapper {
+    background: transparent !important;
 }

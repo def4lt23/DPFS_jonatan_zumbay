@@ -1,30 +1,41 @@
 import React, { useEffect, useState } from "react";
+import Card from "../AllUsers/Card";
+import "./lastuser.css";
 
 export const LastUser = () => {
-  const [user, setUser] = useState([]); // Estado para almacenar el Ultimo usuario
-  const [loading, setLoading] = useState(true); // Estado para manejar la carga
+  const [user, setUser] = useState(null); //estado para almacenar el usuario
+  const [loading, setLoading] = useState(true); //estado para manejar la carga de datos
   const URL_BASE = "http://localhost:3000";
 
   useEffect(() => {
     fetch(`${URL_BASE}/api/users/last`)
-      .then((response) => response.json())
+      .then((response) => response.json()) //convertir la respuesta a json
       .then((result) => {
-        //setUser(result.data);
-        let ultimo = result;
-        setUser(result.data);
-        setLoading(false);
+        setUser(result.data); //almacenar el usuario en el estado
+        setLoading(false); //indicar que la carga ha terminado
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => {
+        console.log("error", error);
+        setLoading(false);
+      });
   }, []);
 
   return (
-    <div>
-      <h2>Último usuario</h2>
-      {loading ? (
+    <div className="contenedor-lastuser">
+      <div className="titulo">
+        <h2>Ultimo Usuario</h2>
+      </div>
+
+      {loading ? ( //mostrar mensaje de carga mientras se obtienen los datos
         <p>Cargando...</p>
       ) : (
-        <pre>{JSON.stringify(user, null, 2)}</pre> // Muestra el usuario en formato JSON
+        user && ( //verificar que el usuario exista antes de renderizar el componente Card
+          <div className="contenedor-card-user">
+            <Card user={user} />
+          </div>
+        )
       )}
     </div>
   );
 };
+
