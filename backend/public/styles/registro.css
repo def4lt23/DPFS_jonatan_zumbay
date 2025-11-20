@@ -202,6 +202,33 @@ body.dark-mode .registrarse h1 {
     gap: 10px;
 }
 
+/* Contenedor del mensaje de error */
+.alert-danger {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #f8d7da; /* Rojo claro */
+    border: 1px solid #f5c6cb; /* Borde suave */
+    color: #721c24; /* Texto rojo fuerte */
+}
+
+/* Lista sin viñetas */
+.alert-danger ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Cada error dentro de la lista */
+.alert-danger ul li {
+    margin-bottom: 6px;
+}
+
+
 @keyframes resaltar {
   to {
     transform: scaleX(1);

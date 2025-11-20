@@ -21,7 +21,8 @@
     "multer": "^2.0.2",
     "mysql2": "^3.15.1",
     "sequelize": "^6.37.7",
-    "uuid": "^13.0.0"
+    "uuid": "^13.0.0",
+    "validatorjs": "^3.22.1"
   },
   "devDependencies": {
     "babel-register": "^6.26.0",

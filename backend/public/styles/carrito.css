@@ -1,3 +1,13 @@
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;  /* HEADER | MAIN | FOOTER */
+
+  background-color: #f8f8f8;
+}
 .titulo {
   text-align: center; /* centra todo lo inline o inline-block dentro */
 }
@@ -108,17 +118,40 @@ body.dark-mode .item-descripcion {
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 10px 25px 10px 25px; 
     cursor: pointer;
-    font-size: 1.2em;
-    transition: background-color 0.3s ease; /* Transicion suave */
-    margin-top: 20px; 
-    width: 20%; 
+    font-size: 1em;
+    transition: background-color 0.3s ease; /* Transición suave al pasar el cursor */
+    margin-left: auto; 
 }
 
 .botonpagar:hover {
     background-color: #218838;
-}  
+} 
+
+.contvacio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* centra horizontalmente */
+    justify-content: center;  /* centra verticalmente si tiene altura */
+    text-align: center;       /* centra textos */
+    padding: 20px;
+    width: 100%;
+}
+
+.contvacio h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* Imagen responsive */
+.contvacio img {
+    width: 100%;
+    max-width: 500px;   /* tamaño máximo */
+    height: auto;
+    display: block;
+}
+
 
 @keyframes resaltar {
   to {

@@ -6,6 +6,7 @@ const { v4: uudi } = require("uuid"); // generar ids unicos
 const usersPath = path.join(__dirname, "../data/users.json"); // ruta al archivo de usuarios
 
 const db = require("../database/models/index.js"); // Base de datos (sequelize)
+const Validator = require('validatorjs');
 
 // funcion utilitaria para capitalizar strings
 function capitalizar(str) {
@@ -15,10 +16,6 @@ function capitalizar(str) {
 }
 
 const userController = {
-  //:::: VISTAS ::::
-  carrito: function (req, res, next) {
-    res.render("users/carrito.ejs", { title: "Carrito" });
-  },
 
   quienessomos: function (req, res, next) {
     res.render("users/quienessomos.ejs", { title: "QuienesSomos" });
@@ -332,6 +329,49 @@ const userController = {
     }
   },
 
+    //validar registro
+//::::: VALIDAR REGISTRO ::::: con Validator.js
+validarRegistro(req, res, next) {
+  const data = req.body;
+
+  const rules = {
+    nombre: "required|string", 
+    apellido: "required|string",
+    correo: "required|email",
+    telefono: "required|string",
+    direccion: "required|string",
+    usuario: "required|string|min:4",
+    contrasena1: "required|min:6|regex:/^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$/",
+    contrasena2: "required|same:contrasena1",
+  };
+
+  const messages = {
+    "required.nombre": "El nombre es obligatorio.",
+    "required.apellido": "El apellido es obligatorio.",
+    "required.correo": "El correo es obligatorio.",
+    "email.correo": "El correo no tiene un formato válido.",
+    "required.usuario": "El usuario es obligatorio.",
+    "min.usuario": "El usuario debe tener al menos 4 caracteres.",
+    "required.contrasena1": "La contraseña es obligatoria.",
+    "min.contrasena1": "La contraseña debe tener al menos 6 caracteres.",
+    "regex.contrasena1": "La contraseña debe contener letras y números.",
+    "required.contrasena2": "Debes repetir la contraseña.",
+    "same.contrasena2": "Las contraseñas no coinciden.",
+  };
+
+  const validation = new Validator(data, rules, messages);
+
+  if (validation.fails()) {
+    return res.render("users/registro", {
+      mensaje: validation.errors.all(),
+      oldData: data,
+    });
+  }
+
+  next();
+}
+
 };
+
 
 module.exports = userController;

@@ -70,6 +70,20 @@ nav ul li a {
   transition: color 0.3s ease;
 }
 
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    display: none; /* oculto por defecto */
+}
+
+
 header img {
     width: 200px;
     height: auto;
@@ -236,6 +250,13 @@ footer i:hover {
   cursor: pointer;
 }
 
+.tarjetas {
+    display: flex;
+    height: 90px;
+    width: 90px;
+    
+}
+
 @keyframes fadeInOut {
   0%   { opacity: 0; }
   20%  { opacity: 1; }   /* aparece */
@@ -259,17 +280,26 @@ footer i:hover {
     }
 
     footer p, .github-info, .fa-github {
-        margin: 5px 0; /* Espacio vertical para los párrafos y github-info */
+        margin: 5px 0; 
         justify-content: center;
         /*width: 100%;*/ /* Ocupa el ancho completo */
         align-items: center;
     }
 
-    .redes {
-        width: 100%;
-        text-align: center;
-        margin-top: 10px;
-    }
+.redes {
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    gap: 10px; 
+    margin-top: 10px;
+}
+
+.redes .red {
+    width: auto; 
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+}
 
 }
 

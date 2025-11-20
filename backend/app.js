@@ -10,6 +10,7 @@ const userLogged = require('./middlewares/userLogged');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
+const cartRoutes = require('./routes/cart'); //carrito
 const apiProductsRouter = require ('./routes/api/products') //sprint 8
 const apiUsersRouter = require ('./routes/api/users') //sprint 8
 const cors = require('cors'); //sprint 8
@@ -48,6 +49,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
+app.use('/cart', cartRoutes); //carrito
 app.use('/api/products', apiProductsRouter); //sprint 8
 app.use('/api/users', apiUsersRouter); //sprint 8
 

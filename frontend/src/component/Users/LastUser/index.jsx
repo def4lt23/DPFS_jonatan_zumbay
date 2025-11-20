@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Card from "../AllUsers/Card";
 import "./lastuser.css";
 
@@ -32,10 +33,12 @@ export const LastUser = () => {
         user && ( //verificar que el usuario exista antes de renderizar el componente Card
           <div className="contenedor-card-user">
             <Card user={user} />
+            <Link to="/" className="btn-detail">
+              Volver al catálogo
+            </Link>
           </div>
         )
       )}
     </div>
   );
 };
-

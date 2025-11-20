@@ -1,3 +1,4 @@
+/* Carousel */
 #carouselExampleCaptions {
   width: 95%; 
   margin-left: 2.5%; 
@@ -6,33 +7,78 @@
 
 #carouselExampleCaptions .carousel-item img {
   width: 100%; 
-  height: 720px; /*altura fija*/
+  height: 720px; /* altura fija */
   object-fit: cover; /* Ajusta la imagen sin deformarla */
 }
 
-.info {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* centra horizontalmente */
-  gap: 1rem; /* espacio entre bloques */
-  margin-top: 2rem;
-}
-
+/* Títulos */
 .info h3 {
   border-bottom: 2px solid #2ECC71;
   padding-bottom: 0.2rem;
 }
 
-.bloque {
-  max-width: 1000px; /* limita el ancho total del bloque */
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;  /* HEADER | MAIN | FOOTER */
+  background-color: #f8f8f8;
+}
+
+.titulo {
+  text-align: center;
+}
+.titulo h1 {
+  text-align: center;
+  margin-top: 20px; 
+  font-size: 2rem; 
+  position: relative;
+  display: inline-block; /* ancho solo del texto */
+}
+
+.titulo h1::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.1em;
   width: 100%;
+  height: 40%;
+  background: #2ECC71;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: resaltar 1s ease forwards;
+  animation-delay: 0.8s;
+}
+
+body.dark-mode {
+  background: radial-gradient(circle at top left, #121212, #1E1E1E);
+  color: #E0E0E0;
+}
+
+/* Bloques de info */
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem auto;
+  max-width: 1000px; /* limita el ancho total, así solo entran 2 bloques */
+}
+
+.bloque {
+  max-width: 500px;            /* limite para no estirarse demasiado */
+  margin: 1rem;                /* espacio entre bloques */
   padding: 2rem;
-  border-radius: 12px; /* bordes redondeados */
-  background: linear-gradient(135deg, #f0f0f0, #d9d9d9); /* gradiente gris */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* opcional, da relieve */
-  margin-bottom: 1rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f0f0f0, #d9d9d9);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   border: 3px solid #2ECC71;
-  transition: all 0.3s ease; /* controla duracion y suavidad */
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  flex: 0 1 45%;   /* ocupa 45% de la fila */
+
 }
 
 .bloque:hover {
@@ -42,7 +88,7 @@
 }
 
 body.dark-mode .bloque {
-    background: #1E1E1E;
+  background: #1E1E1E;
 }
 
 .bloque h3 {
@@ -50,48 +96,47 @@ body.dark-mode .bloque {
   margin-bottom: 1rem;
 }
 
+/* Contenido dentro de cada bloque */
 .contenido {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2rem;
-}
-
-.contenido img,
-.contenido p {
-  flex: 1; /* cada uno ocupa la misma proporcion */
-  max-width: 50%; /* evita que se pasen */
+  flex-wrap: wrap;
 }
 
 .contenido img {
-  height: 400px;
-  max-width: 400px;
+  width: 100%;          /* ocupa todo el ancho posible */
+  max-width: 200px;     /* limita tamaño máximo */
+  height: auto;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 5px;
 }
 
 .contenido p {
+  flex: 1 1 200px;       /* ocupa el resto del espacio, mínimo 200px */
   font-size: 1.1rem;
   line-height: 1.6;
+  margin: 0;
 }
 
+/* Dark mode */
 body.dark-mode .contenido p,
 body.dark-mode .bloque h3 {
-    color: #fafafa;
+  color: #fafafa;
 }
 
+/* Mensajes */
 .mensaje {
   text-align: center;
 }
-
 .mensaje h4 {
   display: inline-block;
   position: relative;
   font-weight: bold;
   padding: 0 0.4em;
 }
-
 .mensaje h4::before {
   content: "";
   position: absolute;
@@ -104,11 +149,7 @@ body.dark-mode .bloque h3 {
   transform: scaleX(0);
   transform-origin: left;
   animation: resaltar 1s ease forwards;
-  animation-delay: 0.8s; /* empieza medio segundo despues */
-}
-
-body.dark-mode .mensaje {
-    color: #fafafa;
+  animation-delay: 0.8s;
 }
 
 @keyframes resaltar {
@@ -117,28 +158,38 @@ body.dark-mode .mensaje {
   }
 }
 
-/* responsive */
+/* Responsive */
 @media (max-width: 992px) {
-    .card {
-      flex-basis: calc(50% - 20px); /* Dos cartas por fila en tablets (con gap) */
-      max-width: calc(50% - 20px);
-    }
-
-    .contenido {
+  .bloque {
+    flex: 0 1 90%;  /* un bloque por fila en tablets */
+  }
+  .contenido {
     flex-direction: column;
+    align-items: center;
     text-align: center;
   }
-
-  .contenido img,
+  .contenido img {
+    max-width: 100%;
+    height: auto;
+  }
   .contenido p {
-    height: 300px;
-    max-width: auto;
+    flex: 1 1 100%;
   }
 }
 
 @media (max-width: 576px) {
-    .card {
-    flex-basis: 100%; /* Una carta por fila en celulares */
+  .bloque {
+    flex: 0 1 100%;  /* ocupa toda la fila en móviles */
+  }
+  .contenido {
+    flex-direction: column;
+    text-align: center;
+  }
+  .contenido img {
     max-width: 100%;
-    }
+    height: auto;
+  }
+  .contenido p {
+    flex: 1 1 100%;
+  }
 }
