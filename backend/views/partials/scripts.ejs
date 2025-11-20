@@ -1,58 +1,58 @@
 <!-- SCRIPT DEL BOTON HAMBURGUESA DEL RESPONSIVE -->
 <script>
-    const boton = document.querySelector('.iconoburger');
-    const botonicono = document.querySelector('.iconoburger i');
-    const dropdownMenu = document.querySelector('.dropdownmenu');
+  const boton = document.querySelector('.iconoburger');
+  const botonicono = document.querySelector('.iconoburger i');
+  const dropdownMenu = document.querySelector('.dropdownmenu');
 
-    boton.onclick = function () {
-        dropdownMenu.classList.toggle('open');
-        const isOpen = dropdownMenu.classList.contains('open');
+  boton.onclick = function () {
+    dropdownMenu.classList.toggle('open');
+    const isOpen = dropdownMenu.classList.contains('open');
 
-        botonicono.classList = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    botonicono.classList = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
 
-    };
+  };
 </script>
 
 <!-- SCRIPT PARA CAMBIAR LAS IMAGENES DE LOS PRODUCTOS EN LA VISTA DE DETALLE DEL PRODUCTO -->
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const sliders = document.querySelectorAll('.product-image-slider');
-        sliders.forEach(slider => {
-            const imageWrapper = slider.querySelector('.image-wrapper');
-            const images = slider.querySelectorAll('img');
-            const prevBtn = slider.querySelector('.prev-btn');
-            const nextBtn = slider.querySelector('.next-btn');
+  document.addEventListener('DOMContentLoaded', () => {
+    const sliders = document.querySelectorAll('.product-image-slider');
+    sliders.forEach(slider => {
+      const imageWrapper = slider.querySelector('.image-wrapper');
+      const images = slider.querySelectorAll('img');
+      const prevBtn = slider.querySelector('.prev-btn');
+      const nextBtn = slider.querySelector('.next-btn');
 
-            let currentIndex = 0;
+      let currentIndex = 0;
 
-            function updateSlider() {
-                imageWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
+      function updateSlider() {
+        imageWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
 
-            prevBtn.addEventListener('click', () => {
-                currentIndex--;
-                if (currentIndex < 0) {
-                    currentIndex = images.length - 1;
-                }
-                updateSlider();
-            });
+      prevBtn.addEventListener('click', () => {
+        currentIndex--;
+        if (currentIndex < 0) {
+          currentIndex = images.length - 1;
+        }
+        updateSlider();
+      });
 
-            nextBtn.addEventListener('click', () => {
-                currentIndex++;
-                if (currentIndex >= images.length) {
-                    currentIndex = 0;
-                }
-                updateSlider();
-            });
+      nextBtn.addEventListener('click', () => {
+        currentIndex++;
+        if (currentIndex >= images.length) {
+          currentIndex = 0;
+        }
+        updateSlider();
+      });
 
-            updateSlider(); // Inicializa el slider
-        });
+      updateSlider(); // Inicializa el slider
     });
+  });
 </script>
 
 <!-- SCRIPT DARK MODE -->
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     const body = document.body;
     const logo = document.getElementById("logo");
 
@@ -80,157 +80,151 @@
 
 <!-- script de carrito -->
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-        // configurar posición de los toasts
+  document.addEventListener('DOMContentLoaded', () => {
+    // configurar posición de los toasts abjo a la derecha
     toastr.options.positionClass = "toast-bottom-right";
     const botones = document.querySelectorAll('.agregar-carrito');
 
     async function actualizarContador() {
-        try {
-            const res = await fetch('/cart/count');
-            const data = await res.json();
-            console.log("Respuesta de getCartCount:", data); // <-- ver qué llega
-            const contador = document.querySelector('#contador-carrito');
+      try {
+        const res = await fetch('/cart/count');
+        const data = await res.json();
+        console.log("Respuesta de getCartCount:", data); // <-- ver qué llega
+        const contador = document.querySelector('#contador-carrito');
 
-            if (contador) {
-                if (data.count > 0) {
-                    contador.textContent = data.count;
-                    contador.style.display = 'inline'; 
-                } else {
-                    contador.style.display = 'none';
-                }
-            }
-        } catch (err) {
-            console.error(err);
+        if (contador) {
+          if (data.count > 0) {
+            contador.textContent = data.count;
+            contador.style.display = 'inline';
+          } else {
+            contador.style.display = 'none';
+          }
         }
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     botones.forEach(btn => {
-        btn.addEventListener('click', async () => {
-            const productId = btn.dataset.productId;
+      btn.addEventListener('click', async () => {
+        const productId = btn.dataset.productId;
 
-            try {
-                const res = await fetch(`/cart/add/${productId}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' }
-                });
-                const data = await res.json();
-                console.log('Respuesta backend:', data);
+        try {
+          const res = await fetch(`/cart/add/${productId}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+          });
+          const data = await res.json();
+          console.log('Respuesta backend:', data);
 
-                if (data.success) {
-                    toastr.success(data.message, "Carrito"); 
-                    actualizarContador();
-                } else {
-                    toastr.error(data.message || 'Error agregando producto', "Carrito"); 
-                }
-            } catch (err) {
-                console.error(err);
-                toastr.error('Error agregando producto', "Carrito"); 
-            }
-        });
+          if (data.success) {
+            toastr.success(data.message, "Carrito");
+            actualizarContador();
+          } else {
+            toastr.error(data.message || 'Error agregando producto', "Carrito");
+          }
+        } catch (err) {
+          console.error(err);
+          toastr.error('Error agregando producto', "Carrito");
+        }
+      });
     });
 
     // inicializar contador al cargar
     actualizarContador();
-});
+  });
 </script>
 
 <!-- vaciar carrito con SweetAlert2 -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
 
-  const btnVaciar = document.getElementById("vaciarCarrito");
+    const btnVaciar = document.getElementById("vaciarCarrito");
 
-  if (btnVaciar) {
-    btnVaciar.addEventListener("click", async () => {
+    if (btnVaciar) {
+      btnVaciar.addEventListener("click", async () => {
 
-      // Confirmación con SweetAlert2
-      Swal.fire({
-        title: '¿Estás seguro?',
-        text: "Se eliminarán todos los productos del carrito",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, vaciar',
-        cancelButtonText: 'Cancelar'
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          try {
-            const response = await fetch("/cart/clear", {
-              method: "DELETE"
-            });
-            const data = await response.json();
+        // Confirmación con SweetAlert2
+        Swal.fire({
+          title: '¿Estás seguro?',
+          text: "Se eliminarán todos los productos del carrito",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, vaciar',
+          cancelButtonText: 'Cancelar'
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            try {
+              const response = await fetch("/cart/clear", {
+                method: "DELETE"
+              });
+              const data = await response.json();
 
-            if (data.success) {
-              Swal.fire('¡Listo!', 'El carrito ha sido vaciado', 'success')
-                .then(() => location.reload()); // refresca la vista
-            } else {
+              if (data.success) {
+                Swal.fire('¡Listo!', 'El carrito ha sido vaciado', 'success')
+                  .then(() => location.reload()); // refresca la vista
+              } else {
+                Swal.fire('Error', 'Hubo un error al vaciar el carrito', 'error');
+              }
+            } catch (err) {
               Swal.fire('Error', 'Hubo un error al vaciar el carrito', 'error');
             }
-          } catch (err) {
-            Swal.fire('Error', 'Hubo un error al vaciar el carrito', 'error');
           }
-        }
+        });
+
       });
+    }
 
-    });
-  }
-
-});
+  });
 </script>
 
 
 <!-- eliminar producto carrito con SweetAlert2 -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
 
-  // Botón quitar individual
-  document.querySelectorAll(".item-quitar").forEach(btn => {
-    btn.addEventListener("click", async (e) => {
+    // Botón quitar individual
+    document.querySelectorAll(".item-quitar").forEach(btn => {
+      btn.addEventListener("click", async (e) => {
 
-      const itemBox = e.target.closest(".item-caja");
-      const itemId = itemBox.dataset.cartitemid;
+        const itemBox = e.target.closest(".item-caja");
+        const itemId = itemBox.dataset.cartitemid;
 
-      // Pregunta de confirmación con SweetAlert2
-      Swal.fire({
-        title: '¿Estás seguro?',
-        text: "Se eliminará este producto del carrito",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, eliminar',
-        cancelButtonText: 'Cancelar'
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          // Si confirma, se hace el DELETE
-          try {
-            const response = await fetch(`/cart/remove/${itemId}`, {
-              method: "DELETE"
-            });
-            const data = await response.json();
+        // Pregunta de confirmación con SweetAlert2
+        Swal.fire({
+          title: '¿Estás seguro?',
+          text: "Se eliminará este producto del carrito",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, eliminar',
+          cancelButtonText: 'Cancelar'
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            // Si confirma, se hace el DELETE
+            try {
+              const response = await fetch(`/cart/remove/${itemId}`, {
+                method: "DELETE"
+              });
+              const data = await response.json();
 
-            if (data.success) {
-              itemBox.remove(); // elimina visualmente el producto
-              location.reload(); // recarga para actualizar totales
-            } else {
+              if (data.success) {
+                itemBox.remove(); // elimina visualmente el producto
+                location.reload(); // recarga para actualizar totales
+              } else {
+                Swal.fire('Error', 'Hubo un error al eliminar el producto', 'error');
+              }
+            } catch (err) {
               Swal.fire('Error', 'Hubo un error al eliminar el producto', 'error');
             }
-          } catch (err) {
-            Swal.fire('Error', 'Hubo un error al eliminar el producto', 'error');
           }
-        }
+        });
+
       });
-
     });
+
   });
-
-});
 </script>
-
-
-
-
-
-

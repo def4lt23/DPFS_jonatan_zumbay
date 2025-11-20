@@ -120,3 +120,30 @@ Excelente trabajo! Funciona todo perfectamente! vamos por los siguientes sprints
 * Personalmente este fue el sprint que mas me costo por el tema de aprender el uso de migrations y models, ademas de saber adaptar las funciones de los controladores que son muchas.
 
 **DEVOLUCION**
+Excelente trabajo,desde la documentacion semanal de los avances y pruebas hasta la calidad del proyecto, me olvidé de verlo en vivo en la clase, sprint 6 listo! Te estaria quedando el ultimo y si te interesa una validación también, por ejemplo ingrese un mail incorrecto y me devolvió un error por mensaje solamente
+
+============================================================================================
+>>>**SPRINT 8 / SE IGNORO EL SPRINT 7**
+**INSTALACION**
+|| BACKEND || (HIBRIDO)
+* Se separo el proyecto en dos carpetas. BACKEND para manejar la base de datos y vistas (hibrido) y FRONTEND para manejar un dashboard.
+* Se instalo validatorjs para poder validar datos de ingreso en los form de registro de usuarios (controlar mail y password).
+* Se instalo toastr y sweetalert2 para mostrar diferentes alertas en la pagina.
+* Se agrego funcionalidad al carrito. Agregaron archivos en routes, controllers y scripts para manejar la carga y baja de productos en el carrito.
+* Se creo los archivos para las api en carpetas de routes y controllers. Para manejar con el frontend los usuarios y productos.
+* Se instalo libreria de cors para no tener problemas a la hora de manejar las api.
+
+|| FRONTEND ||
+* Se instalo React para poder trabajar con un dashboard que tendra algunas funciones llamando con api al backend.
+* Se creo la carpeta component donde se separan los archivos que iremos solicitando para mostrar en el dashboard (similares a partials del backend). Alli se colocaron los archivos tantos index.jsx como sus correspondientes estilos css.
+* Se instalo react-router-dom para poder enrutar todos los componentes y poder relacionar la pagina.
+
+||| EN RESUMEN |||
+* Quedo funcional con 6 opciones el dashboard respondiendo efectivamente al CRUD de usuarios y productos que se tocan en el backend.
+* Se mejoro la vista del carrito para que sea funcional y dinamica con los productos, agregando algunos archivos.
+* Se corrigio algunos aspectos visuales con alertas y css para una mejor experiencia.
+
+|| NOTA ||
+* Tengo muchas ideas para la pagina que no llegue a plasmar y tambien algunas cosas esteticas por corregir que con el tiempo no logre completar. Aun asi escuche lo que debia mejorar con cada sprint y logre a mi parecer entregar un dashboard que no trabaja como yo lo pensaba en un inicio pero que al menos cumple con lo solicitado en el sprint.
+
+**DEVOLUCION**
